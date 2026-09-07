@@ -27,13 +27,13 @@ export function Hero() {
       <HeroReferenceVisual />
       <div className="hero-content">
         <div className="hero-copy-cinematic">
-          <h1 id="hero-title" className="hero-title">{content.title}</h1>
-          <p className="hero-body">{content.body}</p>
-          <div className="hero-actions">
+          <h1 id="hero-title" className="hero-title" data-reveal="left">{content.title}</h1>
+          <p className="hero-body motion-stagger-1" data-reveal>{content.body}</p>
+          <div className="hero-actions motion-stagger-2" data-reveal>
             <a className="button-primary focusable" href="#contact"><span>{content.talk}</span><span aria-hidden="true">→</span></a>
           </div>
         </div>
-        <div className="hero-scroll-cue" aria-hidden="true">
+        <div className="hero-scroll-cue motion-stagger-3" aria-hidden="true" data-reveal>
           <span className="hero-scroll-line" />
           <div><span className="technical">{content.scroll}</span><span className="hero-scroll-arrow">↓</span></div>
         </div>
