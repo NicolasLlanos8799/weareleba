@@ -1,9 +1,6 @@
-import { homeContent } from "@/content/home";
 import { HeroReferenceVisual } from "@/components/hero/HeroReferenceVisual";
 
 export function Hero() {
-  const { hero } = homeContent;
-
   return (
     <section id="top" className="hero hero-cinematic" aria-labelledby="hero-title">
       <HeroReferenceVisual />
@@ -13,24 +10,21 @@ export function Hero() {
 
       <div className="hero-content">
         <div className="hero-copy-cinematic">
-          <p className="technical hero-eyebrow">{hero.eyebrow}</p>
           <h1 id="hero-title" className="hero-title">
-            {hero.headline}
+            Ideas<br />
+            that build<br />
+            what&apos;s next
           </h1>
 
           <p className="hero-body">
-            {hero.body.split("\n\n").map((paragraph, index) => (
-              <span key={index}>
-                {paragraph}
-                {index === 0 && <><br /><br /></>}
-              </span>
-            ))}
+            We design, develop and scale digital products<br />
+            for a brighter tomorrow.
           </p>
 
           <div className="hero-actions">
             <a className="button-primary focusable" href="#contact">
-              {hero.primaryCta}
-              <span aria-hidden="true">↗</span>
+              <span>Let&apos;s talk</span>
+              <span aria-hidden="true">→</span>
             </a>
           </div>
         </div>
@@ -44,7 +38,7 @@ export function Hero() {
         </div>
 
         <div className="hero-system-caption" aria-hidden="true">
-          <span className="technical">{hero.systemLabel}</span>
+          <span className="technical hero-system-copy">FROM IDEA<br />TO IMPACT</span>
           <span className="hero-caption-rule" />
           <span className="technical">01 / 04</span>
         </div>
