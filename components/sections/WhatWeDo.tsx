@@ -1,10 +1,10 @@
 "use client";
 
-import type { CSSProperties } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { useLanguage } from "@/components/i18n/LanguageProvider";
 
 type Service = { number: string; title: string; description: string; note: string; visual: "website" | "software" | "automation" };
-type Copy = { heading: React.ReactNode; intro: string; learnMore: string; footer: string; services: Service[] };
+type Copy = { heading: ReactNode; intro: string; learnMore: string; footer: string; services: Service[] };
 
 const content: Record<"en" | "es", Copy> = {
   en: {
@@ -38,6 +38,6 @@ function ServiceVisual({ type, language }: { type: Service["visual"]; language: 
 
 export function WhatWeDo() {
   const { language } = useLanguage();
-  const copy = content[language] ?? content.en;
-  return <section className="what-we-do" id="what-we-do"><div className="what-we-do-inner"><div className="what-we-do-intro"><div className="section-kicker" data-reveal="left"><span /> WHAT WE DO</div><h2 data-reveal>{copy.heading}</h2><p className="motion-stagger-1" data-reveal="right">{copy.intro}</p></div><div className="service-grid">{copy.services.map((service, index) => <article className={`service-card motion-stagger-${index + 1}`} data-reveal="scale" key={`${language}-${service.number}`}><div className="service-topline"><span>{service.number}</span><i /></div><ServiceVisual type={service.visual} language={language} /><h3>{service.title}</h3><p className="service-description">{service.description}</p><p className="service-note">{service.note}</p><a className="service-link focusable" href="#contact">{copy.learnMore} <span /></a></article>)}</div><div className="what-we-do-footer" data-reveal><span><i /> {copy.footer}</span><span>WE ARE LEBA</span></div></div></section>;
+  const copy = content[language] || content.en;
+  return <section className="what-we-do" id="what-we-do"><div className="what-we-do-inner"><div className="what-we-do-intro"><div className="section-kicker" data-reveal="left"><span /> WHAT WE DO</div><h2 data-reveal>{copy.heading}</h2><p className="motion-stagger-1" data-reveal="right">{copy.intro}</p></div><div className="service-grid">{copy.services.map((service, index) => <article className={`service-card motion-stagger-${index + 1}`} data-reveal="scale" key={service.number}><div className="service-topline"><span>{service.number}</span><i /></div><ServiceVisual type={service.visual} language={language} /><h3>{service.title}</h3><p className="service-description">{service.description}</p><p className="service-note">{service.note}</p><a className="service-link focusable" href="#contact">{copy.learnMore} <span /></a></article>)}</div><div className="what-we-do-footer" data-reveal><span><i /> {copy.footer}</span><span>WE ARE LEBA</span></div></div></section>;
 }
