@@ -33,9 +33,10 @@
     padding: 0 clamp(62px, 6.2vw, 102px);
   }
 
+  /* Move the entire editorial copy block upward as one composition. */
   .hero-copy-cinematic {
     position: absolute;
-    top: clamp(250px, 28.5vh, 274px);
+    top: clamp(220px, 25vh, 244px);
     left: clamp(62px, 6.2vw, 102px);
     width: min(100%, 650px);
     margin: 0;
