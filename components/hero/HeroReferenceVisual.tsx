@@ -2,30 +2,30 @@ import Image from "next/image";
 
 export function HeroReferenceVisual() {
   return (
-    <div className="hero-reference-visual" aria-label="WE ARE LEBA system visual">
-      <div className="hero-reference-frame">
-        <Image
-          src="/assets/generated/portada.png"
-          alt="Visual arquitectónico del sistema digital de WE ARE LEBA"
-          fill
-          priority
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 88vw, 54vw"
-          className="hero-reference-image"
-        />
+    <div className="hero-reference-visual" aria-hidden="true">
+      <Image
+        src="/assets/generated/portada.png"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="hero-reference-image"
+      />
+
+      <div className="hero-reference-vignette" />
+
+      <div className="hero-reference-overlay hero-reference-overlay-top technical">
+        <span>WE ARE LEBA / DIGITAL SYSTEMS STUDIO</span>
+        <span>CPH — 2026</span>
       </div>
 
-      <div className="hero-reference-overlay hero-reference-overlay-top technical" aria-hidden="true">
-        <span>LEBA-ASSET-001</span>
-        <span>MASTER VISUAL</span>
+      <div className="hero-reference-overlay hero-reference-overlay-bottom technical">
+        <span>OBSERVATION → STRUCTURE → EXECUTION</span>
+        <span>01 / MASTER VISUAL</span>
       </div>
 
-      <div className="hero-reference-overlay hero-reference-overlay-bottom technical" aria-hidden="true">
-        <span>01 / HERO SYSTEM</span>
-        <span>EXPLODED VIEW</span>
-      </div>
-
-      <div className="hero-reference-rule hero-reference-rule-a" aria-hidden="true" />
-      <div className="hero-reference-rule hero-reference-rule-b" aria-hidden="true" />
+      <div className="hero-reference-rule hero-reference-rule-a" />
+      <div className="hero-reference-rule hero-reference-rule-b" />
     </div>
   );
 }
