@@ -5,9 +5,6 @@ export function Hero() {
     <section id="top" className="hero hero-cinematic" aria-labelledby="hero-title">
       <HeroReferenceVisual />
 
-      <div className="hero-cinematic-shade" aria-hidden="true" />
-      <div className="hero-cinematic-vignette" aria-hidden="true" />
-
       <div className="hero-content">
         <div className="hero-copy-cinematic">
           <h1 id="hero-title" className="hero-title">
