@@ -28,10 +28,10 @@ export function SiteHeader() {
         </nav>
 
         <div className="site-header-actions">
-          <div className="language-switcher" aria-label="Language selector">
-            <button className={language === "en" ? "is-active" : ""} type="button" onClick={() => setLanguage("en")} aria-pressed={language === "en"}>EN</button>
-            <span>/</span>
-            <button className={language === "es" ? "is-active" : ""} type="button" onClick={() => setLanguage("es")} aria-pressed={language === "es"}>ES</button>
+          <div className="flex items-center gap-2 mr-5 text-[11px] tracking-[0.16em] text-white/70" aria-label="Language selector">
+            <button className={`focusable border-0 bg-transparent p-0 cursor-pointer transition-opacity ${language === "en" ? "text-white opacity-100" : "text-white/45 opacity-70 hover:opacity-100"}`} type="button" onClick={() => setLanguage("en")} aria-pressed={language === "en"}>EN</button>
+            <span className="text-white/35">/</span>
+            <button className={`focusable border-0 bg-transparent p-0 cursor-pointer transition-opacity ${language === "es" ? "text-white opacity-100" : "text-white/45 opacity-70 hover:opacity-100"}`} type="button" onClick={() => setLanguage("es")} aria-pressed={language === "es"}>ES</button>
           </div>
           <a className="focusable site-header-cta" href="#contact"><span>{labels.talk}</span><span aria-hidden="true">→</span></a>
           <button className="focusable menu-toggle" type="button" aria-label={open ? labels.close : labels.menu} aria-expanded={open} onClick={() => setOpen(!open)}>{open ? labels.close : labels.menu}</button>
@@ -40,6 +40,11 @@ export function SiteHeader() {
 
       {open && (
         <nav aria-label={language === "en" ? "Mobile navigation" : "Navegación móvil"} className="mobile-nav">
+          <div className="flex items-center gap-2 text-[11px] tracking-[0.16em]">
+            <button className={language === "en" ? "font-medium" : "opacity-50"} type="button" onClick={() => setLanguage("en")}>EN</button>
+            <span>/</span>
+            <button className={language === "es" ? "font-medium" : "opacity-50"} type="button" onClick={() => setLanguage("es")}>ES</button>
+          </div>
           {links.map((link) => (
             <a key={link} href={`#${link.toLowerCase().replaceAll(" ", "-")}`} onClick={() => setOpen(false)}>{link}</a>
           ))}
