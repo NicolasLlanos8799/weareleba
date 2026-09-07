@@ -33,7 +33,7 @@ export function Hero() {
             <a className="button-primary focusable" href="#contact"><span>{content.talk}</span><span aria-hidden="true">→</span></a>
           </div>
         </div>
-        <div className="hero-scroll-cue motion-stagger-3" aria-hidden="true" data-reveal>
+        <div className="hero-scroll-cue" aria-hidden="true">
           <span className="hero-scroll-line" />
           <div><span className="technical">{content.scroll}</span><span className="hero-scroll-arrow">↓</span></div>
         </div>
