@@ -19,17 +19,17 @@ const content = {
       {
         name: "Nicolás Llanos",
         role: "Founder · Development & Technology",
-        image: "https://weareleba.com/src/equipo/nicolas-llanos-800.webp",
+        image: "https://weareleba.com/src/equipo/nicolas-llanos-b.png",
       },
       {
         name: "Marlene Morrone",
         role: "Owner · Commercial & Operations",
-        image: "https://weareleba.com/src/equipo/marlene-morrone-800.webp",
+        image: "https://weareleba.com/src/equipo/marlene-morrone-b.png",
       },
       {
         name: "Mariano Oggier",
         role: "Strategic Development & Growth",
-        image: "https://weareleba.com/src/equipo/mariano-oggier-800.webp",
+        image: "https://weareleba.com/src/equipo/mariano-oggier-b.png",
       },
     ] as Member[],
     footer: "PEOPLE, PURPOSE AND POSSIBILITIES.",
