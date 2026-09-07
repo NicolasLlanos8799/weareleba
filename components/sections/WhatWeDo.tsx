@@ -1,115 +1,41 @@
-const services = [
-  {
-    number: "01",
-    title: "Websites",
-    description:
-      "We design clear, professional websites that represent your business and make it easier to attract new clients.",
-    note:
-      "Ideal for businesses that need an online presence or want to improve how they present their services.",
-    visual: "website",
-  },
-  {
-    number: "02",
-    title: "Custom Software",
-    description:
-      "We build systems tailored to the way your business works. Organize tasks, processes and operations in a tool designed for your day-to-day needs.",
-    note:
-      "Built for businesses that can no longer manage their operations with generic tools or manual processes.",
-    visual: "software",
-  },
-  {
-    number: "03",
-    title: "Automation & AI",
-    description:
-      "We automate repetitive tasks and connect your tools to reduce manual work. Less time operating, more time focused on growing your business.",
-    note:
-      "Especially useful if you spend a large part of your day answering, managing or repeating manual tasks.",
-    visual: "automation",
-  },
-];
+"use client";
 
-function ServiceVisual({ type }: { type: string }) {
-  if (type === "website") {
-    return (
-      <div className="service-visual service-visual-website" aria-hidden="true">
-        <div className="visual-laptop">
-          <div className="visual-laptop-screen">
-            <div className="visual-browser-bar"><span /><span /><span /></div>
-            <div className="visual-website-copy">
-              <small>WE ARE LEBA</small>
-              <strong>Your business,<br />at its best.</strong>
-              <i />
-            </div>
-            <div className="visual-website-orb" />
-          </div>
-          <div className="visual-laptop-base" />
-        </div>
-      </div>
-    );
-  }
+import { useLanguage } from "@/components/i18n/LanguageProvider";
 
-  if (type === "software") {
-    return (
-      <div className="service-visual service-visual-software" aria-hidden="true">
-        <div className="visual-dashboard">
-          <aside>
-            <b>Your Business</b><span>Home</span><span>Clients</span><span>Services</span><span>Bookings</span><span>Reports</span>
-          </aside>
-          <div className="visual-dashboard-main">
-            <div className="visual-dashboard-title">Overview</div>
-            <div className="visual-stat-grid">
-              <div><small>Clients</small><b>124</b><em>↗ 12%</em></div>
-              <div><small>Bookings</small><b>58</b><em>↗ 8%</em></div>
-            </div>
-            <div className="visual-list-title">Upcoming bookings</div>
-            <div className="visual-list-row"><i /> <span>Maria Gonzalez</span><small>10:00</small></div>
-            <div className="visual-list-row"><i /> <span>Juan Perez</span><small>11:30</small></div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+const content = {
+  en: {
+    heading: <>Digital solutions<br />to help grow<br />your business.</>,
+    intro: "We design, build and automate digital tools that let you focus on what matters most: growing your business.",
+    learnMore: "LEARN MORE",
+    footer: "SAME PURPOSE. DIFFERENT PATHS.",
+    services: [
+      { number: "01", title: "Websites", description: "We design clear, professional websites that represent your business and make it easier to attract new clients.", note: "Ideal for businesses that need an online presence or want to improve how they present their services.", visual: "website" },
+      { number: "02", title: "Custom Software", description: "We build systems tailored to the way your business works. Organize tasks, processes and operations in a tool designed for your day-to-day needs.", note: "Built for businesses that can no longer manage their operations with generic tools or manual processes.", visual: "software" },
+      { number: "03", title: "Automation & AI", description: "We automate repetitive tasks and connect your tools to reduce manual work. Less time operating, more time focused on growing your business.", note: "Especially useful if you spend a large part of your day answering, managing or repeating manual tasks.", visual: "automation" },
+    ],
+  },
+  es: {
+    heading: <>Soluciones digitales<br />para hacer crecer<br />tu negocio.</>,
+    intro: "Diseñamos, desarrollamos y automatizamos herramientas digitales para que puedas enfocarte en lo más importante: hacer crecer tu negocio.",
+    learnMore: "SABER MÁS",
+    footer: "MISMO PROPÓSITO. DIFERENTES CAMINOS.",
+    services: [
+      { number: "01", title: "Páginas Web", description: "Diseñamos páginas web claras y profesionales que representan tu negocio y facilitan la captación de clientes.", note: "Ideal para negocios que necesitan presencia online o mejorar cómo presentan sus servicios.", visual: "website" },
+      { number: "02", title: "Software a Medida", description: "Creamos sistemas adaptados a cómo funciona tu negocio. Organiza tareas, procesos y operaciones en una herramienta pensada para tu día a día.", note: "Pensado para negocios que ya no pueden manejar su operación con herramientas genéricas o procesos manuales.", visual: "software" },
+      { number: "03", title: "Automatización e IA", description: "Automatizamos tareas repetitivas y conectamos tus herramientas para reducir trabajo manual. Menos tiempo operando, más tiempo enfocándote en hacer crecer tu negocio.", note: "Especialmente útil si pasas gran parte del día respondiendo, gestionando o repitiendo tareas manualmente.", visual: "automation" },
+    ],
+  },
+};
 
-  return (
-    <div className="service-visual service-visual-automation" aria-hidden="true">
-      <div className="automation-flow">
-        <div className="automation-inputs">
-          <div>↗ <span>New messages</span></div><div>▣ <span>New bookings</span></div><div>✉ <span>Forms</span></div><div>≋ <span>Other tools</span></div>
-        </div>
-        <div className="automation-core">✦<small>Automate</small></div>
-        <div className="automation-output">
-          <span>✓ &nbsp; Reply</span><span>✓ &nbsp; Create task</span><span>✓ &nbsp; Update client</span><span>✓ &nbsp; Send notification</span>
-        </div>
-      </div>
-    </div>
-  );
+function ServiceVisual({ type, language }: { type: string; language: "en" | "es" }) {
+  const isSpanish = language === "es";
+  if (type === "website") return <div className="service-visual service-visual-website" aria-hidden="true"><div className="visual-laptop"><div className="visual-laptop-screen"><div className="visual-browser-bar"><span /><span /><span /></div><div className="visual-website-copy"><small>WE ARE LEBA</small><strong>{isSpanish ? <>Tu negocio,<br />en su mejor versión.</> : <>Your business,<br />at its best.</>}</strong><i /></div><div className="visual-website-orb" /></div><div className="visual-laptop-base" /></div></div>;
+  if (type === "software") return <div className="service-visual service-visual-software" aria-hidden="true"><div className="visual-dashboard"><aside><b>{isSpanish ? "Tu Negocio" : "Your Business"}</b><span>{isSpanish ? "Inicio" : "Home"}</span><span>{isSpanish ? "Clientes" : "Clients"}</span><span>{isSpanish ? "Servicios" : "Services"}</span><span>{isSpanish ? "Reservas" : "Bookings"}</span><span>{isSpanish ? "Reportes" : "Reports"}</span></aside><div className="visual-dashboard-main"><div className="visual-dashboard-title">{isSpanish ? "Resumen" : "Overview"}</div><div className="visual-stat-grid"><div><small>{isSpanish ? "Clientes" : "Clients"}</small><b>124</b><em>↗ 12%</em></div><div><small>{isSpanish ? "Reservas" : "Bookings"}</small><b>58</b><em>↗ 8%</em></div></div><div className="visual-list-title">{isSpanish ? "Próximas reservas" : "Upcoming bookings"}</div><div className="visual-list-row"><i /> <span>Maria Gonzalez</span><small>10:00</small></div><div className="visual-list-row"><i /> <span>Juan Perez</span><small>11:30</small></div></div></div></div>;
+  return <div className="service-visual service-visual-automation" aria-hidden="true"><div className="automation-flow"><div className="automation-inputs"><div>↗ <span>{isSpanish ? "Nuevos mensajes" : "New messages"}</span></div><div>▣ <span>{isSpanish ? "Nuevas reservas" : "New bookings"}</span></div><div>✉ <span>{isSpanish ? "Formularios" : "Forms"}</span></div><div>≋ <span>{isSpanish ? "Otras herramientas" : "Other tools"}</span></div></div><div className="automation-core">✦<small>{isSpanish ? "Automatizar" : "Automate"}</small></div><div className="automation-output"><span>✓ &nbsp; {isSpanish ? "Responder" : "Reply"}</span><span>✓ &nbsp; {isSpanish ? "Crear tarea" : "Create task"}</span><span>✓ &nbsp; {isSpanish ? "Actualizar cliente" : "Update client"}</span><span>✓ &nbsp; {isSpanish ? "Enviar notificación" : "Send notification"}</span></div></div></div>;
 }
 
 export function WhatWeDo() {
-  return (
-    <section className="what-we-do" id="what-we-do">
-      <div className="what-we-do-inner">
-        <div className="what-we-do-intro">
-          <div className="section-kicker"><span /> WHAT WE DO</div>
-          <h2>Digital solutions<br />to help grow<br />your business.</h2>
-          <p>We design, build and automate digital tools that let you focus on what matters most: growing your business.</p>
-        </div>
-        <div className="service-grid">
-          {services.map((service) => (
-            <article className="service-card" key={service.title}>
-              <div className="service-topline"><span>{service.number}</span><i /></div>
-              <ServiceVisual type={service.visual} />
-              <h3>{service.title}</h3>
-              <p className="service-description">{service.description}</p>
-              <p className="service-note">{service.note}</p>
-              <a className="service-link focusable" href="#contact">LEARN MORE <span /></a>
-            </article>
-          ))}
-        </div>
-        <div className="what-we-do-footer">
-          <span><i /> SAME PURPOSE. DIFFERENT PATHS.</span><span>WE ARE LEBA</span>
-        </div>
-      </div>
-    </section>
-  );
+  const { language } = useLanguage();
+  const copy = content[language];
+  return <section className="what-we-do" id="what-we-do"><div className="what-we-do-inner"><div className="what-we-do-intro"><div className="section-kicker"><span /> WHAT WE DO</div><h2>{copy.heading}</h2><p>{copy.intro}</p></div><div className="service-grid">{copy.services.map((service) => <article className="service-card" key={service.title}><div className="service-topline"><span>{service.number}</span><i /></div><ServiceVisual type={service.visual} language={language} /><h3>{service.title}</h3><p className="service-description">{service.description}</p><p className="service-note">{service.note}</p><a className="service-link focusable" href="#contact">{copy.learnMore} <span /></a></article>)}</div><div className="what-we-do-footer"><span><i /> {copy.footer}</span><span>WE ARE LEBA</span></div></div></section>;
 }
