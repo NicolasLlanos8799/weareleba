@@ -5,47 +5,48 @@ export function Hero() {
   const { hero } = homeContent;
 
   return (
-    <section id="top" className="hero" aria-labelledby="hero-title">
+    <section id="top" className="hero hero-cinematic" aria-labelledby="hero-title">
       <HeroReferenceVisual />
 
-      <div className="container hero-shell">
-        <div className="hero-index technical" aria-hidden="true">
-          <span>01</span>
-          <span>LAND / UNDERSTAND / STRUCTURE</span>
-        </div>
+      <div className="hero-cinematic-shade" aria-hidden="true" />
+      <div className="hero-cinematic-vignette" aria-hidden="true" />
 
-        <div className="grid-12 hero-layout">
-          <div className="hero-copy">
-            <p className="technical hero-eyebrow">{hero.eyebrow}</p>
-            <h1 id="hero-title" className="hero-title">
-              {hero.headline}
-            </h1>
+      <div className="hero-content">
+        <div className="hero-copy-cinematic">
+          <p className="technical hero-eyebrow">{hero.eyebrow}</p>
+          <h1 id="hero-title" className="hero-title">
+            {hero.headline}
+          </h1>
 
-            <div className="hero-bottom">
-              <p className="hero-body">
-                {hero.body.split("\n\n").map((paragraph, index) => (
-                  <span key={index}>
-                    {paragraph}
-                    {index === 0 && <><br /><br /></>}
-                  </span>
-                ))}
-              </p>
+          <p className="hero-body">
+            {hero.body.split("\n\n").map((paragraph, index) => (
+              <span key={index}>
+                {paragraph}
+                {index === 0 && <><br /><br /></>}
+              </span>
+            ))}
+          </p>
 
-              <div className="hero-actions">
-                <a className="button-primary focusable" href="#contact">
-                  {hero.primaryCta}
-                </a>
-                <a className="button-secondary focusable" href="#work">
-                  {hero.secondaryCta}
-                </a>
-              </div>
-            </div>
+          <div className="hero-actions">
+            <a className="button-primary focusable" href="#contact">
+              {hero.primaryCta}
+              <span aria-hidden="true">↗</span>
+            </a>
           </div>
         </div>
 
-        <div className="hero-system-meta" aria-hidden="true">
+        <div className="hero-scroll-cue" aria-hidden="true">
+          <span className="hero-scroll-line" />
+          <div>
+            <span className="technical">SCROLL TO EXPLORE</span>
+            <span className="hero-scroll-arrow">↓</span>
+          </div>
+        </div>
+
+        <div className="hero-system-caption" aria-hidden="true">
           <span className="technical">{hero.systemLabel}</span>
-          <span className="technical">SYSTEM / 01</span>
+          <span className="hero-caption-rule" />
+          <span className="technical">01 / 04</span>
         </div>
       </div>
     </section>
