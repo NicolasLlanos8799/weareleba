@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-const links = ["Work", "Capabilities", "Process", "About"];
+const links = ["Work", "About", "Services", "Journal"];
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -10,8 +10,8 @@ export function SiteHeader() {
   return (
     <header className="site-header">
       <div className="site-header-inner">
-        <a className="site-brand focusable" href="#top" aria-label="WE ARE LEBA">
-          WE ARE LEBA
+        <a className="site-brand focusable" href="#top" aria-label="LEBA">
+          LEBA
         </a>
 
         <nav aria-label="Principal" className="desktop-nav site-nav">
@@ -24,8 +24,8 @@ export function SiteHeader() {
 
         <div className="site-header-actions">
           <a className="focusable site-header-cta" href="#contact">
-            <span>Start a project</span>
-            <span aria-hidden="true">↗</span>
+            <span>Let&apos;s talk</span>
+            <span aria-hidden="true">→</span>
           </a>
           <button
             className="focusable menu-toggle"
