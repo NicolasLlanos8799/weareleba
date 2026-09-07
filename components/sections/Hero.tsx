@@ -33,12 +33,6 @@ export function Hero() {
             <span className="hero-scroll-arrow">↓</span>
           </div>
         </div>
-
-        <div className="hero-system-caption" aria-hidden="true">
-          <span className="technical hero-system-copy">FROM IDEA<br />TO IMPACT</span>
-          <span className="hero-caption-rule" />
-          <span className="technical">01 / 04</span>
-        </div>
       </div>
     </section>
   );
