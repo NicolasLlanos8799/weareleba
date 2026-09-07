@@ -10,6 +10,7 @@ export function HeroReferenceVisual() {
         priority
         sizes="100vw"
         className="hero-reference-image"
+        style={{ filter: "none" }}
       />
     </div>
   );
