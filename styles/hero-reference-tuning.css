@@ -1,5 +1,13 @@
 /* Desktop alignment pass — final precision overrides for the supplied reference. */
 @media (min-width: 1025px) {
+  /* Pure white navigation treatment. */
+  .site-header { color: #fff; }
+  .site-brand,
+  .site-nav,
+  .site-nav a,
+  .site-header-cta { color: #fff; }
+  .site-header-cta { border-color: rgba(255,255,255,.92); }
+
   .site-header-inner { min-height: 82px; padding: 8px 62px 10px; align-items: center; }
   .site-brand { font-size: 39px; line-height: 1; font-weight: 400; letter-spacing: .07em; }
   .site-nav { gap: 58px; font-size: 16px; transform: none; }
@@ -27,6 +35,10 @@
 }
 
 @media (max-width: 700px) {
+  .site-header { color: #fff; }
+  .site-brand,
+  .menu-toggle { color: #fff; }
+
   .button-primary { min-width: 158px; height: 52px; padding: 0 22px; }
   .hero-scroll-cue { bottom: 14px; }
   .hero-scroll-line { height: 48px; margin: 0; }
