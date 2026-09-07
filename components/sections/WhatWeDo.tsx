@@ -34,11 +34,7 @@ function ServiceVisual({ type }: { type: string }) {
       <div className="service-visual service-visual-website" aria-hidden="true">
         <div className="visual-laptop">
           <div className="visual-laptop-screen">
-            <div className="visual-browser-bar">
-              <span />
-              <span />
-              <span />
-            </div>
+            <div className="visual-browser-bar"><span /><span /><span /></div>
             <div className="visual-website-copy">
               <small>WE ARE LEBA</small>
               <strong>Tu negocio,<br />en su mejor versión.</strong>
@@ -57,12 +53,7 @@ function ServiceVisual({ type }: { type: string }) {
       <div className="service-visual service-visual-software" aria-hidden="true">
         <div className="visual-dashboard">
           <aside>
-            <b>Tu Negocio</b>
-            <span>Inicio</span>
-            <span>Clientes</span>
-            <span>Servicios</span>
-            <span>Reservas</span>
-            <span>Reportes</span>
+            <b>Tu Negocio</b><span>Inicio</span><span>Clientes</span><span>Servicios</span><span>Reservas</span><span>Reportes</span>
           </aside>
           <div className="visual-dashboard-main">
             <div className="visual-dashboard-title">Resumen</div>
@@ -83,17 +74,11 @@ function ServiceVisual({ type }: { type: string }) {
     <div className="service-visual service-visual-automation" aria-hidden="true">
       <div className="automation-flow">
         <div className="automation-inputs">
-          <div>↗ <span>Nuevos mensajes</span></div>
-          <div>▣ <span>Nuevas reservas</span></div>
-          <div>✉ <span>Formularios</span></div>
-          <div>≋ <span>Otras herramientas</span></div>
+          <div>↗ <span>Nuevos mensajes</span></div><div>▣ <span>Nuevas reservas</span></div><div>✉ <span>Formularios</span></div><div>≋ <span>Otras herramientas</span></div>
         </div>
         <div className="automation-core">✦<small>Automatizar</small></div>
         <div className="automation-output">
-          <span>✓ &nbsp; Responder</span>
-          <span>✓ &nbsp; Crear tarea</span>
-          <span>✓ &nbsp; Actualizar cliente</span>
-          <span>✓ &nbsp; Enviar notificación</span>
+          <span>✓ &nbsp; Responder</span><span>✓ &nbsp; Crear tarea</span><span>✓ &nbsp; Actualizar cliente</span><span>✓ &nbsp; Enviar notificación</span>
         </div>
       </div>
     </div>
@@ -107,18 +92,12 @@ export function WhatWeDo() {
         <div className="what-we-do-intro">
           <div className="section-kicker"><span /> WHAT WE DO</div>
           <h2>Soluciones digitales<br />para hacer crecer<br />tu negocio.</h2>
-          <p>
-            Diseñamos, desarrollamos y automatizamos herramientas digitales que te permiten enfocarte en lo más importante: hacer crecer tu negocio.
-          </p>
+          <p>Diseñamos, desarrollamos y automatizamos herramientas digitales que te permiten enfocarte en lo más importante: hacer crecer tu negocio.</p>
         </div>
-
         <div className="service-grid">
           {services.map((service) => (
             <article className="service-card" key={service.title}>
-              <div className="service-topline">
-                <span>{service.number}</span>
-                <i />
-              </div>
+              <div className="service-topline"><span>{service.number}</span><i /></div>
               <ServiceVisual type={service.visual} />
               <h3>{service.title}</h3>
               <p className="service-description">{service.description}</p>
@@ -127,10 +106,8 @@ export function WhatWeDo() {
             </article>
           ))}
         </div>
-
         <div className="what-we-do-footer">
-          <span><i /> MISMA PROPÓSITO. DIFERENTES CAMINOS.</span>
-          <span>WE ARE LEBA</span>
+          <span><i /> MISMO PROPÓSITO. DIFERENTES CAMINOS.</span><span>WE ARE LEBA</span>
         </div>
       </div>
     </section>
