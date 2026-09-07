@@ -1,0 +1,18 @@
+:root {
+  --color-bg: #F2F0EB;
+  --color-surface: #E8E5DE;
+  --color-text: #171717;
+  --color-text-muted: #6F6C66;
+  --color-text-faint: #98948C;
+  --color-line: rgba(23, 23, 23, 0.14);
+  --color-line-strong: rgba(23, 23, 23, 0.26);
+  --color-accent: #C8B79D;
+  --container-max: 1440px;
+  --gutter-desktop: 40px;
+  --gutter-tablet: 28px;
+  --gutter-mobile: 20px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft: cubic-bezier(0.16, 1, 0.3, 1);
+}
