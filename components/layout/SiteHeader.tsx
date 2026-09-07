@@ -4,8 +4,18 @@ import { useState } from "react";
 import { useLanguage } from "@/components/i18n/LanguageProvider";
 
 const navigation = {
-  en: ["Work", "About", "Services", "Journal"],
-  es: ["Proyectos", "Nosotros", "Servicios", "Ideas"],
+  en: [
+    ["Work", "#services"],
+    ["About", "#team"],
+    ["Services", "#services"],
+    ["Journal", "#process"],
+  ],
+  es: [
+    ["Proyectos", "#services"],
+    ["Nosotros", "#team"],
+    ["Servicios", "#services"],
+    ["Ideas", "#process"],
+  ],
 };
 
 export function SiteHeader() {
@@ -22,8 +32,8 @@ export function SiteHeader() {
         <a className="site-brand focusable" href="#top" aria-label="LEBA">LEBA</a>
 
         <nav aria-label={language === "en" ? "Main navigation" : "Navegación principal"} className="desktop-nav site-nav">
-          {links.map((link) => (
-            <a className="focusable" key={link} href={`#${link.toLowerCase().replaceAll(" ", "-")}`}>{link}</a>
+          {links.map(([label, href]) => (
+            <a className="focusable" key={label} href={href}>{label}</a>
           ))}
         </nav>
 
@@ -45,8 +55,8 @@ export function SiteHeader() {
             <span>/</span>
             <button className={language === "es" ? "font-medium" : "opacity-50"} type="button" onClick={() => setLanguage("es")}>ES</button>
           </div>
-          {links.map((link) => (
-            <a key={link} href={`#${link.toLowerCase().replaceAll(" ", "-")}`} onClick={() => setOpen(false)}>{link}</a>
+          {links.map(([label, href]) => (
+            <a key={label} href={href} onClick={() => setOpen(false)}>{label}</a>
           ))}
         </nav>
       )}
