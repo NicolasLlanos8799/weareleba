@@ -33,10 +33,10 @@
     padding: 0 clamp(62px, 6.2vw, 102px);
   }
 
-  /* Move the entire editorial copy block upward as one composition. */
+  /* Move the editorial copy upward so the CTA has clear breathing room above the scroll zone. */
   .hero-copy-cinematic {
     position: absolute;
-    top: clamp(198px, 23vh, 226px);
+    top: clamp(174px, 20.5vh, 208px);
     left: clamp(62px, 6.2vw, 102px);
     width: min(100%, 650px);
     margin: 0;
@@ -68,21 +68,23 @@
     font-size: 18px;
   }
 
-  /* Scroll cue occupies a dedicated lower-left zone, separated from the CTA. */
+  /* The vertical line defines the lower-left axis. The label aligns horizontally with it. */
   .hero-scroll-cue {
     left: clamp(62px, 4.1vw, 68px);
     bottom: 8px;
-    gap: 31px;
+    gap: 22px;
+    align-items: flex-start;
   }
 
   .hero-scroll-line {
-    height: 96px;
+    height: 132px;
     margin-top: -14px;
   }
 
   .hero-scroll-cue > div {
     gap: 13px;
-    padding-top: 58px;
+    padding-top: 0;
+    align-self: flex-start;
   }
 
   .hero-scroll-cue .technical {
