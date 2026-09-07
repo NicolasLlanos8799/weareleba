@@ -6,6 +6,8 @@ export function Hero() {
 
   return (
     <section id="top" className="hero" aria-labelledby="hero-title">
+      <HeroReferenceVisual />
+
       <div className="container hero-shell">
         <div className="hero-index technical" aria-hidden="true">
           <span>01</span>
@@ -15,7 +17,9 @@ export function Hero() {
         <div className="grid-12 hero-layout">
           <div className="hero-copy">
             <p className="technical hero-eyebrow">{hero.eyebrow}</p>
-            <h1 id="hero-title" className="hero-title">{hero.headline}</h1>
+            <h1 id="hero-title" className="hero-title">
+              {hero.headline}
+            </h1>
 
             <div className="hero-bottom">
               <p className="hero-body">
@@ -28,19 +32,20 @@ export function Hero() {
               </p>
 
               <div className="hero-actions">
-                <a className="button-primary focusable" href="#contact">{hero.primaryCta}</a>
-                <a className="button-secondary focusable" href="#work">{hero.secondaryCta}</a>
+                <a className="button-primary focusable" href="#contact">
+                  {hero.primaryCta}
+                </a>
+                <a className="button-secondary focusable" href="#work">
+                  {hero.secondaryCta}
+                </a>
               </div>
             </div>
           </div>
+        </div>
 
-          <div className="hero-system-wrap">
-            <div className="system-meta" aria-hidden="true">
-              <span className="technical system-id">{hero.systemLabel}</span>
-              <span className="technical system-axis">ASSEMBLY</span>
-            </div>
-            <HeroReferenceVisual />
-          </div>
+        <div className="hero-system-meta" aria-hidden="true">
+          <span className="technical">{hero.systemLabel}</span>
+          <span className="technical">SYSTEM / 01</span>
         </div>
       </div>
     </section>
