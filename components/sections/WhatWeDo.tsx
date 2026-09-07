@@ -1,29 +1,29 @@
 const services = [
   {
     number: "01",
-    title: "Páginas Web",
+    title: "Websites",
     description:
-      "Diseñamos páginas web claras y profesionales que representan tu negocio y facilitan la captación de clientes.",
+      "We design clear, professional websites that represent your business and make it easier to attract new clients.",
     note:
-      "Ideal para negocios que necesitan presencia online o mejorar cómo presentan sus servicios.",
+      "Ideal for businesses that need an online presence or want to improve how they present their services.",
     visual: "website",
   },
   {
     number: "02",
-    title: "Software a Medida",
+    title: "Custom Software",
     description:
-      "Creamos sistemas adaptados a cómo funciona tu negocio. Organiza tareas, procesos y operaciones en una herramienta pensada para tu día a día.",
+      "We build systems tailored to the way your business works. Organize tasks, processes and operations in a tool designed for your day-to-day needs.",
     note:
-      "Pensado para negocios que ya no pueden manejar su operación con herramientas genéricas o procesos manuales.",
+      "Built for businesses that can no longer manage their operations with generic tools or manual processes.",
     visual: "software",
   },
   {
     number: "03",
-    title: "Automatización e IA",
+    title: "Automation & AI",
     description:
-      "Automatizamos tareas repetitivas y conectamos tus herramientas para reducir trabajo manual. Menos tiempo operando, más tiempo enfocándote en hacer crecer tu negocio.",
+      "We automate repetitive tasks and connect your tools to reduce manual work. Less time operating, more time focused on growing your business.",
     note:
-      "Especialmente útil si pasas gran parte del día respondiendo, gestionando o repitiendo tareas manualmente.",
+      "Especially useful if you spend a large part of your day answering, managing or repeating manual tasks.",
     visual: "automation",
   },
 ];
@@ -37,7 +37,7 @@ function ServiceVisual({ type }: { type: string }) {
             <div className="visual-browser-bar"><span /><span /><span /></div>
             <div className="visual-website-copy">
               <small>WE ARE LEBA</small>
-              <strong>Tu negocio,<br />en su mejor versión.</strong>
+              <strong>Your business,<br />at its best.</strong>
               <i />
             </div>
             <div className="visual-website-orb" />
@@ -53,17 +53,17 @@ function ServiceVisual({ type }: { type: string }) {
       <div className="service-visual service-visual-software" aria-hidden="true">
         <div className="visual-dashboard">
           <aside>
-            <b>Tu Negocio</b><span>Inicio</span><span>Clientes</span><span>Servicios</span><span>Reservas</span><span>Reportes</span>
+            <b>Your Business</b><span>Home</span><span>Clients</span><span>Services</span><span>Bookings</span><span>Reports</span>
           </aside>
           <div className="visual-dashboard-main">
-            <div className="visual-dashboard-title">Resumen</div>
+            <div className="visual-dashboard-title">Overview</div>
             <div className="visual-stat-grid">
-              <div><small>Clientes</small><b>124</b><em>↗ 12%</em></div>
-              <div><small>Reservas</small><b>58</b><em>↗ 8%</em></div>
+              <div><small>Clients</small><b>124</b><em>↗ 12%</em></div>
+              <div><small>Bookings</small><b>58</b><em>↗ 8%</em></div>
             </div>
-            <div className="visual-list-title">Próximas reservas</div>
-            <div className="visual-list-row"><i /> <span>María González</span><small>10:00</small></div>
-            <div className="visual-list-row"><i /> <span>Juan Pérez</span><small>11:30</small></div>
+            <div className="visual-list-title">Upcoming bookings</div>
+            <div className="visual-list-row"><i /> <span>Maria Gonzalez</span><small>10:00</small></div>
+            <div className="visual-list-row"><i /> <span>Juan Perez</span><small>11:30</small></div>
           </div>
         </div>
       </div>
@@ -74,11 +74,11 @@ function ServiceVisual({ type }: { type: string }) {
     <div className="service-visual service-visual-automation" aria-hidden="true">
       <div className="automation-flow">
         <div className="automation-inputs">
-          <div>↗ <span>Nuevos mensajes</span></div><div>▣ <span>Nuevas reservas</span></div><div>✉ <span>Formularios</span></div><div>≋ <span>Otras herramientas</span></div>
+          <div>↗ <span>New messages</span></div><div>▣ <span>New bookings</span></div><div>✉ <span>Forms</span></div><div>≋ <span>Other tools</span></div>
         </div>
-        <div className="automation-core">✦<small>Automatizar</small></div>
+        <div className="automation-core">✦<small>Automate</small></div>
         <div className="automation-output">
-          <span>✓ &nbsp; Responder</span><span>✓ &nbsp; Crear tarea</span><span>✓ &nbsp; Actualizar cliente</span><span>✓ &nbsp; Enviar notificación</span>
+          <span>✓ &nbsp; Reply</span><span>✓ &nbsp; Create task</span><span>✓ &nbsp; Update client</span><span>✓ &nbsp; Send notification</span>
         </div>
       </div>
     </div>
@@ -91,8 +91,8 @@ export function WhatWeDo() {
       <div className="what-we-do-inner">
         <div className="what-we-do-intro">
           <div className="section-kicker"><span /> WHAT WE DO</div>
-          <h2>Soluciones digitales<br />para hacer crecer<br />tu negocio.</h2>
-          <p>Diseñamos, desarrollamos y automatizamos herramientas digitales que te permiten enfocarte en lo más importante: hacer crecer tu negocio.</p>
+          <h2>Digital solutions<br />to help grow<br />your business.</h2>
+          <p>We design, build and automate digital tools that let you focus on what matters most: growing your business.</p>
         </div>
         <div className="service-grid">
           {services.map((service) => (
@@ -102,12 +102,12 @@ export function WhatWeDo() {
               <h3>{service.title}</h3>
               <p className="service-description">{service.description}</p>
               <p className="service-note">{service.note}</p>
-              <a className="service-link focusable" href="#contact">SABER MÁS <span /></a>
+              <a className="service-link focusable" href="#contact">LEARN MORE <span /></a>
             </article>
           ))}
         </div>
         <div className="what-we-do-footer">
-          <span><i /> MISMO PROPÓSITO. DIFERENTES CAMINOS.</span><span>WE ARE LEBA</span>
+          <span><i /> SAME PURPOSE. DIFFERENT PATHS.</span><span>WE ARE LEBA</span>
         </div>
       </div>
     </section>
