@@ -32,9 +32,6 @@ const content = {
   },
 };
 
-const email = "hello.weareleba@gmail.com";
-const linkedin = "https://www.linkedin.com/company/weareleba";
-
 export function SiteFooter() {
   const { language } = useLanguage();
   const copy = content[language];
@@ -49,7 +46,7 @@ export function SiteFooter() {
 
         <div className={styles.hero}>
           <h2>{copy.title}</h2>
-          <a className={styles.cta} href={`mailto:${email}`}>
+          <a className={styles.cta} href="mailto:hello.weareleba@gmail.com">
             <span>{copy.cta}</span>
             <span aria-hidden="true">↗</span>
           </a>
@@ -58,7 +55,7 @@ export function SiteFooter() {
         <div className={styles.infoGrid}>
           <div>
             <span className={styles.label}>{copy.contactLabel}</span>
-            <a className={styles.email} href={`mailto:${email}`}>{email}</a>
+            <a className={styles.email} href="mailto:hello.weareleba@gmail.com">hello.weareleba@gmail.com</a>
           </div>
 
           <div>
@@ -71,7 +68,7 @@ export function SiteFooter() {
           <div>
             <span className={styles.label}>{copy.socialLabel}</span>
             <div className={styles.links}>
-              <a href={linkedin} target="_blank" rel="noreferrer">LINKEDIN ↗</a>
+              <a href="https://www.linkedin.com/company/weareleba" target="_blank" rel="noreferrer">LINKEDIN ↗</a>
             </div>
           </div>
         </div>
@@ -80,8 +77,6 @@ export function SiteFooter() {
           <span>© {new Date().getFullYear()} WE ARE LEBA</span>
           <span>DESIGNED FOR WHAT'S NEXT.</span>
         </div>
-
-        <div className={styles.wordmark} aria-hidden="true">LEBA</div>
       </div>
     </footer>
   );
