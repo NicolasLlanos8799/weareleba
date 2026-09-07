@@ -32,6 +32,9 @@ const content = {
   },
 };
 
+const email = "hello.weareleba@gmail.com";
+const linkedin = "https://www.linkedin.com/company/weareleba";
+
 export function SiteFooter() {
   const { language } = useLanguage();
   const copy = content[language];
@@ -46,7 +49,7 @@ export function SiteFooter() {
 
         <div className={styles.hero}>
           <h2>{copy.title}</h2>
-          <a className={styles.cta} href="mailto:hello@weareleba.com">
+          <a className={styles.cta} href={`mailto:${email}`}>
             <span>{copy.cta}</span>
             <span aria-hidden="true">↗</span>
           </a>
@@ -55,7 +58,7 @@ export function SiteFooter() {
         <div className={styles.infoGrid}>
           <div>
             <span className={styles.label}>{copy.contactLabel}</span>
-            <a className={styles.email} href="mailto:hello@weareleba.com">hello@weareleba.com</a>
+            <a className={styles.email} href={`mailto:${email}`}>{email}</a>
           </div>
 
           <div>
@@ -68,8 +71,7 @@ export function SiteFooter() {
           <div>
             <span className={styles.label}>{copy.socialLabel}</span>
             <div className={styles.links}>
-              <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">LINKEDIN ↗</a>
-              <a href="https://www.instagram.com" target="_blank" rel="noreferrer">INSTAGRAM ↗</a>
+              <a href={linkedin} target="_blank" rel="noreferrer">LINKEDIN ↗</a>
             </div>
           </div>
         </div>
