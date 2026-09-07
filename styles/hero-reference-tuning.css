@@ -1,0 +1,100 @@
+/* Final desktop alignment pass: match the supplied hero composition */
+@media (min-width: 1025px) {
+  .site-header-inner {
+    min-height: 124px;
+    padding: 32px clamp(62px, 4vw, 70px) 24px;
+    align-items: center;
+  }
+
+  .site-brand {
+    font-size: 13px;
+    line-height: 1;
+    letter-spacing: .095em;
+  }
+
+  .site-nav {
+    gap: clamp(42px, 3.8vw, 64px);
+    font-size: 13px;
+    transform: translateX(4px);
+  }
+
+  .site-header-cta {
+    min-width: 168px;
+    height: 58px;
+    padding: 0 23px;
+    gap: 22px;
+  }
+
+  .hero-content {
+    padding: 0 clamp(64px, 5.8vw, 96px) 0;
+    min-height: 100svh;
+  }
+
+  .hero-copy-cinematic {
+    position: absolute;
+    left: clamp(94px, 6.1vw, 104px);
+    top: clamp(255px, 28.4vh, 305px);
+    width: min(100%, 620px);
+    margin: 0;
+    transform: none;
+  }
+
+  .hero-title {
+    max-width: 560px;
+    font-size: clamp(74px, 5.55vw, 96px);
+    line-height: .965;
+    letter-spacing: -.071em;
+  }
+
+  .hero-body {
+    max-width: 530px;
+    margin-top: 25px;
+    font-size: clamp(17px, 1.24vw, 20px);
+    line-height: 1.42;
+  }
+
+  .hero-actions {
+    margin-top: 36px;
+  }
+
+  .button-primary {
+    min-width: 216px;
+    height: 68px;
+    padding: 0 30px;
+    font-size: 16px;
+  }
+
+  .hero-scroll-cue {
+    left: clamp(62px, 4vw, 68px);
+    bottom: 42px;
+    gap: 30px;
+  }
+
+  .hero-scroll-line {
+    height: 112px;
+    margin-top: -18px;
+  }
+
+  .hero-scroll-cue > div {
+    gap: 16px;
+  }
+
+  .hero-system-caption {
+    right: clamp(66px, 5.1vw, 84px);
+    bottom: 62px;
+    gap: 24px;
+  }
+}
+
+@media (min-width: 1500px) {
+  .hero-copy-cinematic {
+    left: 6.15vw;
+    top: 28.2vh;
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 701px) {
+  .hero-copy-cinematic {
+    transform: translateY(-4vh);
+  }
+}
