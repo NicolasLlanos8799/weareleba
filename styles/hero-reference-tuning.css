@@ -1,9 +1,9 @@
 /* Desktop alignment pass — final precision overrides for the supplied reference. */
 @media (min-width: 1025px) {
-  /* Navigation sits closer to the top edge and is visibly lighter/smaller. */
+  /* Navigation sits very close to the top edge, matching the reference. */
   .site-header-inner {
-    min-height: 98px;
-    padding: 16px 62px 12px;
+    min-height: 82px;
+    padding: 8px 62px 10px;
     align-items: center;
   }
 
@@ -36,7 +36,7 @@
   /* Move the entire editorial copy block upward as one composition. */
   .hero-copy-cinematic {
     position: absolute;
-    top: clamp(220px, 25vh, 244px);
+    top: clamp(198px, 23vh, 226px);
     left: clamp(62px, 6.2vw, 102px);
     width: min(100%, 650px);
     margin: 0;
@@ -68,21 +68,21 @@
     font-size: 18px;
   }
 
-  /* Reserve a distinct lower zone for the scroll cue. */
+  /* Scroll cue occupies a dedicated lower-left zone, separated from the CTA. */
   .hero-scroll-cue {
     left: clamp(62px, 4.1vw, 68px);
-    bottom: 12px;
+    bottom: 8px;
     gap: 31px;
   }
 
   .hero-scroll-line {
-    height: 118px;
+    height: 96px;
     margin-top: -14px;
   }
 
   .hero-scroll-cue > div {
     gap: 13px;
-    padding-top: 30px;
+    padding-top: 58px;
   }
 
   .hero-scroll-cue .technical {
