@@ -3,6 +3,7 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { Hero } from "@/components/sections/Hero";
 import { WhatWeDo } from "@/components/sections/WhatWeDo";
 import { OurProcess } from "@/components/sections/OurProcess";
+import { WhoHelps } from "@/components/sections/WhoHelps";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
         <Hero />
         <WhatWeDo />
         <OurProcess />
+        <WhoHelps />
       </main>
     </LanguageProvider>
   );
