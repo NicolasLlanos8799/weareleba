@@ -1,6 +1,5 @@
 /* Desktop alignment pass — final precision overrides for the supplied reference. */
 @media (min-width: 1025px) {
-  /* Pure white navigation treatment. */
   .site-header { color: #fff; }
   .site-brand,
   .site-nav,
@@ -19,11 +18,15 @@
   .hero-body { max-width: 580px; margin-top: 30px; font-size: clamp(18px, 1.42vw, 23px); line-height: 1.42; }
   .hero-actions { margin-top: 36px; }
 
-  /* Primary CTA — slimmer and more elongated, without dominating the lower-left composition. */
   .button-primary { min-width: 196px; height: 58px; padding: 0 28px; font-size: 17px; gap: 18px; }
 
-  /* Lower-left technical marker — placed on the actual bottom edge of the hero. */
-  .hero-scroll-cue { left: clamp(62px, 4.1vw, 68px); bottom: 14px; gap: 18px; align-items: center; }
+  /* Scroll marker shares the exact left alignment axis with the editorial copy. */
+  .hero-scroll-cue {
+    left: clamp(62px, 6.2vw, 102px);
+    bottom: 14px;
+    gap: 18px;
+    align-items: center;
+  }
   .hero-scroll-line { height: 56px; margin: 0; }
   .hero-scroll-cue > div { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; padding-top: 0; }
   .hero-scroll-cue .technical { font-size: 10px; font-weight: 400; letter-spacing: .15em; line-height: 1.2; white-space: nowrap; }
