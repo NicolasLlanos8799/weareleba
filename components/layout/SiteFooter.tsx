@@ -75,7 +75,6 @@ export function SiteFooter() {
 
         <div className={styles.bottom}>
           <span>© {new Date().getFullYear()} WE ARE LEBA</span>
-          <span>DESIGNED FOR WHAT'S NEXT.</span>
         </div>
       </div>
     </footer>
