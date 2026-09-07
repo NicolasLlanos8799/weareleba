@@ -1,0 +1,39 @@
+[data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 34px, 0);
+  transition: opacity 850ms cubic-bezier(.22, 1, .36, 1), transform 850ms cubic-bezier(.22, 1, .36, 1);
+  will-change: opacity, transform;
+}
+
+[data-reveal="left"] { transform: translate3d(-42px, 0, 0); }
+[data-reveal="right"] { transform: translate3d(42px, 0, 0); }
+[data-reveal="scale"] { transform: scale(.96); }
+
+[data-reveal].is-in-view {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+[data-parallax] {
+  transform: translate3d(0, calc(var(--motion-y, 0px) * var(--parallax-speed, .12)), 0);
+  will-change: transform;
+}
+
+[data-reveal][data-parallax].is-in-view {
+  transform: translate3d(0, calc(var(--motion-y, 0px) * var(--parallax-speed, .12)), 0);
+}
+
+.motion-stagger-1 { transition-delay: 90ms; }
+.motion-stagger-2 { transition-delay: 180ms; }
+.motion-stagger-3 { transition-delay: 270ms; }
+.motion-stagger-4 { transition-delay: 360ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  [data-parallax] { transform: none !important; }
+}
