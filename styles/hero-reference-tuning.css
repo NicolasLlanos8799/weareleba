@@ -1,9 +1,9 @@
 /* Desktop alignment pass — final precision overrides for the supplied reference. */
 @media (min-width: 1025px) {
-  /* Navigation sits higher and is visibly lighter/smaller. */
+  /* Navigation sits closer to the top edge and is visibly lighter/smaller. */
   .site-header-inner {
-    min-height: 116px;
-    padding: 30px 62px 18px;
+    min-height: 98px;
+    padding: 16px 62px 12px;
     align-items: center;
   }
 
