@@ -52,7 +52,11 @@
   margin-top: clamp(76px, 9vw, 132px);
 }
 
-.step { min-width: 0; }
+.step {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
 
 .topline {
   display: flex;
@@ -84,17 +88,8 @@
   color: #56585d;
 }
 
-.visual {
-  display: block;
-  width: 100%;
-  height: auto;
-  margin: 24px 0 14px;
-  color: #323438;
-}
-
 .actions {
-  min-height: 92px;
-  margin-top: 4px;
+  margin-top: clamp(36px, 4vw, 68px);
   padding: 8px 0 0 32px;
   border-left: 1px solid rgba(58, 60, 63, .52);
   display: flex;
@@ -132,7 +127,6 @@
   .grid { grid-template-columns: 1fr; margin-top: 68px; gap: 58px; }
   .topline { font-size: 28px; }
   .step h3 { margin-top: 22px; font-size: 36px; }
-  .visual { max-width: 420px; }
-  .actions { min-height: auto; }
+  .actions { margin-top: 32px; }
   .footer { margin-top: 84px; flex-direction: column; align-items: flex-start; gap: 18px; line-height: 1.5; }
 }
