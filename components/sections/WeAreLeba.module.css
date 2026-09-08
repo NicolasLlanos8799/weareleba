@@ -1,209 +1,134 @@
 .section {
   position: relative;
+  min-height: 100svh;
   overflow: hidden;
-  background: #ebe8e1;
-  color: #151515;
-  padding: clamp(1.25rem, 2vw, 2rem);
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid rgba(21, 21, 21, .18);
-  font-size: 10px;
-  letter-spacing: .2em;
-  color: #706d67;
-}
-
-.intro {
+  isolation: isolate;
+  background: #e9e6df;
+  color: #171717;
   display: grid;
-  grid-template-columns: minmax(0, 1.65fr) minmax(250px, .6fr);
-  gap: clamp(2rem, 7vw, 10rem);
-  align-items: end;
-  min-height: min(67vw, 900px);
-  padding: clamp(4rem, 10vw, 10rem) 0 clamp(4rem, 8vw, 8rem);
+  grid-template-columns: minmax(260px, 34vw) minmax(0, 1fr) minmax(180px, 18vw);
+  grid-template-rows: minmax(58vh, 1fr) minmax(30vh, .48fr);
 }
 
-.statement {
+.topShape {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 13%;
+  background: linear-gradient(120deg, #1a1a1a 0%, #3a3936 18%, #e9e6df 44%, #f0eee9 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 42%, 20% 100%, 0 66%);
+  z-index: -1;
+}
+
+.peopleImage {
+  grid-column: 1;
+  grid-row: 1;
+  position: relative;
+  overflow: hidden;
+  margin-top: clamp(5.2rem, 8vw, 8.5rem);
+  min-height: 590px;
+  background: url('/assets/ChatGPT%20Image%208%20sept%202026,%2016_29_33.png') center/cover no-repeat;
+  clip-path: polygon(0 0, 100% 5%, 100% 94%, 0 100%);
+}
+
+.imageOverlay,
+.mountainOverlay { position: absolute; inset: 0; }
+.imageOverlay { background: linear-gradient(90deg, rgba(10,10,10,.45), rgba(10,10,10,.05)); }
+.mountainOverlay { background: linear-gradient(90deg, rgba(10,10,10,.56), rgba(10,10,10,.08) 68%, rgba(10,10,10,.2)); }
+
+.imageLabel,
+.futureLabel,
+.bottomLabel,
+.togetherLabel {
+  position: absolute;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  min-height: 100%;
+  font-size: 10px;
+  line-height: 1.55;
+  letter-spacing: .18em;
+  color: rgba(255,255,255,.78);
 }
 
-.statement h2 {
-  max-width: 1120px;
-  margin: -.04em 0 4rem;
-  font-size: clamp(5.2rem, 10.5vw, 13rem);
-  font-weight: 400;
-  letter-spacing: -.085em;
-  line-height: .82;
+.imageLabel { top: 2rem; left: 3.5rem; }
+.futureLabel { bottom: 6.4rem; left: 3.5rem; }
+
+.content {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: center;
+  width: min(680px, 76%);
+  margin: 8rem auto 1rem;
+  padding: 3rem 0;
 }
 
-.description {
-  display: grid;
-  grid-template-columns: minmax(220px, .75fr) minmax(250px, 1fr);
-  gap: 2rem 4rem;
-  align-items: end;
-  max-width: 860px;
-  margin-left: clamp(0rem, 8vw, 10rem);
+.eyebrow {
+  display: block;
+  margin-bottom: 1.5rem;
+  font-size: 10px;
+  letter-spacing: .22em;
+  color: #77736d;
 }
 
-.description p {
+.content h2 {
   margin: 0;
-  color: #66635e;
-  font-size: clamp(1.05rem, 1.35vw, 1.5rem);
-  line-height: 1.48;
+  font-size: clamp(4rem, 6.6vw, 7.6rem);
+  font-weight: 400;
+  letter-spacing: -.065em;
+  line-height: .92;
+}
+
+.content p {
+  max-width: 640px;
+  margin: 2.6rem 0 2.8rem;
+  font-size: clamp(1.15rem, 1.65vw, 1.7rem);
+  line-height: 1.5;
+  color: #696969;
 }
 
 .storyLink {
   display: inline-flex;
   align-items: center;
-  justify-self: start;
-  gap: 1.25rem;
-  padding: .9rem 1.1rem 1rem 0;
-  border-bottom: 1px solid #171717;
+  gap: 1.3rem;
+  padding-bottom: .65rem;
+  border-bottom: 1px solid #b8b4ad;
   color: inherit;
   text-decoration: none;
-  font-size: .9rem;
-  letter-spacing: .02em;
+  font-size: 1.05rem;
 }
 
-.storyLink span:last-child {
-  font-size: 1.3rem;
-  transition: transform .25s ease;
-}
-
-.storyLink:hover span:last-child { transform: translate(3px, -3px); }
+.storyLink span:last-child { font-size: 1.5rem; line-height: .8; }
 
 .values {
+  grid-column: 3;
+  grid-row: 1;
+  align-self: center;
   display: flex;
   flex-direction: column;
-  gap: 3rem;
-  padding-bottom: .25rem;
-}
-
-.sideStatement {
-  max-width: 220px;
-  font-size: clamp(1.45rem, 2vw, 2.4rem);
+  gap: .15em;
+  padding: 8rem 2rem 0 1rem;
+  font-size: clamp(2rem, 3vw, 4rem);
   font-weight: 300;
-  line-height: 1.1;
-  letter-spacing: -.045em;
-  color: #77736d;
+  line-height: 1.2;
+  color: #777;
 }
 
-.valuesList { border-bottom: 1px solid rgba(21,21,21,.16); }
-
-.value {
-  display: grid;
-  grid-template-columns: 2rem 1fr;
-  align-items: baseline;
-  gap: .7rem;
-  padding: 1.25rem 0;
-  border-top: 1px solid rgba(21,21,21,.16);
-}
-
-.value span {
-  font-size: 9px;
-  letter-spacing: .16em;
-  color: #8a867f;
-}
-
-.value strong {
-  font-size: clamp(1.2rem, 1.75vw, 2rem);
-  font-weight: 400;
-  letter-spacing: -.04em;
-}
-
-.landscape {
+.mountainImage {
+  grid-column: 1 / -1;
+  grid-row: 2;
   position: relative;
-  height: min(48vw, 720px);
-  min-height: 390px;
-  overflow: hidden;
+  min-height: 320px;
   background: url('/assets/ChatGPT%20Image%208%20sept%202026,%2016_29_39.png') center/cover no-repeat;
-  clip-path: polygon(0 14%, 44% 0, 100% 8%, 100% 100%, 0 100%);
+  clip-path: polygon(0 42%, 53% 0, 100% 0, 100% 100%, 0 100%);
 }
 
-.landscape::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, rgba(0,0,0,.54), rgba(0,0,0,.03) 70%);
-}
-
-.landscapeCaption,
-.landscapeNumber,
-.landscapeLine {
-  position: absolute;
-  z-index: 1;
-}
-
-.landscapeCaption {
-  left: clamp(1.5rem, 4vw, 5rem);
-  bottom: clamp(1.5rem, 4vw, 4rem);
-  color: rgba(255,255,255,.9);
-  font-size: clamp(1.8rem, 3vw, 4rem);
-  font-weight: 300;
-  letter-spacing: -.045em;
-}
-
-.landscapeLine {
-  left: clamp(1.5rem, 4vw, 5rem);
-  bottom: clamp(1.2rem, 2vw, 2rem);
-  width: min(30vw, 420px);
-  height: 1px;
-  background: rgba(255,255,255,.55);
-}
-
-.landscapeNumber {
-  right: clamp(1.5rem, 3vw, 4rem);
-  bottom: 2rem;
-  color: rgba(255,255,255,.68);
-  font-size: 9px;
-  letter-spacing: .22em;
-}
+.bottomLabel { left: 3.5rem; bottom: 2.8rem; }
+.togetherLabel { right: 3.5rem; top: 70%; color: rgba(255,255,255,.72); }
 
 @media (max-width: 900px) {
-  .intro {
-    grid-template-columns: 1fr;
-    min-height: auto;
-    gap: 4rem;
-  }
-
-  .statement h2 { font-size: clamp(4.8rem, 15vw, 9rem); }
-  .description { margin-left: clamp(0rem, 8vw, 5rem); }
-  .values { max-width: 560px; margin-left: auto; }
-  .sideStatement { max-width: 320px; }
-}
-
-@media (max-width: 720px) {
-  .section { padding: 1rem; }
-  .intro { padding: 3rem 0 4rem; gap: 3.5rem; }
-  .statement h2 { font-size: clamp(4.1rem, 18vw, 7rem); margin-bottom: 3rem; }
-
-  .description {
-    display: block;
-    margin-left: 0;
-  }
-
-  .description p { margin-bottom: 2.25rem; }
-  .values { margin: 0; gap: 2.5rem; }
-  .sideStatement { max-width: 260px; font-size: 1.75rem; }
-
-  .landscape {
-    height: 78vw;
-    min-height: 390px;
-    clip-path: polygon(0 8%, 72% 0, 100% 5%, 100% 100%, 0 100%);
-  }
-
-  .landscapeCaption {
-    max-width: 230px;
-    bottom: 3rem;
-    font-size: 2.2rem;
-  }
-
-  .landscapeLine { width: 180px; bottom: 1.6rem; }
-  .landscapeNumber { display: none; }
+  .section { display: block; min-height: auto; padding-top: 5.5rem; }
+  .peopleImage { height: 56vh; min-height: 420px; margin-top: 0; clip-path: polygon(0 0,100% 0,100% 92%,0 100%); }
+  .content { width: auto; margin: 0; padding: 4.5rem 2rem 5rem; }
+  .values { padding: 0 2rem 4rem; font-size: clamp(2.2rem,10vw,4rem); }
+  .mountainImage { height: 42vh; min-height: 360px; clip-path: polygon(0 20%,100% 0,100% 100%,0 100%); }
+  .imageLabel,.futureLabel,.bottomLabel { left: 2rem; }
+  .togetherLabel { right: 2rem; }
 }
