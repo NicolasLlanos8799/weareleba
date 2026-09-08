@@ -7,7 +7,7 @@
   color: #171717;
   display: grid;
   grid-template-columns: minmax(260px, 34vw) minmax(0, 1fr) minmax(180px, 18vw);
-  grid-template-rows: minmax(58vh, 1fr) minmax(30vh, 0.48fr);
+  grid-template-rows: minmax(58vh, 1fr) minmax(30vh, .48fr);
 }
 
 .topShape {
@@ -26,7 +26,7 @@
   overflow: hidden;
   margin-top: clamp(5.2rem, 8vw, 8.5rem);
   min-height: 590px;
-  background: url('/assets/generated/portada.png') center/cover no-repeat;
+  background: url('/assets/ChatGPT%20Image%208%20sept%202026,%2016_29_33.png') center/cover no-repeat;
   clip-path: polygon(0 0, 100% 5%, 100% 94%, 0 100%);
 }
 
@@ -34,7 +34,14 @@
 .mountainOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(10, 10, 10, .5), rgba(10, 10, 10, .06));
+}
+
+.imageOverlay {
+  background: linear-gradient(90deg, rgba(10,10,10,.45), rgba(10,10,10,.05));
+}
+
+.mountainOverlay {
+  background: linear-gradient(90deg, rgba(10,10,10,.56), rgba(10,10,10,.08) 68%, rgba(10,10,10,.2));
 }
 
 .imageLabel,
@@ -97,10 +104,7 @@
   font-size: 1.05rem;
 }
 
-.storyLink span:last-child {
-  font-size: 1.5rem;
-  line-height: .8;
-}
+.storyLink span:last-child { font-size: 1.5rem; line-height: .8; }
 
 .values {
   grid-column: 3;
@@ -121,46 +125,19 @@
   grid-row: 2;
   position: relative;
   min-height: 320px;
-  background: linear-gradient(90deg, rgba(12,12,12,.85), rgba(12,12,12,.12)), url('/assets/generated/portada.png') center/cover no-repeat;
+  background: url('/assets/ChatGPT%20Image%208%20sept%202026,%2016_29_39.png') center/cover no-repeat;
   clip-path: polygon(0 42%, 53% 0, 100% 0, 100% 100%, 0 100%);
 }
 
 .bottomLabel { left: 3.5rem; bottom: 2.8rem; }
-.togetherLabel { right: 3.5rem; top: 70%; color: rgba(30,30,30,.62); }
+.togetherLabel { right: 3.5rem; top: 70%; color: rgba(255,255,255,.72); }
 
 @media (max-width: 900px) {
-  .section {
-    display: block;
-    min-height: auto;
-    padding-top: 5.5rem;
-  }
-
-  .peopleImage {
-    height: 56vh;
-    min-height: 420px;
-    margin-top: 0;
-    clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
-  }
-
-  .content {
-    width: auto;
-    margin: 0;
-    padding: 4.5rem 2rem 5rem;
-  }
-
-  .values {
-    padding: 0 2rem 4rem;
-    font-size: clamp(2.2rem, 10vw, 4rem);
-  }
-
-  .mountainImage {
-    height: 42vh;
-    min-height: 360px;
-    clip-path: polygon(0 20%, 100% 0, 100% 100%, 0 100%);
-  }
-
-  .imageLabel,
-  .futureLabel,
-  .bottomLabel { left: 2rem; }
+  .section { display: block; min-height: auto; padding-top: 5.5rem; }
+  .peopleImage { height: 56vh; min-height: 420px; margin-top: 0; clip-path: polygon(0 0,100% 0,100% 92%,0 100%); }
+  .content { width: auto; margin: 0; padding: 4.5rem 2rem 5rem; }
+  .values { padding: 0 2rem 4rem; font-size: clamp(2.2rem,10vw,4rem); }
+  .mountainImage { height: 42vh; min-height: 360px; clip-path: polygon(0 20%,100% 0,100% 100%,0 100%); }
+  .imageLabel,.futureLabel,.bottomLabel { left: 2rem; }
   .togetherLabel { right: 2rem; }
 }
