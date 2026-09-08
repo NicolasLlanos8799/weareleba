@@ -3,46 +3,10 @@
   overflow: hidden;
   background: #e8e7e3;
   color: #292a2d;
-  padding: clamp(72px, 8vw, 124px) clamp(28px, 5.9vw, 102px) clamp(76px, 8vw, 120px);
-}
-
-.section::before {
-  content: "";
-  position: absolute;
-  width: min(60vw, 980px);
-  height: min(60vw, 980px);
-  right: -30vw;
-  top: -32vw;
-  border: 1px solid rgba(67, 69, 72, .15);
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-.section::after {
-  content: "";
-  position: absolute;
-  width: min(34vw, 520px);
-  height: min(34vw, 520px);
-  left: -23vw;
-  bottom: -26vw;
-  border: 1px solid rgba(67, 69, 72, .14);
-  border-radius: 50%;
-  pointer-events: none;
+  padding: clamp(92px, 10vw, 150px) clamp(28px, 5.9vw, 102px) clamp(76px, 8vw, 120px);
 }
 
 .inner { position: relative; z-index: 1; width: 100%; max-width: 1560px; margin: 0 auto; }
-
-.eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: clamp(46px, 5.8vw, 80px);
-  font-size: 10px;
-  letter-spacing: .28em;
-  color: #626469;
-}
-
-.eyebrow i { display: block; width: min(18vw, 260px); height: 1px; background: rgba(60, 62, 65, .28); }
 
 .hero {
   display: grid;
@@ -51,19 +15,27 @@
   align-items: start;
 }
 
-.statement {
+.brand {
   margin: 0;
-  max-width: 780px;
-  font-size: clamp(68px, 7.4vw, 128px);
+  font-size: clamp(76px, 10.8vw, 180px);
   font-weight: 400;
-  line-height: .82;
-  letter-spacing: -.085em;
+  line-height: .78;
+  letter-spacing: -.09em;
+  white-space: nowrap;
   opacity: 0;
   transform: translateY(54px);
   filter: blur(8px);
 }
 
 .intro { padding-top: clamp(6px, .9vw, 18px); max-width: 490px; opacity: 0; transform: translateY(28px); }
+
+.intro h3 {
+  margin: 0 0 clamp(22px, 2.8vw, 38px);
+  font-size: clamp(30px, 3.2vw, 52px);
+  font-weight: 400;
+  line-height: .96;
+  letter-spacing: -.06em;
+}
 
 .intro p {
   margin: 0;
@@ -108,7 +80,7 @@
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: clamp(24px, 3.2vw, 56px);
-  margin-top: clamp(90px, 11vw, 176px);
+  margin-top: clamp(100px, 12vw, 190px);
 }
 
 .step {
@@ -161,29 +133,27 @@
 .stepVisible .actions span:nth-child(2) { transition-delay: calc(var(--delay) + 390ms); }
 .stepVisible .actions span:nth-child(3) { transition-delay: calc(var(--delay) + 480ms); }
 
-.visible .statement { animation: revealStatement 1s cubic-bezier(.16, 1, .3, 1) .05s forwards; }
+.visible .brand { animation: revealBrand 1s cubic-bezier(.16, 1, .3, 1) .05s forwards; }
 .visible .intro { animation: revealIntro .8s cubic-bezier(.22, 1, .36, 1) .3s forwards; }
 .visible .keywords { animation: revealIntro .7s cubic-bezier(.22, 1, .36, 1) .5s forwards; }
 
-@keyframes revealStatement { to { opacity: 1; transform: translateY(0); filter: blur(0); } }
+@keyframes revealBrand { to { opacity: 1; transform: translateY(0); filter: blur(0); } }
 @keyframes revealIntro { to { opacity: 1; transform: translateY(0); } }
 
 @media (max-width: 1100px) {
   .hero { grid-template-columns: minmax(0, 1fr) minmax(260px, .62fr); }
+  .brand { font-size: clamp(72px, 10vw, 130px); }
   .keywords { display: none; }
   .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 68px; }
   .step > p { min-height: auto; }
 }
 
 @media (max-width: 760px) {
-  .section { padding: 72px 24px 76px; }
-  .section::before { width: 110vw; height: 110vw; right: -58vw; top: -66vw; }
-  .section::after { width: 78vw; height: 78vw; left: -56vw; bottom: -38vw; }
-  .eyebrow { margin-bottom: 46px; }
-  .eyebrow i { width: 100px; }
+  .section { padding: 76px 24px; }
   .hero { grid-template-columns: 1fr; gap: 36px; }
-  .statement { max-width: 100%; font-size: clamp(58px, 16vw, 86px); line-height: .84; }
+  .brand { max-width: 100%; font-size: clamp(62px, 17vw, 100px); white-space: normal; line-height: .8; }
   .intro { padding-top: 0; }
+  .intro h3 { font-size: clamp(30px, 9vw, 46px); }
   .intro p { font-size: 17px; }
   .storyLink { margin-top: 30px; }
   .grid { grid-template-columns: 1fr; margin-top: 82px; gap: 58px; }
@@ -194,7 +164,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .statement, .intro, .keywords, .step, .topline i, .icon, .actions span { animation: none !important; transition: none; }
-  .statement, .intro, .keywords, .step, .icon, .actions span { opacity: 1; transform: none; filter: none; }
+  .brand, .intro, .keywords, .step, .topline i, .icon, .actions span { animation: none !important; transition: none; }
+  .brand, .intro, .keywords, .step, .icon, .actions span { opacity: 1; transform: none; filter: none; }
   .topline i { transform: scaleX(1); }
 }
