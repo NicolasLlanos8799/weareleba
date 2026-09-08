@@ -6,13 +6,13 @@
   background: #e9e6df;
   color: #171717;
   display: grid;
-  grid-template-columns: minmax(260px, 34vw) minmax(0, 1fr) minmax(180px, 18vw);
+  grid-template-columns: minmax(260px, 34vw) minmax(0, 1fr) minmax(150px, 16vw);
   grid-template-rows: minmax(58vh, 1fr) minmax(30vh, .48fr);
 }
 
 .peopleImage {
   position: absolute;
-  z-index: 2;
+  z-index: 3;
   top: clamp(5.2rem, 8vw, 8.5rem);
   bottom: 0;
   left: 0;
@@ -20,13 +20,13 @@
   min-width: 260px;
   overflow: hidden;
   background: url('/assets/ChatGPT%20Image%208%20sept%202026,%2016_29_33.png') center/cover no-repeat;
-  clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 82%, 0 100%);
 }
 
 .imageOverlay,
 .mountainOverlay { position: absolute; inset: 0; }
-.imageOverlay { background: linear-gradient(90deg, rgba(10,10,10,.45), rgba(10,10,10,.05)); }
-.mountainOverlay { background: linear-gradient(90deg, rgba(10,10,10,.56), rgba(10,10,10,.08) 68%, rgba(10,10,10,.2)); }
+.imageOverlay { background: linear-gradient(90deg, rgba(10,10,10,.48), rgba(10,10,10,.04)); }
+.mountainOverlay { background: linear-gradient(90deg, rgba(10,10,10,.42), rgba(10,10,10,.04) 70%, rgba(10,10,10,.18)); }
 
 .futureLabel,
 .bottomLabel,
@@ -46,16 +46,16 @@
   grid-column: 2;
   grid-row: 1;
   position: relative;
-  z-index: 3;
+  z-index: 4;
   align-self: center;
-  width: min(680px, 76%);
-  margin: 8rem auto 1rem;
-  padding: 3rem 0;
+  width: min(660px, 72%);
+  margin: 6.5rem auto 0;
+  padding: 4.5rem 0 5.5rem;
 }
 
 .eyebrow {
   display: block;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.8rem;
   font-size: 10px;
   letter-spacing: .22em;
   color: #77736d;
@@ -63,15 +63,15 @@
 
 .content h2 {
   margin: 0;
-  font-size: clamp(4rem, 6.6vw, 7.6rem);
+  font-size: clamp(3.8rem, 6.1vw, 7rem);
   font-weight: 400;
   letter-spacing: -.065em;
-  line-height: .92;
+  line-height: .94;
 }
 
 .content p {
-  max-width: 640px;
-  margin: 2.6rem 0 2.8rem;
+  max-width: 610px;
+  margin: 3.2rem 0 3.2rem;
   font-size: clamp(1.15rem, 1.65vw, 1.7rem);
   line-height: 1.5;
   color: #696969;
@@ -94,26 +94,25 @@
   grid-column: 3;
   grid-row: 1;
   position: relative;
-  z-index: 3;
+  z-index: 4;
   align-self: center;
   display: flex;
   flex-direction: column;
-  gap: .15em;
-  padding: 8rem 2rem 0 1rem;
-  font-size: clamp(2rem, 3vw, 4rem);
+  gap: .18em;
+  padding: 5.5rem 2.5rem 0 0;
+  font-size: clamp(1.9rem, 2.75vw, 3.6rem);
   font-weight: 300;
   line-height: 1.2;
-  color: #777;
+  color: rgba(65,65,65,.62);
 }
 
 .mountainImage {
   position: absolute;
-  inset: 0 0 0 0;
-  z-index: 1;
-  top: 58%;
-  height: auto;
+  inset: auto 0 0 0;
+  z-index: 2;
+  top: 51%;
   background: url('/assets/ChatGPT%20Image%208%20sept%202026,%2016_29_39.png') center/cover no-repeat;
-  clip-path: polygon(0 34%, 53% 0, 100% 0, 100% 100%, 0 100%);
+  clip-path: polygon(0 28%, 28% 16%, 53% 0, 100% 0, 100% 100%, 0 100%);
 }
 
 .bottomLabel { left: 3.5rem; bottom: 2.8rem; }
@@ -130,7 +129,7 @@
     min-width: 0;
     height: 56vh;
     min-height: 420px;
-    clip-path: polygon(0 0,100% 0,100% 94%,0 100%);
+    clip-path: polygon(0 0,100% 0,100% 88%,0 100%);
   }
 
   .content { width: auto; margin: 0; padding: 4.5rem 2rem 5rem; }
@@ -140,10 +139,10 @@
     position: relative;
     inset: auto;
     top: auto;
-    height: 42vh;
-    min-height: 360px;
-    margin-top: -10vh;
-    clip-path: polygon(0 24%,100% 0,100% 100%,0 100%);
+    height: 46vh;
+    min-height: 380px;
+    margin-top: -14vh;
+    clip-path: polygon(0 20%,55% 0,100% 0,100% 100%,0 100%);
   }
 
   .futureLabel,.bottomLabel { left: 2rem; }
