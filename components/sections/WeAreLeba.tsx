@@ -14,8 +14,8 @@ type Step = {
 
 const copy = {
   en: {
-    eyebrow: "OUR APPROACH",
-    statement: <>WE BRING<br />CLARITY TO<br />COMPLEXITY.</>,
+    brand: "WE ARE LEBA",
+    statement: "We bring clarity to complexity.",
     description: "We are a digital studio that brings clarity and structure to growing businesses. We take the time to understand how your business works, where the friction is and what is holding you back. Then we transform complexity into clear, purposeful digital solutions — creating structure, bringing order and building systems that give you more control and more time.",
     link: "Discover LEBA",
     keywords: ["IDEAS", "STRUCTURE", "SOLUTIONS", "IMPACT"],
@@ -27,8 +27,8 @@ const copy = {
     ] as Step[],
   },
   es: {
-    eyebrow: "NUESTRO ENFOQUE",
-    statement: <>DAMOS CLARIDAD<br />A LA<br />COMPLEJIDAD.</>,
+    brand: "WE ARE LEBA",
+    statement: "Damos claridad a la complejidad.",
     description: "Somos un estudio digital que aporta claridad y estructura a negocios en crecimiento. Nos tomamos el tiempo para entender cómo funciona tu negocio, dónde está la fricción y qué te está frenando. Después transformamos esa complejidad en soluciones digitales claras y con propósito: creando estructura, poniendo orden y construyendo sistemas que te dan más control y más tiempo.",
     link: "Descubre LEBA",
     keywords: ["IDEAS", "ESTRUCTURA", "SOLUCIONES", "IMPACTO"],
@@ -89,11 +89,10 @@ export function WeAreLeba() {
   return (
     <section ref={sectionRef} className={`${styles.section} ${isVisible ? styles.visible : ""}`} id="about" aria-labelledby="we-are-leba-title">
       <div className={styles.inner}>
-        <div className={styles.eyebrow}><span>{content.eyebrow}</span><i /></div>
-
         <header className={styles.hero}>
-          <h2 id="we-are-leba-title" className={styles.statement}>{content.statement}</h2>
+          <h2 id="we-are-leba-title" className={styles.brand}>{content.brand}</h2>
           <div className={styles.intro}>
+            <h3>{content.statement}</h3>
             <p>{content.description}</p>
             <Link className={styles.storyLink} href="/nosotros"><span>{content.link}</span><span aria-hidden="true">→</span></Link>
           </div>
