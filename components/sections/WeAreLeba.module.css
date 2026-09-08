@@ -10,24 +10,19 @@
   grid-template-rows: minmax(58vh, 1fr) minmax(30vh, .48fr);
 }
 
-.topShape {
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: 13%;
-  background: linear-gradient(120deg, #1a1a1a 0%, #3a3936 18%, #e9e6df 44%, #f0eee9 100%);
-  clip-path: polygon(0 0, 100% 0, 100% 42%, 20% 100%, 0 66%);
-  z-index: -1;
-}
+/* Removed the dark decorative band at the top so the section opens directly into the content. */
+.topShape { display: none; }
 
 .peopleImage {
   grid-column: 1;
   grid-row: 1;
   position: relative;
+  z-index: 2;
   overflow: hidden;
   margin-top: clamp(5.2rem, 8vw, 8.5rem);
   min-height: 590px;
   background: url('/assets/ChatGPT%20Image%208%20sept%202026,%2016_29_33.png') center/cover no-repeat;
-  clip-path: polygon(0 0, 100% 5%, 100% 94%, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 
 .imageOverlay,
@@ -54,6 +49,8 @@
 .content {
   grid-column: 2;
   grid-row: 1;
+  position: relative;
+  z-index: 2;
   align-self: center;
   width: min(680px, 76%);
   margin: 8rem auto 1rem;
@@ -100,6 +97,8 @@
 .values {
   grid-column: 3;
   grid-row: 1;
+  position: relative;
+  z-index: 2;
   align-self: center;
   display: flex;
   flex-direction: column;
@@ -111,24 +110,45 @@
   color: #777;
 }
 
+/* The landscape sits behind the lower edge of the studio image, joining both photographs into one composition. */
 .mountainImage {
-  grid-column: 1 / -1;
-  grid-row: 2;
-  position: relative;
-  min-height: 320px;
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: 1;
+  height: clamp(300px, 34svh, 470px);
   background: url('/assets/ChatGPT%20Image%208%20sept%202026,%2016_29_39.png') center/cover no-repeat;
-  clip-path: polygon(0 42%, 53% 0, 100% 0, 100% 100%, 0 100%);
+  clip-path: polygon(0 30%, 53% 0, 100% 0, 100% 100%, 0 100%);
 }
 
 .bottomLabel { left: 3.5rem; bottom: 2.8rem; }
 .togetherLabel { right: 3.5rem; top: 70%; color: rgba(255,255,255,.72); }
 
 @media (max-width: 900px) {
-  .section { display: block; min-height: auto; padding-top: 5.5rem; }
-  .peopleImage { height: 56vh; min-height: 420px; margin-top: 0; clip-path: polygon(0 0,100% 0,100% 92%,0 100%); }
-  .content { width: auto; margin: 0; padding: 4.5rem 2rem 5rem; }
+  .section { display: block; min-height: auto; padding-top: 0; }
+
+  .peopleImage {
+    height: 56vh;
+    min-height: 420px;
+    margin-top: 0;
+    clip-path: none;
+  }
+
+  .content {
+    width: auto;
+    margin: 0;
+    padding: 4.5rem 2rem 5rem;
+  }
+
   .values { padding: 0 2rem 4rem; font-size: clamp(2.2rem,10vw,4rem); }
-  .mountainImage { height: 42vh; min-height: 360px; clip-path: polygon(0 20%,100% 0,100% 100%,0 100%); }
+
+  .mountainImage {
+    position: relative;
+    height: 42vh;
+    min-height: 360px;
+    clip-path: polygon(0 12%,100% 0,100% 100%,0 100%);
+    margin-top: -2px;
+  }
+
   .imageLabel,.futureLabel,.bottomLabel { left: 2rem; }
   .togetherLabel { right: 2rem; }
 }
