@@ -1,143 +1,227 @@
 .section {
   position: relative;
-  min-height: 100svh;
   overflow: hidden;
-  isolation: isolate;
-  background: #e9e6df;
-  color: #171717;
+  background: #ebe8e1;
+  color: #151515;
+  padding: clamp(1.25rem, 2vw, 2rem);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(21, 21, 21, .18);
+  font-size: 10px;
+  letter-spacing: .2em;
+  color: #706d67;
+}
+
+.intro {
   display: grid;
-  grid-template-columns: minmax(260px, 34vw) minmax(0, 1fr) minmax(180px, 18vw);
-  grid-template-rows: minmax(58vh, 1fr) minmax(30vh, .48fr);
+  grid-template-columns: minmax(250px, .72fr) minmax(420px, 1.45fr) minmax(180px, .55fr);
+  gap: clamp(1.5rem, 4vw, 5rem);
+  align-items: stretch;
+  padding: clamp(3rem, 7vw, 8rem) 0 clamp(4rem, 7vw, 8rem);
 }
 
-.topShape {
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: 13%;
-  background: linear-gradient(120deg, #1a1a1a 0%, #3a3936 18%, #e9e6df 44%, #f0eee9 100%);
-  clip-path: polygon(0 0, 100% 0, 100% 42%, 20% 100%, 0 66%);
-  z-index: -1;
-}
-
-.peopleImage {
-  grid-column: 1;
-  grid-row: 1;
+.portrait {
   position: relative;
+  min-height: clamp(560px, 54vw, 820px);
   overflow: hidden;
-  margin-top: clamp(5.2rem, 8vw, 8.5rem);
-  min-height: 590px;
   background: url('/assets/ChatGPT%20Image%208%20sept%202026,%2016_29_33.png') center/cover no-repeat;
-  clip-path: polygon(0 0, 100% 5%, 100% 94%, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 94%, 0 100%);
 }
 
-.imageOverlay,
-.mountainOverlay {
+.portrait::after {
+  content: "";
   position: absolute;
   inset: 0;
+  background: linear-gradient(180deg, transparent 45%, rgba(0, 0, 0, .42));
 }
 
-.imageOverlay {
-  background: linear-gradient(90deg, rgba(10,10,10,.45), rgba(10,10,10,.05));
-}
-
-.mountainOverlay {
-  background: linear-gradient(90deg, rgba(10,10,10,.56), rgba(10,10,10,.08) 68%, rgba(10,10,10,.2));
-}
-
-.imageLabel,
-.futureLabel,
-.bottomLabel,
-.togetherLabel {
+.portraitCaption {
   position: absolute;
+  z-index: 1;
+  left: 1.25rem;
+  bottom: 1.25rem;
+  color: rgba(255,255,255,.9);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+.statement {
   display: flex;
   flex-direction: column;
-  font-size: 10px;
-  line-height: 1.55;
-  letter-spacing: .18em;
-  color: rgba(255,255,255,.78);
+  justify-content: space-between;
+  min-height: 100%;
 }
 
-.imageLabel { top: 2rem; left: 3.5rem; }
-.futureLabel { bottom: 6.4rem; left: 3.5rem; }
-
-.content {
-  grid-column: 2;
-  grid-row: 1;
-  align-self: center;
-  width: min(680px, 76%);
-  margin: 8rem auto 1rem;
-  padding: 3rem 0;
-}
-
-.eyebrow {
-  display: block;
-  margin-bottom: 1.5rem;
-  font-size: 10px;
-  letter-spacing: .22em;
-  color: #77736d;
-}
-
-.content h2 {
-  margin: 0;
-  font-size: clamp(4rem, 6.6vw, 7.6rem);
+.statement h2 {
+  max-width: 920px;
+  margin: -.04em 0 3rem;
+  font-size: clamp(4.6rem, 8.1vw, 10.8rem);
   font-weight: 400;
-  letter-spacing: -.065em;
-  line-height: .92;
+  letter-spacing: -.075em;
+  line-height: .84;
 }
 
-.content p {
-  max-width: 640px;
-  margin: 2.6rem 0 2.8rem;
-  font-size: clamp(1.15rem, 1.65vw, 1.7rem);
-  line-height: 1.5;
-  color: #696969;
+.description {
+  max-width: 610px;
+  padding-left: clamp(0rem, 4vw, 5rem);
+}
+
+.description p {
+  margin: 0 0 2.25rem;
+  color: #66635e;
+  font-size: clamp(1.1rem, 1.45vw, 1.55rem);
+  line-height: 1.48;
 }
 
 .storyLink {
   display: inline-flex;
   align-items: center;
-  gap: 1.3rem;
-  padding-bottom: .65rem;
-  border-bottom: 1px solid #b8b4ad;
+  gap: 1.25rem;
+  padding: .9rem 1.1rem 1rem 0;
+  border-bottom: 1px solid #171717;
   color: inherit;
   text-decoration: none;
-  font-size: 1.05rem;
+  font-size: .9rem;
+  letter-spacing: .02em;
 }
 
-.storyLink span:last-child { font-size: 1.5rem; line-height: .8; }
+.storyLink span:last-child {
+  font-size: 1.3rem;
+  transition: transform .25s ease;
+}
+
+.storyLink:hover span:last-child { transform: translate(3px, -3px); }
 
 .values {
-  grid-column: 3;
-  grid-row: 1;
-  align-self: center;
   display: flex;
   flex-direction: column;
-  gap: .15em;
-  padding: 8rem 2rem 0 1rem;
-  font-size: clamp(2rem, 3vw, 4rem);
-  font-weight: 300;
-  line-height: 1.2;
-  color: #777;
+  justify-content: flex-end;
+  padding-bottom: .5rem;
 }
 
-.mountainImage {
-  grid-column: 1 / -1;
-  grid-row: 2;
+.value {
+  display: flex;
+  flex-direction: column;
+  gap: .45rem;
+  padding: 1.2rem 0;
+  border-top: 1px solid rgba(21,21,21,.16);
+}
+
+.value span {
+  font-size: 9px;
+  letter-spacing: .16em;
+  color: #8a867f;
+}
+
+.value strong {
+  font-size: clamp(1.15rem, 1.65vw, 1.8rem);
+  font-weight: 400;
+  letter-spacing: -.035em;
+}
+
+.landscape {
   position: relative;
-  min-height: 320px;
+  height: min(48vw, 720px);
+  min-height: 390px;
+  overflow: hidden;
   background: url('/assets/ChatGPT%20Image%208%20sept%202026,%2016_29_39.png') center/cover no-repeat;
-  clip-path: polygon(0 42%, 53% 0, 100% 0, 100% 100%, 0 100%);
+  clip-path: polygon(0 14%, 44% 0, 100% 8%, 100% 100%, 0 100%);
 }
 
-.bottomLabel { left: 3.5rem; bottom: 2.8rem; }
-.togetherLabel { right: 3.5rem; top: 70%; color: rgba(255,255,255,.72); }
+.landscape::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0,0,0,.54), rgba(0,0,0,.03) 70%);
+}
 
-@media (max-width: 900px) {
-  .section { display: block; min-height: auto; padding-top: 5.5rem; }
-  .peopleImage { height: 56vh; min-height: 420px; margin-top: 0; clip-path: polygon(0 0,100% 0,100% 92%,0 100%); }
-  .content { width: auto; margin: 0; padding: 4.5rem 2rem 5rem; }
-  .values { padding: 0 2rem 4rem; font-size: clamp(2.2rem,10vw,4rem); }
-  .mountainImage { height: 42vh; min-height: 360px; clip-path: polygon(0 20%,100% 0,100% 100%,0 100%); }
-  .imageLabel,.futureLabel,.bottomLabel { left: 2rem; }
-  .togetherLabel { right: 2rem; }
+.landscapeCaption,
+.landscapeNumber,
+.landscapeLine {
+  position: absolute;
+  z-index: 1;
+}
+
+.landscapeCaption {
+  left: clamp(1.5rem, 4vw, 5rem);
+  bottom: clamp(1.5rem, 4vw, 4rem);
+  color: rgba(255,255,255,.9);
+  font-size: clamp(1.8rem, 3vw, 4rem);
+  font-weight: 300;
+  letter-spacing: -.045em;
+}
+
+.landscapeLine {
+  left: clamp(1.5rem, 4vw, 5rem);
+  bottom: clamp(1.2rem, 2vw, 2rem);
+  width: min(30vw, 420px);
+  height: 1px;
+  background: rgba(255,255,255,.55);
+}
+
+.landscapeNumber {
+  right: clamp(1.5rem, 3vw, 4rem);
+  bottom: 2rem;
+  color: rgba(255,255,255,.68);
+  font-size: 9px;
+  letter-spacing: .22em;
+}
+
+@media (max-width: 1050px) {
+  .intro {
+    grid-template-columns: minmax(230px, .7fr) 1.3fr;
+  }
+
+  .values {
+    grid-column: 2;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0 2rem;
+  }
+}
+
+@media (max-width: 720px) {
+  .section { padding: 1rem; }
+
+  .intro {
+    display: block;
+    padding: 3rem 0 4rem;
+  }
+
+  .portrait {
+    min-height: 460px;
+    margin-bottom: 3.5rem;
+  }
+
+  .statement h2 {
+    font-size: clamp(4.2rem, 18vw, 7rem);
+    margin-bottom: 2.5rem;
+  }
+
+  .description { padding-left: 0; }
+  .values { margin-top: 4rem; }
+  .value { padding: 1rem 0; }
+
+  .landscape {
+    height: 78vw;
+    min-height: 390px;
+    clip-path: polygon(0 8%, 72% 0, 100% 5%, 100% 100%, 0 100%);
+  }
+
+  .landscapeCaption {
+    max-width: 230px;
+    bottom: 3rem;
+    font-size: 2.2rem;
+  }
+
+  .landscapeLine { width: 180px; bottom: 1.6rem; }
+  .landscapeNumber { display: none; }
 }
