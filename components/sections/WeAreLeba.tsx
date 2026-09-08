@@ -11,7 +11,6 @@ const copy = {
     text: "A digital studio for a more human future. We partner with ambitious people and organizations to create meaningful products, brands and experiences.",
     link: "Our story",
     values: ["People", "Ideas", "Products", "Impact"],
-    leftTop: "PEOPLE\nIDEAS\nPRODUCTS\nIMPACT",
     leftBottom: "A MORE\nHUMAN FUTURE",
     bottomLeft: "FROM\nIDEAS\nTO IMPACT",
     bottomRight: "BUILT\nTOGETHER",
@@ -22,7 +21,6 @@ const copy = {
     text: "Un estudio digital para un futuro más humano. Trabajamos junto a personas y organizaciones ambiciosas para crear productos, marcas y experiencias significativas.",
     link: "Nuestra historia",
     values: ["Personas", "Ideas", "Productos", "Impacto"],
-    leftTop: "PERSONAS\nIDEAS\nPRODUCTOS\nIMPACTO",
     leftBottom: "UN FUTURO\nMÁS HUMANO",
     bottomLeft: "DE LAS\nIDEAS\nAL IMPACTO",
     bottomRight: "CONSTRUIDO\nJUNTOS",
@@ -35,10 +33,8 @@ export function WeAreLeba() {
 
   return (
     <section className={styles.section} aria-labelledby="we-are-leba-title">
-      <div className={styles.topShape} />
       <div className={styles.peopleImage} aria-hidden="true">
         <div className={styles.imageOverlay} />
-        <span className={styles.imageLabel}>{content.leftTop.split("\n").map((line) => <span key={line}>{line}</span>)}</span>
         <span className={styles.futureLabel}>{content.leftBottom.split("\n").map((line) => <span key={line}>{line}</span>)}</span>
       </div>
 
