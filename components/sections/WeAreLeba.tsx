@@ -7,25 +7,23 @@ import styles from "./WeAreLeba.module.css";
 const copy = {
   en: {
     eyebrow: "WE ARE LEBA",
-    title: "We are LEBA",
-    text: "A digital studio for a more human future. We partner with ambitious people and organizations to create meaningful products, brands and experiences.",
-    link: "Our story",
+    title: <>We build what&apos;s next.<br />Together.</>,
+    text: "A digital studio for a more human future. We partner with ambitious people and organizations to turn meaningful ideas into products, brands and experiences.",
+    link: "Meet the people behind it",
     values: ["People", "Ideas", "Products", "Impact"],
-    leftTop: "PEOPLE\nIDEAS\nPRODUCTS\nIMPACT",
-    leftBottom: "A MORE\nHUMAN FUTURE",
-    bottomLeft: "FROM\nIDEAS\nTO IMPACT",
-    bottomRight: "BUILT\nTOGETHER",
+    index: "04 / 04",
+    imageCaption: "A more human future",
+    landscapeCaption: "From ideas to impact",
   },
   es: {
     eyebrow: "SOMOS LEBA",
-    title: "Somos LEBA",
-    text: "Un estudio digital para un futuro más humano. Trabajamos junto a personas y organizaciones ambiciosas para crear productos, marcas y experiencias significativas.",
-    link: "Nuestra historia",
+    title: <>Construimos lo que sigue.<br />Juntos.</>,
+    text: "Un estudio digital para un futuro más humano. Trabajamos junto a personas y organizaciones ambiciosas para transformar ideas significativas en productos, marcas y experiencias.",
+    link: "Conoce a las personas detrás",
     values: ["Personas", "Ideas", "Productos", "Impacto"],
-    leftTop: "PERSONAS\nIDEAS\nPRODUCTOS\nIMPACTO",
-    leftBottom: "UN FUTURO\nMÁS HUMANO",
-    bottomLeft: "DE LAS\nIDEAS\nAL IMPACTO",
-    bottomRight: "CONSTRUIDO\nJUNTOS",
+    index: "04 / 04",
+    imageCaption: "Un futuro más humano",
+    landscapeCaption: "De las ideas al impacto",
   },
 };
 
@@ -35,30 +33,41 @@ export function WeAreLeba() {
 
   return (
     <section className={styles.section} aria-labelledby="we-are-leba-title">
-      <div className={styles.topShape} />
-      <div className={styles.peopleImage} aria-hidden="true">
-        <div className={styles.imageOverlay} />
-        <span className={styles.imageLabel}>{content.leftTop.split("\n").map((line) => <span key={line}>{line}</span>)}</span>
-        <span className={styles.futureLabel}>{content.leftBottom.split("\n").map((line) => <span key={line}>{line}</span>)}</span>
+      <div className={styles.header}>
+        <span>{content.eyebrow}</span>
+        <span>{content.index}</span>
       </div>
 
-      <div className={styles.content}>
-        <span className={styles.eyebrow}>{content.eyebrow}</span>
-        <h2 id="we-are-leba-title">{content.title}</h2>
-        <p>{content.text}</p>
-        <Link className={styles.storyLink} href="/nosotros">
-          <span>{content.link}</span><span aria-hidden="true">→</span>
-        </Link>
+      <div className={styles.intro}>
+        <div className={styles.portrait} aria-hidden="true">
+          <div className={styles.portraitCaption}>{content.imageCaption}</div>
+        </div>
+
+        <div className={styles.statement}>
+          <h2 id="we-are-leba-title">{content.title}</h2>
+          <div className={styles.description}>
+            <p>{content.text}</p>
+            <Link className={styles.storyLink} href="/nosotros">
+              <span>{content.link}</span>
+              <span aria-hidden="true">↗</span>
+            </Link>
+          </div>
+        </div>
+
+        <div className={styles.values} aria-label="LEBA values">
+          {content.values.map((value, index) => (
+            <div className={styles.value} key={value}>
+              <span>0{index + 1}</span>
+              <strong>{value}</strong>
+            </div>
+          ))}
+        </div>
       </div>
 
-      <div className={styles.values}>
-        {content.values.map((value) => <span key={value}>{value}</span>)}
-      </div>
-
-      <div className={styles.mountainImage} aria-hidden="true">
-        <div className={styles.mountainOverlay} />
-        <span className={styles.bottomLabel}>{content.bottomLeft.split("\n").map((line) => <span key={line}>{line}</span>)}</span>
-        <span className={styles.togetherLabel}>{content.bottomRight.split("\n").map((line) => <span key={line}>{line}</span>)}</span>
+      <div className={styles.landscape} aria-hidden="true">
+        <div className={styles.landscapeCaption}>{content.landscapeCaption}</div>
+        <div className={styles.landscapeLine} />
+        <span className={styles.landscapeNumber}>WE ARE LEBA</span>
       </div>
     </section>
   );
