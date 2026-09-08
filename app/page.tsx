@@ -15,8 +15,8 @@ export default function Home() {
       <main>
         <Hero />
         <WhatWeDo />
-        <OurProcess />
         <WeAreLeba />
+        <OurProcess />
       </main>
       <SiteFooter />
     </LanguageProvider>
