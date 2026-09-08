@@ -1,0 +1,166 @@
+.section {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  isolation: isolate;
+  background: #e9e6df;
+  color: #171717;
+  display: grid;
+  grid-template-columns: minmax(260px, 34vw) minmax(0, 1fr) minmax(180px, 18vw);
+  grid-template-rows: minmax(58vh, 1fr) minmax(30vh, 0.48fr);
+}
+
+.topShape {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 13%;
+  background: linear-gradient(120deg, #1a1a1a 0%, #3a3936 18%, #e9e6df 44%, #f0eee9 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 42%, 20% 100%, 0 66%);
+  z-index: -1;
+}
+
+.peopleImage {
+  grid-column: 1;
+  grid-row: 1;
+  position: relative;
+  overflow: hidden;
+  margin-top: clamp(5.2rem, 8vw, 8.5rem);
+  min-height: 590px;
+  background: url('/assets/generated/portada.png') center/cover no-repeat;
+  clip-path: polygon(0 0, 100% 5%, 100% 94%, 0 100%);
+}
+
+.imageOverlay,
+.mountainOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(10, 10, 10, .5), rgba(10, 10, 10, .06));
+}
+
+.imageLabel,
+.futureLabel,
+.bottomLabel,
+.togetherLabel {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  font-size: 10px;
+  line-height: 1.55;
+  letter-spacing: .18em;
+  color: rgba(255,255,255,.78);
+}
+
+.imageLabel { top: 2rem; left: 3.5rem; }
+.futureLabel { bottom: 6.4rem; left: 3.5rem; }
+
+.content {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: center;
+  width: min(680px, 76%);
+  margin: 8rem auto 1rem;
+  padding: 3rem 0;
+}
+
+.eyebrow {
+  display: block;
+  margin-bottom: 1.5rem;
+  font-size: 10px;
+  letter-spacing: .22em;
+  color: #77736d;
+}
+
+.content h2 {
+  margin: 0;
+  font-size: clamp(4rem, 6.6vw, 7.6rem);
+  font-weight: 400;
+  letter-spacing: -.065em;
+  line-height: .92;
+}
+
+.content p {
+  max-width: 640px;
+  margin: 2.6rem 0 2.8rem;
+  font-size: clamp(1.15rem, 1.65vw, 1.7rem);
+  line-height: 1.5;
+  color: #696969;
+}
+
+.storyLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.3rem;
+  padding-bottom: .65rem;
+  border-bottom: 1px solid #b8b4ad;
+  color: inherit;
+  text-decoration: none;
+  font-size: 1.05rem;
+}
+
+.storyLink span:last-child {
+  font-size: 1.5rem;
+  line-height: .8;
+}
+
+.values {
+  grid-column: 3;
+  grid-row: 1;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  gap: .15em;
+  padding: 8rem 2rem 0 1rem;
+  font-size: clamp(2rem, 3vw, 4rem);
+  font-weight: 300;
+  line-height: 1.2;
+  color: #777;
+}
+
+.mountainImage {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  position: relative;
+  min-height: 320px;
+  background: linear-gradient(90deg, rgba(12,12,12,.85), rgba(12,12,12,.12)), url('/assets/generated/portada.png') center/cover no-repeat;
+  clip-path: polygon(0 42%, 53% 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.bottomLabel { left: 3.5rem; bottom: 2.8rem; }
+.togetherLabel { right: 3.5rem; top: 70%; color: rgba(30,30,30,.62); }
+
+@media (max-width: 900px) {
+  .section {
+    display: block;
+    min-height: auto;
+    padding-top: 5.5rem;
+  }
+
+  .peopleImage {
+    height: 56vh;
+    min-height: 420px;
+    margin-top: 0;
+    clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+  }
+
+  .content {
+    width: auto;
+    margin: 0;
+    padding: 4.5rem 2rem 5rem;
+  }
+
+  .values {
+    padding: 0 2rem 4rem;
+    font-size: clamp(2.2rem, 10vw, 4rem);
+  }
+
+  .mountainImage {
+    height: 42vh;
+    min-height: 360px;
+    clip-path: polygon(0 20%, 100% 0, 100% 100%, 0 100%);
+  }
+
+  .imageLabel,
+  .futureLabel,
+  .bottomLabel { left: 2rem; }
+  .togetherLabel { right: 2rem; }
+}
