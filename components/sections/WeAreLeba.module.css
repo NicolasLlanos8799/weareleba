@@ -19,38 +19,11 @@
 
 .intro {
   display: grid;
-  grid-template-columns: minmax(250px, .72fr) minmax(420px, 1.45fr) minmax(180px, .55fr);
-  gap: clamp(1.5rem, 4vw, 5rem);
-  align-items: stretch;
-  padding: clamp(3rem, 7vw, 8rem) 0 clamp(4rem, 7vw, 8rem);
-}
-
-.portrait {
-  position: relative;
-  min-height: clamp(560px, 54vw, 820px);
-  overflow: hidden;
-  background: url('/assets/ChatGPT%20Image%208%20sept%202026,%2016_29_33.png') center/cover no-repeat;
-  clip-path: polygon(0 0, 100% 0, 100% 94%, 0 100%);
-}
-
-.portrait::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 45%, rgba(0, 0, 0, .42));
-}
-
-.portraitCaption {
-  position: absolute;
-  z-index: 1;
-  left: 1.25rem;
-  bottom: 1.25rem;
-  color: rgba(255,255,255,.9);
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: .18em;
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
+  grid-template-columns: minmax(0, 1.65fr) minmax(250px, .6fr);
+  gap: clamp(2rem, 7vw, 10rem);
+  align-items: end;
+  min-height: min(67vw, 900px);
+  padding: clamp(4rem, 10vw, 10rem) 0 clamp(4rem, 8vw, 8rem);
 }
 
 .statement {
@@ -61,29 +34,34 @@
 }
 
 .statement h2 {
-  max-width: 920px;
-  margin: -.04em 0 3rem;
-  font-size: clamp(4.6rem, 8.1vw, 10.8rem);
+  max-width: 1120px;
+  margin: -.04em 0 4rem;
+  font-size: clamp(5.2rem, 10.5vw, 13rem);
   font-weight: 400;
-  letter-spacing: -.075em;
-  line-height: .84;
+  letter-spacing: -.085em;
+  line-height: .82;
 }
 
 .description {
-  max-width: 610px;
-  padding-left: clamp(0rem, 4vw, 5rem);
+  display: grid;
+  grid-template-columns: minmax(220px, .75fr) minmax(250px, 1fr);
+  gap: 2rem 4rem;
+  align-items: end;
+  max-width: 860px;
+  margin-left: clamp(0rem, 8vw, 10rem);
 }
 
 .description p {
-  margin: 0 0 2.25rem;
+  margin: 0;
   color: #66635e;
-  font-size: clamp(1.1rem, 1.45vw, 1.55rem);
+  font-size: clamp(1.05rem, 1.35vw, 1.5rem);
   line-height: 1.48;
 }
 
 .storyLink {
   display: inline-flex;
   align-items: center;
+  justify-self: start;
   gap: 1.25rem;
   padding: .9rem 1.1rem 1rem 0;
   border-bottom: 1px solid #171717;
@@ -103,15 +81,27 @@
 .values {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  padding-bottom: .5rem;
+  gap: 3rem;
+  padding-bottom: .25rem;
 }
 
+.sideStatement {
+  max-width: 220px;
+  font-size: clamp(1.45rem, 2vw, 2.4rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -.045em;
+  color: #77736d;
+}
+
+.valuesList { border-bottom: 1px solid rgba(21,21,21,.16); }
+
 .value {
-  display: flex;
-  flex-direction: column;
-  gap: .45rem;
-  padding: 1.2rem 0;
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  align-items: baseline;
+  gap: .7rem;
+  padding: 1.25rem 0;
   border-top: 1px solid rgba(21,21,21,.16);
 }
 
@@ -122,9 +112,9 @@
 }
 
 .value strong {
-  font-size: clamp(1.15rem, 1.65vw, 1.8rem);
+  font-size: clamp(1.2rem, 1.75vw, 2rem);
   font-weight: 400;
-  letter-spacing: -.035em;
+  letter-spacing: -.04em;
 }
 
 .landscape {
@@ -175,40 +165,32 @@
   letter-spacing: .22em;
 }
 
-@media (max-width: 1050px) {
+@media (max-width: 900px) {
   .intro {
-    grid-template-columns: minmax(230px, .7fr) 1.3fr;
+    grid-template-columns: 1fr;
+    min-height: auto;
+    gap: 4rem;
   }
 
-  .values {
-    grid-column: 2;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0 2rem;
-  }
+  .statement h2 { font-size: clamp(4.8rem, 15vw, 9rem); }
+  .description { margin-left: clamp(0rem, 8vw, 5rem); }
+  .values { max-width: 560px; margin-left: auto; }
+  .sideStatement { max-width: 320px; }
 }
 
 @media (max-width: 720px) {
   .section { padding: 1rem; }
+  .intro { padding: 3rem 0 4rem; gap: 3.5rem; }
+  .statement h2 { font-size: clamp(4.1rem, 18vw, 7rem); margin-bottom: 3rem; }
 
-  .intro {
+  .description {
     display: block;
-    padding: 3rem 0 4rem;
+    margin-left: 0;
   }
 
-  .portrait {
-    min-height: 460px;
-    margin-bottom: 3.5rem;
-  }
-
-  .statement h2 {
-    font-size: clamp(4.2rem, 18vw, 7rem);
-    margin-bottom: 2.5rem;
-  }
-
-  .description { padding-left: 0; }
-  .values { margin-top: 4rem; }
-  .value { padding: 1rem 0; }
+  .description p { margin-bottom: 2.25rem; }
+  .values { margin: 0; gap: 2.5rem; }
+  .sideStatement { max-width: 260px; font-size: 1.75rem; }
 
   .landscape {
     height: 78vw;
