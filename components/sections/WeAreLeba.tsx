@@ -27,12 +27,13 @@ export function WeAreLeba() {
 
   return (
     <section className={styles.section} aria-labelledby="we-are-leba-title">
+      <div className={styles.ambientGlow} aria-hidden="true" />
       <div className={styles.inner}>
-        <h2 id="we-are-leba-title" className={styles.brand}>{content.brand}</h2>
+        <h2 id="we-are-leba-title" className={styles.brand} data-reveal="up">{content.brand}</h2>
         <div className={styles.message}>
-          <h3>{content.statement}</h3>
-          <p>{content.description}</p>
-          <Link className={styles.storyLink} href="/nosotros">
+          <h3 data-reveal="up">{content.statement}</h3>
+          <p data-reveal="up">{content.description}</p>
+          <Link className={styles.storyLink} href="/nosotros" data-reveal="up">
             <span>{content.link}</span>
             <span aria-hidden="true">→</span>
           </Link>
