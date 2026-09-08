@@ -64,8 +64,11 @@ export function WhoHelps() {
           <div className={styles.memberImageWrap} data-parallax style={{ "--parallax-speed": `${0.08 + index * 0.025}` } as CSSProperties}>
             <span className={styles.index}>0{index + 1}</span>
             <img className={styles.memberImage} src={member.image} alt={member.name} />
+            <div className={styles.memberOverlay}>
+              <h3>{member.name}</h3>
+              <p>{member.role}</p>
+            </div>
           </div>
-          <div className={styles.memberMeta}><h3>{member.name}</h3><p>{member.role}</p></div>
         </article>)}
       </div>
       <footer className={styles.footer}><span><i /> {copy.footer}</span><span>WE ARE LEBA</span></footer>
