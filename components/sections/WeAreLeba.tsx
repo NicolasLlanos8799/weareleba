@@ -14,10 +14,12 @@ type Step = {
 
 const copy = {
   en: {
-    brand: "WE ARE LEBA",
+    brandTop: "WE ARE",
+    brandBottom: "LEBA",
     statement: "We bring clarity to complexity.",
     description: "We are a digital studio that brings clarity and structure to growing businesses. We take the time to understand how your business works, where the friction is and what is holding you back. Then we transform complexity into clear, purposeful digital solutions — creating structure, bringing order and building systems that give you more control and more time.",
     link: "Discover LEBA",
+    approach: "OUR APPROACH",
     steps: [
       { number: "01", title: "Understand", description: "We diagnose your current business operations.", actions: ["LISTEN", "ANALYZE", "FIND OPPORTUNITIES"] },
       { number: "02", title: "Propose", description: "We design a robust digital architecture.", actions: ["DEFINE", "PLAN", "VALIDATE"] },
@@ -26,10 +28,12 @@ const copy = {
     ] as Step[],
   },
   es: {
-    brand: "WE ARE LEBA",
+    brandTop: "WE ARE",
+    brandBottom: "LEBA",
     statement: "Damos claridad a la complejidad.",
     description: "Somos un estudio digital que aporta claridad y estructura a negocios en crecimiento. Nos tomamos el tiempo para entender cómo funciona tu negocio, dónde está la fricción y qué te está frenando. Después transformamos esa complejidad en soluciones digitales claras y con propósito: creando estructura, poniendo orden y construyendo sistemas que te dan más control y más tiempo.",
     link: "Descubre LEBA",
+    approach: "NUESTRO ENFOQUE",
     steps: [
       { number: "01", title: "Entender", description: "Diagnosticamos la operación actual del negocio.", actions: ["ESCUCHAR", "ANALIZAR", "ENCONTRAR OPORTUNIDADES"] },
       { number: "02", title: "Proponer", description: "Diseñamos una arquitectura digital robusta.", actions: ["DEFINIR", "PLANIFICAR", "VALIDAR"] },
@@ -85,7 +89,10 @@ export function WeAreLeba() {
       <div className={styles.inner}>
         <header className={styles.hero}>
           <div className={styles.identity}>
-            <h2 id="we-are-leba-title" className={styles.brand}>{content.brand}</h2>
+            <h2 id="we-are-leba-title" className={styles.brand}>
+              <span>{content.brandTop}</span>
+              <span>{content.brandBottom}</span>
+            </h2>
             <h3 className={styles.statement}>{content.statement}</h3>
           </div>
           <div className={styles.intro}>
@@ -93,6 +100,11 @@ export function WeAreLeba() {
             <Link className={styles.storyLink} href="/nosotros"><span>{content.link}</span><span aria-hidden="true">→</span></Link>
           </div>
         </header>
+
+        <div className={styles.approachHeading}>
+          <span>{content.approach}</span>
+          <i />
+        </div>
 
         <div className={styles.grid}>
           {content.steps.map((step, index) => (
