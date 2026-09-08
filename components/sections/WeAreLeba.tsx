@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useLanguage } from "@/components/i18n/LanguageProvider";
 import styles from "./WeAreLeba.module.css";
@@ -24,16 +25,30 @@ const copy = {
 export function WeAreLeba() {
   const { language } = useLanguage();
   const content = copy[language];
+  const sectionRef = useRef<HTMLElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setIsVisible(true);
+        observer.disconnect();
+      }
+    }, { threshold: 0.22 });
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <section className={styles.section} aria-labelledby="we-are-leba-title">
-      <div className={styles.ambientGlow} aria-hidden="true" />
+    <section ref={sectionRef} className={`${styles.section} ${isVisible ? styles.visible : ""}`} aria-labelledby="we-are-leba-title">
       <div className={styles.inner}>
-        <h2 id="we-are-leba-title" className={styles.brand} data-reveal="up">{content.brand}</h2>
+        <h2 id="we-are-leba-title" className={styles.brand}>{content.brand}</h2>
         <div className={styles.message}>
-          <h3 data-reveal="up">{content.statement}</h3>
-          <p data-reveal="up">{content.description}</p>
-          <Link className={styles.storyLink} href="/nosotros" data-reveal="up">
+          <h3>{content.statement}</h3>
+          <p>{content.description}</p>
+          <Link className={styles.storyLink} href="/nosotros">
             <span>{content.link}</span>
             <span aria-hidden="true">→</span>
           </Link>
