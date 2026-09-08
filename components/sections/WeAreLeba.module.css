@@ -19,20 +19,22 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: clamp(18px, 2vw, 32px);
+  gap: clamp(22px, 2.5vw, 38px);
 }
 
 .brand {
   margin: 0;
   font-size: clamp(76px, 10.8vw, 180px);
   font-weight: 400;
-  line-height: .78;
+  line-height: .72;
   letter-spacing: -.09em;
-  white-space: nowrap;
   opacity: 0;
   transform: translateY(54px);
   filter: blur(8px);
 }
+
+.brand span { display: block; }
+.brand span + span { margin-top: .12em; }
 
 .statement {
   margin: 0;
@@ -78,13 +80,28 @@
 .storyLink span:last-child { font-size: 1.35rem; line-height: .8; transition: transform .35s ease; }
 .storyLink:hover span:last-child { transform: translateX(.25rem); }
 
+.approachHeading {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: clamp(90px, 11vw, 180px);
+  padding-bottom: clamp(22px, 2.5vw, 38px);
+  font-size: 10px;
+  letter-spacing: .28em;
+  color: #626469;
+}
+
+.approachHeading i {
+  display: block;
+  flex: 1;
+  height: 1px;
+  background: rgba(60, 62, 65, .2);
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: clamp(24px, 3.2vw, 56px);
-  margin-top: clamp(100px, 12vw, 190px);
-  padding-top: clamp(26px, 3vw, 46px);
-  border-top: 1px solid rgba(60, 62, 65, .16);
 }
 
 .step {
@@ -133,11 +150,12 @@
 @media (max-width: 760px) {
   .section { padding: 76px 24px; }
   .hero { grid-template-columns: 1fr; gap: 40px; align-items: start; }
-  .brand { max-width: 100%; font-size: clamp(62px, 17vw, 100px); white-space: normal; line-height: .8; }
+  .brand { max-width: 100%; font-size: clamp(62px, 17vw, 100px); line-height: .76; }
   .statement { font-size: clamp(30px, 9vw, 46px); }
   .intro p { font-size: 17px; }
   .storyLink { margin-top: 30px; }
-  .grid { grid-template-columns: 1fr; margin-top: 82px; gap: 58px; }
+  .approachHeading { margin-top: 82px; padding-bottom: 28px; }
+  .grid { grid-template-columns: 1fr; gap: 58px; }
   .topline { font-size: 28px; }
   .icon { margin-top: 28px; }
   .step h3 { margin-top: 22px; font-size: 36px; }
