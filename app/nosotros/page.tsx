@@ -8,7 +8,7 @@ export default function NosotrosPage() {
   return (
     <LanguageProvider>
       <ScrollMotion />
-      <SiteHeader />
+      <SiteHeader tone="dark" />
       <main>
         <WhoHelps />
       </main>
