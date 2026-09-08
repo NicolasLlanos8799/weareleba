@@ -6,16 +6,18 @@ import styles from "./WeAreLeba.module.css";
 
 const copy = {
   en: {
-    eyebrow: "WE ARE LEBA",
-    title: "We bring clarity to complexity.",
+    brand: "WE ARE LEBA",
+    statement: "We bring clarity to complexity.",
     description: "We are a digital studio that brings clarity and structure to growing businesses. We take the time to understand how your business works, where the friction is and what is holding you back. Then we transform complexity into clear, purposeful digital solutions — creating structure, bringing order and building systems that give you more control and more time.",
     link: "Discover LEBA",
+    transition: "FROM CLARITY, WE BUILD.",
   },
   es: {
-    eyebrow: "SOMOS LEBA",
-    title: "Damos claridad a la complejidad.",
+    brand: "SOMOS LEBA",
+    statement: "Damos claridad a la complejidad.",
     description: "Somos un estudio digital que aporta claridad y estructura a negocios en crecimiento. Nos tomamos el tiempo para entender cómo funciona tu negocio, dónde está la fricción y qué te está frenando. Después transformamos esa complejidad en soluciones digitales claras y con propósito: creando estructura, poniendo orden y construyendo sistemas que te dan más control y más tiempo.",
     link: "Descubre LEBA",
+    transition: "DESDE LA CLARIDAD, CONSTRUIMOS.",
   },
 };
 
@@ -26,15 +28,21 @@ export function WeAreLeba() {
   return (
     <section className={styles.section} aria-labelledby="we-are-leba-title">
       <div className={styles.inner}>
-        <span className={styles.eyebrow}>{content.eyebrow}</span>
-        <h2 id="we-are-leba-title">{content.title}</h2>
-        <div className={styles.content}>
+        <h2 id="we-are-leba-title" className={styles.brand}>{content.brand}</h2>
+        <div className={styles.message}>
+          <h3>{content.statement}</h3>
           <p>{content.description}</p>
           <Link className={styles.storyLink} href="/nosotros">
             <span>{content.link}</span>
             <span aria-hidden="true">→</span>
           </Link>
         </div>
+      </div>
+      <div className={styles.transition} aria-hidden="true">
+        <span />
+        <p>{content.transition}</p>
+        <b>↓</b>
+        <span />
       </div>
     </section>
   );
