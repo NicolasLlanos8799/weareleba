@@ -19,10 +19,11 @@ export function SiteHeader({ tone = "light" }: SiteHeaderProps) {
   const strong = isDark ? "#292a2d" : "rgba(255,255,255,.92)";
   const muted = isDark ? "rgba(41,42,45,.68)" : "rgba(255,255,255,.78)";
   const border = isDark ? "rgba(41,42,45,.32)" : "rgba(255,255,255,.75)";
+  const headerStyle = (isDark ? { color: strong, background: "rgba(232,231,227,.92)", borderBottom: "1px solid rgba(41,42,45,.1)" } : { color: strong }) as CSSProperties;
   const ctaStyle = { color: strong, borderColor: border } as CSSProperties;
 
   return (
-    <header className={`site-header site-header-${tone}`} style={{ color: strong }}>
+    <header className={`site-header site-header-${tone}`} style={headerStyle}>
       <div className="site-header-inner">
         <a className="site-brand focusable" href="/" aria-label="LEBA">LEBA</a>
         <nav aria-label={language === "en" ? "Main navigation" : "Navegación principal"} className="desktop-nav site-nav" style={{ color: muted }}>
