@@ -12,8 +12,8 @@ const copy = {
     link: "Meet the people behind it",
     values: ["People", "Ideas", "Products", "Impact"],
     index: "04 / 04",
-    imageCaption: "A more human future",
     landscapeCaption: "From ideas to impact",
+    sideStatement: "People create ideas. Ideas create change.",
   },
   es: {
     eyebrow: "SOMOS LEBA",
@@ -22,8 +22,8 @@ const copy = {
     link: "Conoce a las personas detrás",
     values: ["Personas", "Ideas", "Productos", "Impacto"],
     index: "04 / 04",
-    imageCaption: "Un futuro más humano",
     landscapeCaption: "De las ideas al impacto",
+    sideStatement: "Las personas crean ideas. Las ideas crean cambio.",
   },
 };
 
@@ -39,10 +39,6 @@ export function WeAreLeba() {
       </div>
 
       <div className={styles.intro}>
-        <div className={styles.portrait} aria-hidden="true">
-          <div className={styles.portraitCaption}>{content.imageCaption}</div>
-        </div>
-
         <div className={styles.statement}>
           <h2 id="we-are-leba-title">{content.title}</h2>
           <div className={styles.description}>
@@ -55,12 +51,15 @@ export function WeAreLeba() {
         </div>
 
         <div className={styles.values} aria-label="LEBA values">
-          {content.values.map((value, index) => (
-            <div className={styles.value} key={value}>
-              <span>0{index + 1}</span>
-              <strong>{value}</strong>
-            </div>
-          ))}
+          <div className={styles.sideStatement}>{content.sideStatement}</div>
+          <div className={styles.valuesList}>
+            {content.values.map((value, index) => (
+              <div className={styles.value} key={value}>
+                <span>0{index + 1}</span>
+                <strong>{value}</strong>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
