@@ -14,6 +14,7 @@ type Step = {
 
 const copy = {
   en: {
+    eyebrow: "WHO WE ARE",
     brandTop: "WE ARE",
     brandBottom: "LEBA",
     statement: "We bring clarity to complexity.",
@@ -28,6 +29,7 @@ const copy = {
     ] as Step[],
   },
   es: {
+    eyebrow: "QUIÉNES SOMOS",
     brandTop: "WE ARE",
     brandBottom: "LEBA",
     statement: "Damos claridad a la complejidad.",
@@ -87,6 +89,7 @@ export function WeAreLeba() {
   return (
     <section ref={sectionRef} className={`${styles.section} ${isVisible ? styles.visible : ""}`} id="about" aria-labelledby="we-are-leba-title">
       <div className={styles.inner}>
+        <div className={styles.eyebrow}><span>{content.eyebrow}</span><i /></div>
         <header className={styles.hero}>
           <div className={styles.identity}>
             <h2 id="we-are-leba-title" className={styles.brand}>
@@ -100,19 +103,13 @@ export function WeAreLeba() {
             <Link className={styles.storyLink} href="/nosotros"><span>{content.link}</span><span aria-hidden="true">→</span></Link>
           </div>
         </header>
-
-        <div className={styles.approachHeading}>
-          <span>{content.approach}</span>
-          <i />
-        </div>
-
+        <div className={styles.approachHeading}><span>{content.approach}</span><i /></div>
         <div className={styles.grid}>
           {content.steps.map((step, index) => (
             <article className={`${styles.step} ${visibleSteps.includes(index) ? styles.stepVisible : ""}`} key={step.number} ref={(element) => { stepRefs.current[index] = element; }} style={{ "--delay": `${index * 120}ms` } as CSSProperties}>
               <div className={styles.topline}><span>{step.number}</span><i /></div>
               <div className={styles.icon}><ProcessIcon index={index} /></div>
-              <h3>{step.title}</h3>
-              <p>{step.description}</p>
+              <h3>{step.title}</h3><p>{step.description}</p>
               <div className={styles.actions}>{step.actions.map((action) => <span key={action}>{action}</span>)}</div>
             </article>
           ))}
