@@ -5,7 +5,7 @@ import { ScrollMotion } from "@/components/system/ScrollMotion";
 import { Hero } from "@/components/sections/Hero";
 import { WhatWeDo } from "@/components/sections/WhatWeDo";
 import { OurProcess } from "@/components/sections/OurProcess";
-import { WhoHelps } from "@/components/sections/WhoHelps";
+import { WeAreLeba } from "@/components/sections/WeAreLeba";
 
 export default function Home() {
   return (
@@ -16,7 +16,7 @@ export default function Home() {
         <Hero />
         <WhatWeDo />
         <OurProcess />
-        <WhoHelps />
+        <WeAreLeba />
       </main>
       <SiteFooter />
     </LanguageProvider>
