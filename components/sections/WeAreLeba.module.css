@@ -10,19 +10,17 @@
   grid-template-rows: minmax(58vh, 1fr) minmax(30vh, .48fr);
 }
 
-/* Removed the dark decorative band at the top so the section opens directly into the content. */
-.topShape { display: none; }
-
 .peopleImage {
-  grid-column: 1;
-  grid-row: 1;
-  position: relative;
+  position: absolute;
   z-index: 2;
+  top: clamp(5.2rem, 8vw, 8.5rem);
+  bottom: 0;
+  left: 0;
+  width: min(34vw, 580px);
+  min-width: 260px;
   overflow: hidden;
-  margin-top: clamp(5.2rem, 8vw, 8.5rem);
-  min-height: 590px;
   background: url('/assets/ChatGPT%20Image%208%20sept%202026,%2016_29_33.png') center/cover no-repeat;
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
 }
 
 .imageOverlay,
@@ -30,7 +28,6 @@
 .imageOverlay { background: linear-gradient(90deg, rgba(10,10,10,.45), rgba(10,10,10,.05)); }
 .mountainOverlay { background: linear-gradient(90deg, rgba(10,10,10,.56), rgba(10,10,10,.08) 68%, rgba(10,10,10,.2)); }
 
-.imageLabel,
 .futureLabel,
 .bottomLabel,
 .togetherLabel {
@@ -43,14 +40,13 @@
   color: rgba(255,255,255,.78);
 }
 
-.imageLabel { top: 2rem; left: 3.5rem; }
-.futureLabel { bottom: 6.4rem; left: 3.5rem; }
+.futureLabel { left: 3.5rem; bottom: 6.4rem; z-index: 1; }
 
 .content {
   grid-column: 2;
   grid-row: 1;
   position: relative;
-  z-index: 2;
+  z-index: 3;
   align-self: center;
   width: min(680px, 76%);
   margin: 8rem auto 1rem;
@@ -98,7 +94,7 @@
   grid-column: 3;
   grid-row: 1;
   position: relative;
-  z-index: 2;
+  z-index: 3;
   align-self: center;
   display: flex;
   flex-direction: column;
@@ -110,45 +106,46 @@
   color: #777;
 }
 
-/* The landscape sits behind the lower edge of the studio image, joining both photographs into one composition. */
 .mountainImage {
   position: absolute;
-  inset: auto 0 0 0;
+  inset: 0 0 0 0;
   z-index: 1;
-  height: clamp(300px, 34svh, 470px);
+  top: 58%;
+  height: auto;
   background: url('/assets/ChatGPT%20Image%208%20sept%202026,%2016_29_39.png') center/cover no-repeat;
-  clip-path: polygon(0 30%, 53% 0, 100% 0, 100% 100%, 0 100%);
+  clip-path: polygon(0 34%, 53% 0, 100% 0, 100% 100%, 0 100%);
 }
 
 .bottomLabel { left: 3.5rem; bottom: 2.8rem; }
 .togetherLabel { right: 3.5rem; top: 70%; color: rgba(255,255,255,.72); }
 
 @media (max-width: 900px) {
-  .section { display: block; min-height: auto; padding-top: 0; }
+  .section { display: block; min-height: auto; }
 
   .peopleImage {
+    position: relative;
+    top: auto;
+    bottom: auto;
+    width: 100%;
+    min-width: 0;
     height: 56vh;
     min-height: 420px;
-    margin-top: 0;
-    clip-path: none;
+    clip-path: polygon(0 0,100% 0,100% 94%,0 100%);
   }
 
-  .content {
-    width: auto;
-    margin: 0;
-    padding: 4.5rem 2rem 5rem;
-  }
-
+  .content { width: auto; margin: 0; padding: 4.5rem 2rem 5rem; }
   .values { padding: 0 2rem 4rem; font-size: clamp(2.2rem,10vw,4rem); }
 
   .mountainImage {
     position: relative;
+    inset: auto;
+    top: auto;
     height: 42vh;
     min-height: 360px;
-    clip-path: polygon(0 12%,100% 0,100% 100%,0 100%);
-    margin-top: -2px;
+    margin-top: -10vh;
+    clip-path: polygon(0 24%,100% 0,100% 100%,0 100%);
   }
 
-  .imageLabel,.futureLabel,.bottomLabel { left: 2rem; }
+  .futureLabel,.bottomLabel { left: 2rem; }
   .togetherLabel { right: 2rem; }
 }
