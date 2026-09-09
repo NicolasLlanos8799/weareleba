@@ -53,7 +53,7 @@ export function WhoHelps() {
     return () => observer.disconnect();
   }, []);
 
-  return <section ref={sectionRef} className={styles.team} id="team" aria-labelledby="team-title">
+  return <section ref={sectionRef} className={`${styles.team} ${styles[`language${language.toUpperCase()}`]}`} id="team" aria-labelledby="team-title">
     <div className={styles.inner}>
       <div className={`${styles.kicker} ${styles.reveal}`}><span /> {copy.kicker}</div>
       <header className={`${styles.header} ${styles.reveal}`}>
