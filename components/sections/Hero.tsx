@@ -23,7 +23,7 @@ export function Hero() {
   const content = copy[language];
 
   return (
-    <section id="top" className="hero hero-cinematic" aria-labelledby="hero-title">
+    <section id="top" className={`hero hero-cinematic language-${language}`} aria-labelledby="hero-title">
       <HeroReferenceVisual />
       <div className="hero-content">
         <div className="hero-copy-cinematic">
