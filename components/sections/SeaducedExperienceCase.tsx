@@ -8,9 +8,9 @@ const base = "/assets/seaducedexperience";
 
 const websiteImages = [
   "seaduced-experience-1.png",
-  "seaduced-experience-2-1280.webp",
-  "seaduced-experience-3-1280.webp",
-  "seaduced-experience-4-1280.webp",
+  "seaduced-experience-2.png",
+  "seaduced-experience-3.png",
+  "seaduced-experience-4.png",
 ];
 
 const dashboardImages = [
@@ -70,7 +70,8 @@ function HorizontalGallery({ images, label }: { images: string[]; label: string 
                 src={`${base}/${image}`}
                 alt={`${label} ${index + 1}`}
                 fill
-                sizes="(max-width: 800px) 78vw, 30vw"
+                sizes="(max-width: 800px) 84vw, 72vw"
+                quality={100}
                 priority={index === 0}
               />
               <span>{String(index + 1).padStart(2, "0")}</span>
