@@ -37,12 +37,10 @@ const content = {
 function SeaducedVisual() {
   return (
     <div className={`${styles.visual} ${styles.seaduced}`}>
-      <img
-        src="/assets/seaducedexperience/seaduced-experience-1.png"
-        alt="Seaduced Experience website"
-        loading="eager"
-        fetchPriority="high"
-      />
+      <div className={styles.visualFrame}>
+        <div className={styles.visualGrid} />
+        <span className={styles.visualMark}>01</span>
+      </div>
     </div>
   );
 }
@@ -50,21 +48,15 @@ function SeaducedVisual() {
 function WorkSystemVisual() {
   return (
     <div className={styles.heroBackdrop} aria-hidden="true">
-      <div className={`${styles.systemPanel} ${styles.systemMain}`}>
-        <img src="/assets/seaducedexperience/seaduced-experience-1-1280.webp" alt="" />
-      </div>
-      <div className={`${styles.systemPanel} ${styles.systemCalendar}`}>
-        <img src="/assets/seaducedexperience/dashboard-calendar.png" alt="" />
-      </div>
-      <div className={`${styles.systemPanel} ${styles.systemAnalytics}`}>
-        <img src="/assets/seaducedexperience/dashboard-analytics.png" alt="" />
-      </div>
-      <div className={`${styles.systemPanel} ${styles.systemDetail}`}>
-        <img src="/assets/seaducedexperience/seaduced-experience-2-1280.webp" alt="" />
-      </div>
-      <span className={`${styles.systemLine} ${styles.systemLineOne}`} />
-      <span className={`${styles.systemLine} ${styles.systemLineTwo}`} />
-      <span className={styles.systemGlow} />
+      <div className={`${styles.node} ${styles.nodeA}`}><span>01</span><i /></div>
+      <div className={`${styles.node} ${styles.nodeB}`}><span>02</span><i /></div>
+      <div className={`${styles.node} ${styles.nodeC}`}><span>03</span><i /></div>
+      <div className={`${styles.node} ${styles.nodeD}`}><span>04</span><i /></div>
+      <span className={`${styles.connection} ${styles.connectionOne}`} />
+      <span className={`${styles.connection} ${styles.connectionTwo}`} />
+      <span className={`${styles.connection} ${styles.connectionThree}`} />
+      <span className={styles.systemOrbit} />
+      <span className={styles.systemCore} />
     </div>
   );
 }
@@ -77,7 +69,6 @@ export function WorkPortfolio() {
     <main className={`${styles.work} ${styles[`language${language.toUpperCase()}`]}`}>
       <section className={styles.hero}>
         <WorkSystemVisual />
-        <div className={styles.heroOverlay} />
         <div className={styles.heroGlow} />
         <div className={styles.heroContent}>
           <span className={styles.eyebrow}>{copy.eyebrow}</span>
