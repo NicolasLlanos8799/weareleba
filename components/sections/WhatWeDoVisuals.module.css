@@ -1,0 +1,44 @@
+.visual { position:relative; width:100%; aspect-ratio:1.78/1; overflow:hidden; margin-bottom:28px; background:#ddd8d0; isolation:isolate; box-shadow:0 18px 38px rgba(28,27,24,.08); }
+.visual::after { content:""; position:absolute; inset:0; pointer-events:none; background:linear-gradient(135deg,rgba(255,255,255,.12),transparent 42%,rgba(20,18,15,.08)); }
+.website { padding:7%; background:linear-gradient(145deg,#cfc7bc,#ebe7e0 58%,#b9b0a4); }
+.browser { position:relative; z-index:1; height:100%; overflow:hidden; border:1px solid rgba(255,255,255,.65); background:#1d201e; box-shadow:0 18px 36px rgba(22,20,17,.28); }
+.browserBar { height:8%; min-height:26px; display:flex; align-items:center; gap:5px; padding:0 12px; background:rgba(14,16,15,.72); border-bottom:1px solid rgba(255,255,255,.1); }
+.dot { width:5px; height:5px; border-radius:50%; background:rgba(255,255,255,.42); }
+.siteNav { margin-left:auto; display:flex; gap:12px; color:rgba(255,255,255,.52); font-size:5px; letter-spacing:.08em; }
+.siteHero { position:absolute; inset:8% 0 0; padding:9%; background:linear-gradient(90deg,rgba(12,14,13,.96) 0%,rgba(12,14,13,.64) 46%,rgba(12,14,13,.08) 100%), radial-gradient(circle at 82% 48%,#c9ad8e 0 9%,#6e7c75 10% 21%,#252b28 22% 100%); color:#f4f1eb; }
+.eyebrow { font-size:5px; letter-spacing:.22em; opacity:.6; }
+.siteTitle { margin-top:12%; max-width:58%; font-size:clamp(18px,1.75vw,31px); line-height:.95; letter-spacing:-.055em; font-weight:400; }
+.siteMeta { position:absolute; left:9%; bottom:10%; display:flex; align-items:center; gap:12px; font-size:5px; color:rgba(255,255,255,.58); }
+.siteLine { width:44px; height:1px; background:rgba(255,255,255,.6); }
+.software { padding:6%; background:linear-gradient(145deg,#d8d4ce,#f3f1ed); }
+.app { position:relative; z-index:1; width:100%; height:100%; display:grid; grid-template-columns:25% 1fr; overflow:hidden; background:#faf9f6; border:1px solid rgba(35,35,32,.15); box-shadow:0 16px 34px rgba(28,27,24,.15); }
+.sidebar { padding:11% 10%; background:#eeece7; border-right:1px solid #e2dfd9; display:flex; flex-direction:column; gap:9px; }
+.brand { margin-bottom:12px; font-size:8px; font-weight:500; color:#2d302f; }
+.navItem { font-size:6px; color:#8b8b86; }
+.active { color:#2d302f; }
+.main { padding:8% 8% 6%; color:#30312f; }
+.greeting { font-size:clamp(9px,.9vw,15px); letter-spacing:-.03em; }
+.date { margin-top:4px; font-size:5px; color:#92908a; }
+.priority { margin-top:11%; padding:8%; border:1px solid #e4e1dc; background:#fff; }
+.priority small { display:block; margin-bottom:8px; font-size:5px; letter-spacing:.16em; color:#8b8a84; }
+.priorityRow { display:flex; justify-content:space-between; padding:5px 0; border-top:1px solid #efede9; font-size:6px; }
+.priorityRow:first-of-type { border-top:0; }
+.priorityStatus { color:#77756f; }
+.activity { margin-top:8%; }
+.activityTitle { margin-bottom:6px; font-size:6px; color:#77756f; }
+.activityRow { display:grid; grid-template-columns:28px 1fr; gap:6px; padding:5px 0; border-top:1px solid #ebe8e3; font-size:6px; }
+.activityRow span:first-child { color:#9a9790; }
+.automation { padding:7%; background:linear-gradient(145deg,#e5e1da,#cfc7bb); }
+.flow { position:relative; z-index:1; height:100%; display:grid; grid-template-columns:1.05fr .8fr 1.15fr; align-items:center; gap:4%; }
+.message { padding:9%; background:#fbfaf7; border:1px solid rgba(55,52,47,.13); box-shadow:0 12px 24px rgba(44,40,35,.12); }
+.message small { display:block; margin-bottom:9px; font-size:5px; letter-spacing:.14em; color:#8b8881; }
+.message p { margin:0; font-size:clamp(8px,.7vw,12px); line-height:1.35; color:#333330; }
+.flowArrow { position:relative; height:1px; background:#75736e; }
+.flowArrow::after { content:""; position:absolute; right:0; top:-3px; width:6px; height:6px; border-top:1px solid #75736e; border-right:1px solid #75736e; transform:rotate(45deg); }
+.process { padding:9%; background:#252625; color:#f5f2ec; text-align:center; box-shadow:0 12px 24px rgba(44,40,35,.18); }
+.processIcon { display:block; margin-bottom:7px; font-size:16px; }
+.process small { font-size:5px; letter-spacing:.16em; color:rgba(255,255,255,.62); }
+.result { display:grid; gap:6px; }
+.resultItem { padding:7%; background:rgba(250,249,246,.9); border:1px solid rgba(55,52,47,.12); font-size:6px; color:#494842; }
+.check { margin-right:5px; color:#6f6e68; }
+@media (max-width:760px){.visual{margin-bottom:24px}.siteTitle{font-size:24px}.siteNav{gap:8px}.flow{gap:3%}.message p{font-size:10px}.priority{margin-top:8%}}
