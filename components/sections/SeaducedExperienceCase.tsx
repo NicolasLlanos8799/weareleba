@@ -25,13 +25,56 @@ const copy = {
 };
 
 function HorizontalGallery({ images, label }: { images: string[]; label: string }) {
-  const sectionRef = useRef<HTMLDivElement>(null); const trackRef = useRef<HTMLDivElement>(null);
-  useEffect(() => { const section = sectionRef.current, track = trackRef.current; if (!section || !track) return; let frame = 0;
-    const measure = () => { if (window.innerWidth <= 800) { section.style.height = "auto"; track.style.transform = "translate3d(0,0,0)"; return; } const travel = Math.max(0, track.scrollWidth - window.innerWidth); section.style.height = `${Math.ceil(window.innerHeight + travel)}px`; };
-    const update = () => { frame = 0; if (window.innerWidth <= 800) return; const rect = section.getBoundingClientRect(), travel = Math.max(0, track.scrollWidth - window.innerWidth), distance = Math.max(1, section.offsetHeight - window.innerHeight), progress = Math.min(1, Math.max(0, -rect.top / distance)); track.style.transform = `translate3d(${-travel * progress}px,0,0)`; };
-    const onScroll = () => { if (!frame) frame = requestAnimationFrame(update); }, onResize = () => { measure(); update(); }; measure(); update(); window.addEventListener("scroll", onScroll, { passive:true }); window.addEventListener("resize", onResize); return () => { window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onResize); if(frame) cancelAnimationFrame(frame); };
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const track = trackRef.current;
+    if (!section || !track) return;
+    let frame = 0;
+
+    const getViewportHeight = () => window.visualViewport?.height || window.innerHeight;
+
+    const measure = () => {
+      const viewportHeight = getViewportHeight();
+      const travel = Math.max(0, track.scrollWidth - window.innerWidth);
+      section.style.height = `${Math.ceil(viewportHeight + travel)}px`;
+    };
+
+    const update = () => {
+      frame = 0;
+      const rect = section.getBoundingClientRect();
+      const viewportHeight = getViewportHeight();
+      const travel = Math.max(0, track.scrollWidth - window.innerWidth);
+      const distance = Math.max(1, section.offsetHeight - viewportHeight);
+      const progress = Math.min(1, Math.max(0, -rect.top / distance));
+      track.style.transform = `translate3d(${-travel * progress}px,0,0)`;
+    };
+
+    const onScroll = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    };
+    const onResize = () => {
+      measure();
+      update();
+    };
+
+    measure();
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onResize);
+    window.visualViewport?.addEventListener("resize", onResize);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onResize);
+      window.visualViewport?.removeEventListener("resize", onResize);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
   }, []);
-  return <div className={styles.galleryScroll} ref={sectionRef}><div className={styles.gallerySticky}><div className={styles.galleryTrack} ref={trackRef}>{images.map((image,index)=><figure className={styles.galleryCard} key={image}><Image src={`${base}/${image}`} alt={`${label} ${index+1}`} fill sizes="(max-width: 800px) 78vw, 72vw" quality={100} priority={index===0}/><span>{String(index+1).padStart(2,"0")}</span></figure>)}</div></div></div>;
+
+  return <div className={styles.galleryScroll} ref={sectionRef}><div className={styles.gallerySticky}><div className={styles.galleryTrack} ref={trackRef}>{images.map((image,index)=><figure className={styles.galleryCard} key={image}><Image src={`${base}/${image}`} alt={`${label} ${index+1}`} fill sizes="(max-width: 800px) 84vw, 72vw" quality={100} priority={index===0}/><span>{String(index+1).padStart(2,"0")}</span></figure>)}</div></div></div>;
 }
 
 export function SeaducedExperienceCase() {
