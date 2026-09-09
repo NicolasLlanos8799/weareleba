@@ -11,13 +11,13 @@ const dashboardImages = ["dashboard-complete.png","dashboard-bookings.png","dash
 
 const copy = {
   es: {
-    flow: ["SITIO WEB", "DASHBOARD", "AUTOMATIZACIÓN"], systemDivider: "EL SISTEMA EN ACCIÓN",
+    flow: ["SITIO WEB", "DASHBOARD", "AUTOMATIZACIÓN"],
     website: { eyebrow: "SITIO WEB", title: <>DONDE COMIENZA<br />LA EXPERIENCIA.</>, body: "Descubre, explora y reserva experiencias privadas a través de un recorrido digital claro y premium.", label: "Vista del sitio web de Seaduced Experience" },
     dashboard: { eyebrow: "DASHBOARD", title: <>EL NEGOCIO,<br />BAJO CONTROL.</>, body: "Reservas, cancelaciones, actividad reciente, calendario, diferentes canales y analíticas. Todo en un mismo lugar.", label: "Vista del dashboard de Seaduced Experience" },
     automation: { eyebrow: "AUTOMATIZACIÓN", active: "SISTEMA ACTIVO", title: <>EL SISTEMA<br />SIGUE TRABAJANDO.</>, body: "Seguimiento, recuperación de reservas y asistencia proactiva, activados automáticamente en el momento adecuado.", cards: [["Después de la experiencia", ["EXPERIENCIA FINALIZADA", "EMAIL ENVIADO", "RESEÑA SOLICITADA"]], ["Reserva sin finalizar", ["RESERVA INICIADA", "PAGO PENDIENTE", "EMAIL DE SEGUIMIENTO"]], ["Error durante la reserva", ["ERROR DETECTADO", "CLIENTE CONTACTADO", "AYUDA OFRECIDA"]]] }
   },
   en: {
-    flow: ["WEBSITE", "DASHBOARD", "AUTOMATION"], systemDivider: "THE SYSTEM IN ACTION",
+    flow: ["WEBSITE", "DASHBOARD", "AUTOMATION"],
     website: { eyebrow: "WEBSITE", title: <>WHERE THE JOURNEY<br />BEGINS.</>, body: "Discover, explore and book private experiences through a clear and premium digital journey.", label: "Seaduced Experience website view" },
     dashboard: { eyebrow: "DASHBOARD", title: <>THE BUSINESS,<br />IN CONTROL.</>, body: "Bookings, cancellations, recent activity, calendar, channels and analytics. All in one place.", label: "Seaduced Experience dashboard view" },
     automation: { eyebrow: "AUTOMATION", active: "SYSTEM ACTIVE", title: <>THE SYSTEM<br />KEEPS WORKING.</>, body: "Follow-up, booking recovery and proactive support, automatically triggered at the right moment.", cards: [["After the experience", ["EXPERIENCE ENDS", "EMAIL SENT", "REVIEW REQUESTED"]], ["Unfinished booking", ["BOOKING STARTED", "PAYMENT INCOMPLETE", "FOLLOW-UP SENT"]], ["Booking error", ["ERROR DETECTED", "CUSTOMER CONTACTED", "HELP OFFERED"]]] }
@@ -41,7 +41,7 @@ export function SeaducedExperienceCase() {
   const { language } = useLanguage(); const t = copy[language];
   return <main className={styles.caseStudy}>
     <section className={styles.hero}><div className={styles.heroCopy}><span>SEADUCED EXPERIENCE</span><h1>{language === "es" ? <>UN SISTEMA.<br/>TODO CONECTADO.</> : <>ONE SYSTEM.<br/>FULLY CONNECTED.</>}</h1><div className={styles.systemFlow}>{t.flow.map((item,index)=><span key={item}>{item}{index<t.flow.length-1&&<b>↓</b>}</span>)}</div></div></section>
-    <section className={styles.systemDivider}><span className={styles.dividerLine}/><div><small>{t.systemDivider}</small><b>↓</b></div><span className={styles.dividerLine}/></section>
+    <div className={styles.systemPause} aria-hidden="true"><b>↓</b></div>
     <section className={styles.chapter}><div className={styles.chapterHeader}><div><span>{t.website.eyebrow}</span><h2>{t.website.title}</h2></div><p>{t.website.body}</p></div><HorizontalGallery images={websiteImages} label={t.website.label}/></section>
     <section className={`${styles.chapter} ${styles.dashboardChapter}`}><div className={styles.chapterHeader}><div><span>{t.dashboard.eyebrow}</span><h2>{t.dashboard.title}</h2></div><p>{t.dashboard.body}</p></div><HorizontalGallery images={dashboardImages} label={t.dashboard.label}/></section>
     <section className={styles.automation}><div className={styles.automationTop}><span className={styles.automationLabel}>{t.automation.eyebrow}</span><span className={styles.systemActive}><i/> {t.automation.active}</span></div><div className={styles.automationIntro}><div><h2>{t.automation.title}</h2></div><p>{t.automation.body}</p></div><div className={styles.automationFlows}>{t.automation.cards.map(([title,steps],index)=><article key={title as string}><div className={styles.flowNumber}>{String(index+1).padStart(2,"0")}</div><h3>{title as string}</h3><div className={styles.flowSteps}>{(steps as string[]).map((step,stepIndex)=><div key={step}><span>{step}</span>{stepIndex<(steps as string[]).length-1&&<b>↓</b>}</div>)}</div></article>)}</div></section>
