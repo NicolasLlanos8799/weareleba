@@ -1,0 +1,24 @@
+/* Keep the English and Spanish versions visually comparable.
+   English strings are usually longer, so the typography is slightly tighter
+   and wraps more deliberately without changing the underlying page grids. */
+html[data-language="en"] :is(h1, h2, h3, p, .hero-title, .statement) {
+  text-wrap: balance;
+  hyphens: auto;
+}
+
+html[data-language="en"] :is(h1, h2, h3, .hero-title, .statement) {
+  letter-spacing: min(-0.055em, -0.02em);
+}
+
+html[data-language="en"] :is(p, .hero-body, .intro p, .header p, .what-we-do-intro > p, .service-description, .service-note) {
+  text-wrap: pretty;
+  max-inline-size: min(100%, 62ch);
+}
+
+/* Prevent language changes from creating abrupt layout shifts in common editorial blocks. */
+html[data-language] .hero-copy-cinematic,
+html[data-language] .what-we-do-intro > *,
+html[data-language] .header > *,
+html[data-language] .intro {
+  min-width: 0;
+}
