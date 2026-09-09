@@ -3,18 +3,115 @@
 import { useLanguage } from "@/components/i18n/LanguageProvider";
 import styles from "./WorkPortfolio.module.css";
 
-type Project = { number: string; category: string; title: string; description: string; tags: string[]; visual: "bookea" | "bombon" | "seaduced"; href?: string };
+type Project = { number: string; category: string; title: string; description: string; tags: string[]; href: string };
+
 const content = {
-  en: { eyebrow: "OUR WORK", title: <>Ideas<br />in action.</>, intro: "A selection of digital products, platforms and experiences we've designed and built to create real impact.", scroll: "SCROLL TO EXPLORE", view: "VIEW PROJECT", moreTitle: <>More ideas<br />coming soon.</>, moreCopy: "We're always working on new projects. Check back soon for updates.", contactTitle: "HAVE A PROJECT\nIN MIND?", contactCopy: "Let's build something together.", contact: "GET IN TOUCH", projects: [
-    { number: "01", category: "DIGITAL PRODUCT", title: "Bookea", description: "A booking platform built for modern service businesses.", tags: ["STRATEGY", "PRODUCT DESIGN", "DEVELOPMENT"], visual: "bookea" },
-    { number: "02", category: "PLATFORM", title: "Studio\nBombon", description: "A seamless booking experience for a modern beauty studio.", tags: ["WEB DESIGN", "DEVELOPMENT", "INTEGRATIONS"], visual: "bombon" },
-    { number: "03", category: "WEBSITE", title: "Seaduced\nExperience", description: "A premium digital journey for private experiences on the water.", tags: ["WEB DESIGN", "DEVELOPMENT", "UX"], visual: "seaduced", href: "/work/seaduced-experience" },
-  ] as Project[] },
-  es: { eyebrow: "NUESTRO TRABAJO", title: <>Ideas<br />en acción.</>, intro: "Una selección de productos, plataformas y experiencias digitales que hemos diseñado y construido para generar un impacto real.", scroll: "SCROLL PARA EXPLORAR", view: "VER PROYECTO", moreTitle: <>Más ideas<br />muy pronto.</>, moreCopy: "Siempre estamos trabajando en nuevos proyectos. Vuelve pronto para ver las novedades.", contactTitle: "¿TIENES UN PROYECTO\nEN MENTE?", contactCopy: "Construyamos algo juntos.", contact: "HABLEMOS", projects: [
-    { number: "01", category: "PRODUCTO DIGITAL", title: "Bookea", description: "Una plataforma de reservas creada para negocios de servicios modernos.", tags: ["ESTRATEGIA", "DISEÑO DE PRODUCTO", "DESARROLLO"], visual: "bookea" },
-    { number: "02", category: "PLATAFORMA", title: "Studio\nBombon", description: "Una experiencia de reservas fluida para un estudio de belleza moderno.", tags: ["DISEÑO WEB", "DESARROLLO", "INTEGRACIONES"], visual: "bombon" },
-    { number: "03", category: "SITIO WEB", title: "Seaduced\nExperience", description: "Una experiencia digital premium para experiencias privadas en el agua.", tags: ["DISEÑO WEB", "DESARROLLO", "UX"], visual: "seaduced", href: "/work/seaduced-experience" },
-  ] as Project[] },
+  en: {
+    eyebrow: "OUR WORK",
+    title: <>Ideas<br />in action.</>,
+    intro: "A selection of digital products, platforms and experiences we've designed and built to create real impact.",
+    scroll: "SCROLL TO EXPLORE",
+    view: "VIEW PROJECT",
+    moreTitle: <>More ideas<br />coming soon.</>,
+    moreCopy: "We're always working on new projects. Check back soon for updates.",
+    contactTitle: "HAVE A PROJECT\nIN MIND?",
+    contactCopy: "Let's build something together.",
+    contact: "GET IN TOUCH",
+    projects: [
+      {
+        number: "01",
+        category: "WEBSITE",
+        title: "Seaduced\nExperience",
+        description: "A premium digital journey for private experiences on the water.",
+        tags: ["WEB DESIGN", "DEVELOPMENT", "UX"],
+        href: "/work/seaduced-experience",
+      },
+    ] as Project[],
+  },
+  es: {
+    eyebrow: "NUESTRO TRABAJO",
+    title: <>Ideas<br />en acción.</>,
+    intro: "Una selección de productos, plataformas y experiencias digitales que hemos diseñado y construido para generar un impacto real.",
+    scroll: "SCROLL PARA EXPLORAR",
+    view: "VER PROYECTO",
+    moreTitle: <>Más ideas<br />muy pronto.</>,
+    moreCopy: "Siempre estamos trabajando en nuevos proyectos. Vuelve pronto para ver las novedades.",
+    contactTitle: "¿TIENES UN PROYECTO\nEN MENTE?",
+    contactCopy: "Construyamos algo juntos.",
+    contact: "HABLEMOS",
+    projects: [
+      {
+        number: "01",
+        category: "SITIO WEB",
+        title: "Seaduced\nExperience",
+        description: "Una experiencia digital premium para experiencias privadas en el agua.",
+        tags: ["DISEÑO WEB", "DESARROLLO", "UX"],
+        href: "/work/seaduced-experience",
+      },
+    ] as Project[],
+  },
 };
-function ProjectVisual({ type }: { type: Project["visual"] }) { if (type === "bookea") return <div className={`${styles.visual} ${styles.bookea}`}><div className={styles.rock} /><div className={styles.device}><div className={styles.browser}><b>Bookea</b><span>Features</span><span>Pricing</span><span>Resources</span><button>Get started</button></div><div className={styles.bookeaScreen}><div><strong>Turn bookings<br />into growth</strong><small>Everything you need to organize your business.</small><i /><i /></div><div className={styles.phone}><div /><div className={styles.phoneRows}><span /><span /><span /><span /><span /><span /></div></div></div></div></div>; if (type === "bombon") return <div className={`${styles.visual} ${styles.bombon}`}><div className={styles.stone} /><div className={styles.bombonPhone}><div className={styles.notch} /><strong>Studio<br />Bombon</strong><small>Beauty, made simple.</small><button>BOOK AN APPOINTMENT</button><div className={styles.bookingRows}><span /><span /><span /><span /></div></div></div>; return <div className={`${styles.visual} ${styles.seaduced}`}><img src="/assets/seaducedexperience/seaduced-experience-1-1280.webp" alt="Seaduced Experience website" /></div>; }
-export function WorkPortfolio() { const { language } = useLanguage(); const copy = content[language]; return <main className={`${styles.work} ${styles[`language${language.toUpperCase()}`]}`}><section className={styles.hero}><div className={styles.heroGlow} /><div className={styles.heroFigure} /><div className={styles.heroContent}><span className={styles.eyebrow}>{copy.eyebrow}</span><h1>{copy.title}</h1><p>{copy.intro}</p></div><div className={styles.scroll}><span />{copy.scroll} ↓</div></section><section className={styles.projects}>{copy.projects.map((project, index) => <article key={project.number} className={`${styles.project} ${index % 2 ? styles.reverse : ""}`}><div className={styles.projectInfo}><span className={styles.category}>{project.number} / {project.category}</span><h2>{project.title.split("\n").map((line, i) => <span key={i}>{line}</span>)}</h2><p>{project.description}</p><div className={styles.tags}>{project.tags.map((tag, i) => <span key={tag}>{i > 0 && <i>·</i>}{tag}</span>)}</div><a href={project.href ?? "#contact"}>{copy.view}<b>⟶</b></a></div><ProjectVisual type={project.visual} /></article>)}</section><section className={styles.more}><div className={styles.moreGlow} /><div><h2>{copy.moreTitle}</h2><p>{copy.moreCopy}</p></div><div className={styles.moreContact} id="contact"><span /> <div><h3>{copy.contactTitle.split("\n").map((line, i) => <span key={i}>{line}</span>)}</h3><p>{copy.contactCopy}</p><a href="mailto:hello.weareleba@gmail.com">{copy.contact} <b>⟶</b></a></div></div></section></main>; }
+
+function SeaducedVisual() {
+  return (
+    <div className={`${styles.visual} ${styles.seaduced}`}>
+      <img
+        src="/assets/seaducedexperience/seaduced-experience-1-1280.webp"
+        alt="Seaduced Experience website"
+      />
+    </div>
+  );
+}
+
+export function WorkPortfolio() {
+  const { language } = useLanguage();
+  const copy = content[language];
+
+  return (
+    <main className={`${styles.work} ${styles[`language${language.toUpperCase()}`]}`}>
+      <section className={styles.hero}>
+        <div className={styles.heroGlow} />
+        <div className={styles.heroFigure} />
+        <div className={styles.heroContent}>
+          <span className={styles.eyebrow}>{copy.eyebrow}</span>
+          <h1>{copy.title}</h1>
+          <p>{copy.intro}</p>
+        </div>
+        <div className={styles.scroll}><span />{copy.scroll} ↓</div>
+      </section>
+
+      <section className={styles.projects}>
+        {copy.projects.map((project) => (
+          <article key={project.number} className={styles.project}>
+            <div className={styles.projectInfo}>
+              <span className={styles.category}>{project.number} / {project.category}</span>
+              <h2>{project.title.split("\n").map((line, i) => <span key={i}>{line}</span>)}</h2>
+              <p>{project.description}</p>
+              <div className={styles.tags}>
+                {project.tags.map((tag, i) => <span key={tag}>{i > 0 && <i>·</i>}{tag}</span>)}
+              </div>
+              <a href={project.href}>{copy.view}<b>⟶</b></a>
+            </div>
+            <SeaducedVisual />
+          </article>
+        ))}
+      </section>
+
+      <section className={styles.more}>
+        <div className={styles.moreGlow} />
+        <div>
+          <h2>{copy.moreTitle}</h2>
+          <p>{copy.moreCopy}</p>
+        </div>
+        <div className={styles.moreContact} id="contact">
+          <span />
+          <div>
+            <h3>{copy.contactTitle.split("\n").map((line, i) => <span key={i}>{line}</span>)}</h3>
+            <p>{copy.contactCopy}</p>
+            <a href="mailto:hello.weareleba@gmail.com">{copy.contact} <b>⟶</b></a>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}
