@@ -38,7 +38,12 @@ function SeaducedVisual() {
   return (
     <div className={`${styles.visual} ${styles.seaduced}`}>
       <div className={styles.visualFrame}>
-        <div className={styles.visualGrid} />
+        <img
+          src="/assets/seaducedexperience/seaduced-experience-1-1280.webp"
+          srcSet="/assets/seaducedexperience/seaduced-experience-1-800.webp 800w, /assets/seaducedexperience/seaduced-experience-1-1280.webp 1280w"
+          sizes="(max-width: 800px) 100vw, 60vw"
+          alt="Seaduced Experience website"
+        />
         <span className={styles.visualMark}>01</span>
       </div>
     </div>
