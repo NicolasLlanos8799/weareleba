@@ -15,8 +15,80 @@ const copy = {
 };
 
 function HorizontalGallery({ images, label }: { images: string[]; label: string }) {
-  const sectionRef = useRef<HTMLDivElement>(null); const trackRef = useRef<HTMLDivElement>(null);
-  useEffect(() => { const section = sectionRef.current, track = trackRef.current; if (!section || !track) return; let frame = 0; const measure = () => { const vh = Math.round(window.innerHeight); const travel = Math.max(0, Math.ceil(track.scrollWidth - window.innerWidth)); section.style.setProperty("--gallery-vh", `${vh}px`); section.style.height = `${vh + travel}px`; }; const update = () => { frame = 0; const travel = Math.max(0, track.scrollWidth - window.innerWidth); const start = section.offsetTop; const progress = travel ? Math.min(1, Math.max(0, (window.scrollY - start) / travel)) : 0; track.style.transform = `translate3d(${-travel * progress}px,0,0)`; }; const onScroll = () => { if (!frame) frame = requestAnimationFrame(update); }; const onResize = () => { measure(); update(); }; const observer = new ResizeObserver(onResize); observer.observe(track); measure(); update(); window.addEventListener("scroll", onScroll,{passive:true}); window.addEventListener("resize",onResize); return()=>{observer.disconnect();window.removeEventListener("scroll",onScroll);window.removeEventListener("resize",onResize);if(frame)cancelAnimationFrame(frame)}; },[]);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const track = trackRef.current;
+    if (!section || !track) return;
+
+    let frame = 0;
+    let resizeTimer = 0;
+
+    const viewportHeight = () => Math.round(window.visualViewport?.height || window.innerHeight);
+    const getTravel = () => Math.max(0, Math.ceil(track.scrollWidth - window.innerWidth));
+
+    const measure = () => {
+      const vh = viewportHeight();
+      const travel = getTravel();
+      section.style.setProperty("--gallery-vh", `${vh}px`);
+      section.style.height = `${vh + travel}px`;
+    };
+
+    const update = () => {
+      frame = 0;
+      const rect = section.getBoundingClientRect();
+      const vh = viewportHeight();
+      const travel = getTravel();
+      const scrollDistance = Math.max(1, section.offsetHeight - vh);
+      const progress = Math.min(1, Math.max(0, -rect.top / scrollDistance));
+      track.style.transform = `translate3d(${-travel * progress}px,0,0)`;
+    };
+
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+
+    const onResize = () => {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(() => {
+        measure();
+        update();
+      }, 50);
+    };
+
+    const observer = new ResizeObserver(() => onResize());
+    observer.observe(track);
+
+    const imageLoads = Array.from(track.querySelectorAll("img")).map((image) => {
+      if (image.complete) return Promise.resolve();
+      return new Promise<void>((resolve) => image.addEventListener("load", () => resolve(), { once: true }));
+    });
+
+    measure();
+    update();
+    Promise.all(imageLoads).then(() => {
+      measure();
+      update();
+    });
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onResize);
+    window.visualViewport?.addEventListener("resize", onResize);
+    window.visualViewport?.addEventListener("scroll", onScroll);
+
+    return () => {
+      observer.disconnect();
+      window.clearTimeout(resizeTimer);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onResize);
+      window.visualViewport?.removeEventListener("resize", onResize);
+      window.visualViewport?.removeEventListener("scroll", onScroll);
+      if (frame) cancelAnimationFrame(frame);
+    };
+  }, []);
+
   return <div className={styles.galleryScroll} ref={sectionRef}><div className={styles.gallerySticky}><div className={styles.galleryTrack} ref={trackRef}>{images.map((image,index)=><figure className={styles.galleryCard} key={image}><Image src={`${base}/${image}`} alt={`${label} ${index+1}`} fill sizes="(max-width: 800px) 84vw, 72vw" quality={100} priority={index===0}/><span>{String(index+1).padStart(2,"0")}</span></figure>)}</div></div></div>;
 }
 
