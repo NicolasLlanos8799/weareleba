@@ -1,8 +1,9 @@
 "use client";
 
-import type { CSSProperties, ReactNode } from "react";
+import type { ReactNode } from "react";
 import Link from "next/link";
 import { useLanguage } from "@/components/i18n/LanguageProvider";
+import visualStyles from "./WhatWeDoVisuals.module.css";
 
 type Service = { number: string; title: string; description: string; note: string; visual: "website" | "software" | "automation" };
 type Copy = { heading: ReactNode; intro: string; learnMore: string; footer: string; portfolioPrompt: string; exploreWork: string; services: Service[] };
@@ -21,12 +22,25 @@ const content: Record<"en" | "es", Copy> = {
 };
 
 function ServiceVisual({ type, language }: { type: Service["visual"]; language: "en" | "es" }) {
-  const isSpanish = language === "es";
-  const motion = { website: ".18", software: ".12", automation: ".16" }[type];
-  const style = { "--parallax-speed": motion } as CSSProperties;
-  if (type === "website") return <div className="service-visual service-visual-website" aria-hidden="true" data-parallax style={style}><div className="visual-laptop"><div className="visual-laptop-screen"><div className="visual-browser-bar"><span /><span /><span /></div><div className="visual-website-copy"><small>WE ARE LEBA</small><strong>{isSpanish ? <>Tu negocio,<br />en su mejor versión.</> : <>Your business,<br />at its best.</>}</strong><i /></div><div className="visual-website-orb" /></div><div className="visual-laptop-base" /></div></div>;
-  if (type === "software") return <div className="service-visual service-visual-software" aria-hidden="true" data-parallax style={style}><div className="visual-dashboard"><aside><b>{isSpanish ? "Tu Negocio" : "Your Business"}</b><span>{isSpanish ? "Inicio" : "Home"}</span><span>{isSpanish ? "Clientes" : "Clients"}</span><span>{isSpanish ? "Servicios" : "Services"}</span><span>{isSpanish ? "Reservas" : "Bookings"}</span><span>{isSpanish ? "Reportes" : "Reports"}</span></aside><div className="visual-dashboard-main"><div className="visual-dashboard-title">{isSpanish ? "Resumen" : "Overview"}</div><div className="visual-stat-grid"><div><small>{isSpanish ? "Clientes" : "Clients"}</small><b>124</b><em>↗ 12%</em></div><div><small>{isSpanish ? "Reservas" : "Bookings"}</small><b>58</b><em>↗ 8%</em></div></div><div className="visual-list-title">{isSpanish ? "Próximas reservas" : "Upcoming bookings"}</div><div className="visual-list-row"><i /> <span>Maria Gonzalez</span><small>10:00</small></div><div className="visual-list-row"><i /> <span>Juan Perez</span><small>11:30</small></div></div></div></div>;
-  return <div className="service-visual service-visual-automation" aria-hidden="true" data-parallax style={style}><div className="automation-flow"><div className="automation-inputs"><div>↗ <span>{isSpanish ? "Nuevos mensajes" : "New messages"}</span></div><div>▣ <span>{isSpanish ? "Nuevas reservas" : "New bookings"}</span></div><div>✉ <span>{isSpanish ? "Formularios" : "Forms"}</span></div><div>≋ <span>{isSpanish ? "Otras herramientas" : "Other tools"}</span></div></div><div className="automation-core">✦<small>{isSpanish ? "Automatizar" : "Automate"}</small></div><div className="automation-output"><span>✓ &nbsp; {isSpanish ? "Responder" : "Reply"}</span><span>✓ &nbsp; {isSpanish ? "Crear tarea" : "Create task"}</span><span>✓ &nbsp; {isSpanish ? "Actualizar cliente" : "Update client"}</span><span>✓ &nbsp; {isSpanish ? "Enviar notificación" : "Send notification"}</span></div></div></div>;
+  const es = language === "es";
+
+  if (type === "website") return <div className={`${visualStyles.visual} ${visualStyles.website}`} aria-hidden="true" data-parallax>
+    <div className={visualStyles.browser}>
+      <div className={visualStyles.browserBar}><i className={visualStyles.dot} /><i className={visualStyles.dot} /><i className={visualStyles.dot} /><div className={visualStyles.siteNav}><span>{es ? "ESTUDIO" : "STUDIO"}</span><span>{es ? "PROYECTOS" : "WORK"}</span><span>{es ? "CONTACTO" : "CONTACT"}</span></div></div>
+      <div className={visualStyles.siteHero}><span className={visualStyles.eyebrow}>NORD STUDIO — COPENHAGEN</span><div className={visualStyles.siteTitle}>{es ? <>Espacios<br />que se sienten.</> : <>Spaces<br />you can feel.</>}</div><div className={visualStyles.siteMeta}><i className={visualStyles.siteLine} /><span>{es ? "ARQUITECTURA & INTERIORES" : "ARCHITECTURE & INTERIORS"}</span></div></div>
+    </div>
+  </div>;
+
+  if (type === "software") return <div className={`${visualStyles.visual} ${visualStyles.software}`} aria-hidden="true" data-parallax>
+    <div className={visualStyles.app}>
+      <aside className={visualStyles.sidebar}><strong className={visualStyles.brand}>{es ? "TU NEGOCIO" : "YOUR BUSINESS"}</strong><span className={`${visualStyles.navItem} ${visualStyles.active}`}>{es ? "Resumen" : "Overview"}</span><span className={visualStyles.navItem}>{es ? "Clientes" : "Clients"}</span><span className={visualStyles.navItem}>{es ? "Proyectos" : "Projects"}</span><span className={visualStyles.navItem}>{es ? "Equipo" : "Team"}</span></aside>
+      <div className={visualStyles.main}><div className={visualStyles.greeting}>{es ? "Buenos días, Michael." : "Good morning, Michael."}</div><div className={visualStyles.date}>{es ? "Lunes, 9 de septiembre" : "Monday, September 9"}</div><div className={visualStyles.priority}><small>{es ? "PRIORIDADES DE HOY" : "TODAY'S PRIORITIES"}</small><div className={visualStyles.priorityRow}><span>{es ? "Revisar nuevas solicitudes" : "Review new client requests"}</span><b className={visualStyles.priorityStatus}>03</b></div><div className={visualStyles.priorityRow}><span>{es ? "Confirmar pendientes" : "Confirm pending appointments"}</span><b className={visualStyles.priorityStatus}>08</b></div><div className={visualStyles.priorityRow}><span>{es ? "Seguimiento de proyectos" : "Follow up with projects"}</span><b className={visualStyles.priorityStatus}>04</b></div></div><div className={visualStyles.activity}><div className={visualStyles.activityTitle}>{es ? "ACTIVIDAD RECIENTE" : "RECENT ACTIVITY"}</div><div className={visualStyles.activityRow}><span>09:42</span><span>{es ? "Nuevo cliente añadido" : "New client added"}</span></div><div className={visualStyles.activityRow}><span>09:15</span><span>{es ? "Proyecto actualizado" : "Project updated"}</span></div></div></div>
+    </div>
+  </div>;
+
+  return <div className={`${visualStyles.visual} ${visualStyles.automation}`} aria-hidden="true" data-parallax>
+    <div className={visualStyles.flow}><div className={visualStyles.message}><small>{es ? "NUEVA SOLICITUD" : "NEW CLIENT REQUEST"}</small><p>{es ? <>Hola, me gustaría reservar una cita el próximo jueves por la tarde.</> : <>Hi, I would like to book an appointment next Thursday afternoon.</>}</p></div><div><div className={visualStyles.flowArrow} /><div className={visualStyles.process}><span className={visualStyles.processIcon}>✦</span><small>{es ? "AUTOMATIZACIÓN" : "AUTOMATION"}</small></div><div className={visualStyles.flowArrow} /></div><div className={visualStyles.result}><div className={visualStyles.resultItem}><span className={visualStyles.check}>✓</span>{es ? "Solicitud recibida" : "Request received"}</div><div className={visualStyles.resultItem}><span className={visualStyles.check}>✓</span>{es ? "Disponibilidad comprobada" : "Availability checked"}</div><div className={visualStyles.resultItem}><span className={visualStyles.check}>✓</span>{es ? "Reserva creada" : "Booking created"}</div><div className={visualStyles.resultItem}><span className={visualStyles.check}>✓</span>{es ? "Confirmación enviada" : "Confirmation sent"}</div></div></div>
+  </div>;
 }
 
 export function WhatWeDo() {
