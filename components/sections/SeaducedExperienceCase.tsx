@@ -36,18 +36,23 @@ function HorizontalGallery({ images, label }: { images: string[]; label: string 
         track.style.transform = "translate3d(0,0,0)";
         return;
       }
+
       const rect = section.getBoundingClientRect();
-      const travel = Math.max(0, track.scrollWidth - window.innerWidth + 32);
-      const scrollDistance = section.offsetHeight - window.innerHeight;
-      const progress = scrollDistance > 0 ? Math.min(1, Math.max(0, -rect.top / scrollDistance)) : 0;
+      const viewport = window.innerWidth;
+      const travel = Math.max(0, track.scrollWidth - viewport + 80);
+      const distance = section.offsetHeight - window.innerHeight;
+      const progress = distance > 0 ? Math.min(1, Math.max(0, -rect.top / distance)) : 0;
       track.style.transform = `translate3d(${-travel * progress}px,0,0)`;
     };
+
     const onScroll = () => {
       if (!frame) frame = window.requestAnimationFrame(update);
     };
+
     update();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", update);
+
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", update);
@@ -61,7 +66,13 @@ function HorizontalGallery({ images, label }: { images: string[]; label: string 
         <div className={styles.galleryTrack} ref={trackRef}>
           {images.map((image, index) => (
             <figure className={styles.galleryCard} key={image}>
-              <Image src={`${base}/${image}`} alt={`${label} ${index + 1}`} fill sizes="(max-width: 800px) 76vw, 38vw" priority={index === 0} />
+              <Image
+                src={`${base}/${image}`}
+                alt={`${label} ${index + 1}`}
+                fill
+                sizes="(max-width: 800px) 78vw, 30vw"
+                priority={index === 0}
+              />
               <span>{String(index + 1).padStart(2, "0")}</span>
             </figure>
           ))}
