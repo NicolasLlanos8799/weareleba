@@ -11,19 +11,23 @@
 .header { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(320px, .7fr); gap: clamp(70px, 10vw, 190px); align-items: end; }
 .header h2 { max-width: 900px; margin: 0; font-size: clamp(60px, 5.7vw, 100px); font-weight: 400; line-height: .9; letter-spacing: -.075em; }
 .header p { max-width: 480px; margin: 0 0 10px; font-size: clamp(17px, 1.42vw, 21px); line-height: 1.55; letter-spacing: -.025em; color: #55585d; }
+
+/* Language-specific composition: copy changes, architecture stays stable. */
+.languageEN .header { grid-template-columns: minmax(0, 1.38fr) minmax(320px, .62fr); gap: clamp(58px, 7vw, 140px); }
+.languageEN .header h2 { max-width: 1060px; font-size: clamp(56px, 5.25vw, 92px); }
+.languageEN .header p { max-width: 520px; }
+.languageES .header h2 { max-width: 1000px; }
+
 .members { margin-top: clamp(78px, 8vw, 132px); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(26px, 3vw, 48px); align-items: start; }
 .member { min-width: 0; width: 100%; }
 .memberLeft, .memberRight { margin: 0; }
-
 .memberImageWrap { position: relative; width: 100%; aspect-ratio: .82 / 1; overflow: hidden; background: #0b0b0c; }
 .memberImage { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center 24%; transform: scale(1.01); transition: transform 1.1s cubic-bezier(.22, 1, .36, 1); }
 .member:hover .memberImage { transform: scale(1.035); }
 .index { position: absolute; z-index: 2; top: 20px; left: 22px; color: rgba(255, 255, 255, .72); font-size: 9px; letter-spacing: .24em; }
-
 .memberOverlay { position: absolute; z-index: 3; right: 0; bottom: 0; left: 0; padding: 54px 24px 24px; color: rgba(255,255,255,.92); background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,.72) 100%); }
 .memberOverlay h3 { margin: 0; font-size: clamp(23px, 2vw, 34px); line-height: 1; font-weight: 400; letter-spacing: -.055em; color: rgba(255,255,255,.96); }
 .memberOverlay p { margin: 9px 0 0; font-size: 11px; line-height: 1.45; letter-spacing: .02em; color: rgba(255,255,255,.64); }
-
 .reveal { opacity: 0; transform: translateY(42px); transition: opacity .9s ease, transform .9s cubic-bezier(.22, 1, .36, 1); }
 .member.reveal { transform: translateY(56px); }
 .reveal.visible { opacity: 1; transform: translateY(0); }
@@ -31,7 +35,6 @@
 .visible .memberImageWrap::after { transform: scaleY(0); }
 .footer { margin-top: clamp(88px, 10vw, 150px); padding-top: 24px; border-top: 1px solid rgba(60, 62, 65, .16); display: flex; align-items: center; justify-content: space-between; gap: 24px; font-size: 9px; letter-spacing: .28em; color: #66696d; }
 .footer > span:first-child { display: flex; align-items: center; gap: 16px; }
-
-@media (max-width: 900px) { .team { padding-top: 108px; } .kicker { margin-bottom: 52px; } .header { grid-template-columns: 1fr; gap: 36px; } .header p { margin: 0; } .members { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; } .memberOverlay { padding: 42px 18px 18px; } .memberOverlay h3 { font-size: clamp(18px, 2.6vw, 26px); } .memberOverlay p { font-size: 10px; } }
+@media (max-width: 900px) { .team { padding-top: 108px; } .kicker { margin-bottom: 52px; } .header, .languageEN .header { grid-template-columns: 1fr; gap: 36px; } .header p { margin: 0; } .members { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; } .memberOverlay { padding: 42px 18px 18px; } .memberOverlay h3 { font-size: clamp(18px, 2.6vw, 26px); } .memberOverlay p { font-size: 10px; } }
 @media (max-width: 760px) { .team { padding: 104px 24px 48px; } .kicker { margin-bottom: 42px; } .members { margin-top: 62px; grid-template-columns: 1fr; gap: 54px; } .memberImageWrap { width: min(100%, 560px); aspect-ratio: .82 / 1; } .index { top: 16px; left: 18px; } .memberOverlay { padding: 58px 20px 20px; } .memberOverlay h3 { font-size: 32px; } .memberOverlay p { font-size: 11px; } .footer { margin-top: 84px; flex-direction: column; align-items: flex-start; gap: 18px; line-height: 1.5; } }
 @media (prefers-reduced-motion: reduce) { .reveal, .member.reveal, .memberImage, .memberImageWrap::after { transition: none; } .reveal { opacity: 1; transform: none; } .memberImageWrap::after { transform: scaleY(0); } }
