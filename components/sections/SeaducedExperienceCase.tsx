@@ -2,11 +2,27 @@
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
+import { useLanguage } from "@/components/i18n/LanguageProvider";
 import styles from "./SeaducedExperienceCase.module.css";
 
 const base = "/assets/seaducedexperience";
 const websiteImages = ["seaduced-experience-1.png","seaduced-experience-2.png","seaduced-experience-3.png","seaduced-experience-4.png"];
 const dashboardImages = ["dashboard-complete.png","dashboard-bookings.png","dashboard-calendar.png","dashboard-analytics.png"];
+
+const copy = {
+  es: {
+    flow: ["SITIO WEB", "DASHBOARD", "AUTOMATIZACIÓN"],
+    website: { eyebrow: "02 / SITIO WEB", title: <>DONDE COMIENZA<br />LA EXPERIENCIA.</>, body: "Descubre, explora y reserva experiencias privadas a través de un recorrido digital claro y premium.", label: "Vista del sitio web de Seaduced Experience" },
+    dashboard: { eyebrow: "03 / DASHBOARD", title: <>EL NEGOCIO,<br />BAJO CONTROL.</>, body: "Reservas, cancelaciones, actividad reciente, calendario, diferentes canales y analíticas. Todo en un mismo lugar.", label: "Vista del dashboard de Seaduced Experience" },
+    automation: { eyebrow: "04 / AUTOMATIZACIÓN", title: <>EL SISTEMA<br />SIGUE TRABAJANDO.</>, body: "Seguimiento, recuperación de reservas y asistencia proactiva, activados automáticamente en el momento adecuado.", cards: [["Después de la experiencia", "Experiencia finalizada → Email enviado → Reseña solicitada"], ["Reserva sin finalizar", "Reserva iniciada → Pago pendiente → Email de seguimiento"], ["Error durante la reserva", "Error detectado → Cliente contactado → Ayuda ofrecida"]] }
+  },
+  en: {
+    flow: ["WEBSITE", "DASHBOARD", "AUTOMATION"],
+    website: { eyebrow: "02 / WEBSITE", title: <>WHERE THE JOURNEY<br />BEGINS.</>, body: "Discover, explore and book private experiences through a clear and premium digital journey.", label: "Seaduced Experience website view" },
+    dashboard: { eyebrow: "03 / DASHBOARD", title: <>THE BUSINESS,<br />IN CONTROL.</>, body: "Bookings, cancellations, recent activity, calendar, channels and analytics. All in one place.", label: "Seaduced Experience dashboard view" },
+    automation: { eyebrow: "04 / AUTOMATION", title: <>THE SYSTEM<br />KEEPS WORKING.</>, body: "Follow-up, booking recovery and proactive support, automatically triggered at the right moment.", cards: [["After the experience", "Experience ends → Email sent → Review requested"], ["Unfinished booking", "Booking started → Payment incomplete → Follow-up sent"], ["Booking error", "Error detected → Customer contacted → Help offered"]] }
+  }
+};
 
 function HorizontalGallery({ images, label }: { images: string[]; label: string }) {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -24,14 +40,16 @@ function HorizontalGallery({ images, label }: { images: string[]; label: string 
 }
 
 export function SeaducedExperienceCase() {
+  const { language } = useLanguage();
+  const t = copy[language];
   return <main className={styles.caseStudy}>
     <section className={styles.hero}><div className={styles.heroCopy}>
       <span>01 / SEADUCED EXPERIENCE</span>
-      <h1>UN SISTEMA.<br/>TODO CONECTADO.</h1>
-      <div className={styles.systemFlow}><span>SITIO WEB</span><b>↓</b><span>DASHBOARD</span><b>↓</b><span>AUTOMATIZACIÓN</span></div>
+      <h1>{language === "es" ? <>UN SISTEMA.<br/>TODO CONECTADO.</> : <>ONE SYSTEM.<br/>FULLY CONNECTED.</>}</h1>
+      <div className={styles.systemFlow}>{t.flow.map((item, index) => <span key={item}>{item}{index < t.flow.length - 1 && <b>↓</b>}</span>)}</div>
     </div></section>
-    <section className={styles.chapter}><div className={styles.chapterHeader}><div><span>02 / SITIO WEB</span><h2>DONDE COMIENZA<br/>LA EXPERIENCIA.</h2></div><p>Descubre, explora y reserva experiencias privadas a través de un recorrido digital claro y premium.</p></div><HorizontalGallery images={websiteImages} label="Vista del sitio web de Seaduced Experience"/></section>
-    <section className={`${styles.chapter} ${styles.dashboardChapter}`}><div className={styles.chapterHeader}><div><span>03 / DASHBOARD</span><h2>EL NEGOCIO,<br/>BAJO CONTROL.</h2></div><p>Reservas, cancelaciones, actividad reciente, calendario, diferentes canales y analíticas. Todo en un mismo lugar.</p></div><HorizontalGallery images={dashboardImages} label="Vista del dashboard de Seaduced Experience"/></section>
-    <section className={styles.automation}><div className={styles.automationIntro}><div><span>04 / AUTOMATIZACIÓN</span><h2>EL SISTEMA<br/>SIGUE TRABAJANDO.</h2></div><p>Seguimiento, recuperación de reservas y asistencia proactiva, activados automáticamente en el momento adecuado.</p></div><div className={styles.automationCards}><article><span>01</span><h3>Después de la experiencia</h3><p>Experiencia finalizada → Email enviado → Reseña solicitada</p></article><article><span>02</span><h3>Reserva sin finalizar</h3><p>Reserva iniciada → Pago pendiente → Email de seguimiento</p></article><article><span>03</span><h3>Error durante la reserva</h3><p>Error detectado → Cliente contactado → Ayuda ofrecida</p></article></div></section>
+    <section className={styles.chapter}><div className={styles.chapterHeader}><div><span>{t.website.eyebrow}</span><h2>{t.website.title}</h2></div><p>{t.website.body}</p></div><HorizontalGallery images={websiteImages} label={t.website.label}/></section>
+    <section className={`${styles.chapter} ${styles.dashboardChapter}`}><div className={styles.chapterHeader}><div><span>{t.dashboard.eyebrow}</span><h2>{t.dashboard.title}</h2></div><p>{t.dashboard.body}</p></div><HorizontalGallery images={dashboardImages} label={t.dashboard.label}/></section>
+    <section className={styles.automation}><div className={styles.automationIntro}><div><span>{t.automation.eyebrow}</span><h2>{t.automation.title}</h2></div><p>{t.automation.body}</p></div><div className={styles.automationCards}>{t.automation.cards.map(([title, body], index)=><article key={title}><span>{String(index+1).padStart(2,"0")}</span><h3>{title}</h3><p>{body}</p></article>)}</div></section>
   </main>;
 }
