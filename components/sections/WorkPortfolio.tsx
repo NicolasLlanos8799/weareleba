@@ -47,12 +47,71 @@ function SeaducedVisual() {
   );
 }
 
+function WorkSystemVisual() {
+  return (
+    <div className={styles.heroBackdrop} aria-hidden="true">
+      <div className={`${styles.systemPanel} ${styles.systemMain}`}>
+        <img src="/assets/seaducedexperience/seaduced-experience-1-1280.webp" alt="" />
+      </div>
+      <div className={`${styles.systemPanel} ${styles.systemCalendar}`}>
+        <img src="/assets/seaducedexperience/dashboard-calendar.png" alt="" />
+      </div>
+      <div className={`${styles.systemPanel} ${styles.systemAnalytics}`}>
+        <img src="/assets/seaducedexperience/dashboard-analytics.png" alt="" />
+      </div>
+      <div className={`${styles.systemPanel} ${styles.systemDetail}`}>
+        <img src="/assets/seaducedexperience/seaduced-experience-2-1280.webp" alt="" />
+      </div>
+      <span className={`${styles.systemLine} ${styles.systemLineOne}`} />
+      <span className={`${styles.systemLine} ${styles.systemLineTwo}`} />
+      <span className={styles.systemGlow} />
+    </div>
+  );
+}
+
 export function WorkPortfolio() {
   const { language } = useLanguage();
   const copy = content[language];
-  return <main className={`${styles.work} ${styles[`language${language.toUpperCase()}`]}`}>
-    <section className={styles.hero}><div className={styles.heroGlow} /><div className={styles.heroFigure} /><div className={styles.heroContent}><span className={styles.eyebrow}>{copy.eyebrow}</span><h1>{copy.title}</h1><p>{copy.intro}</p></div><div className={styles.scroll}><span />{copy.scroll} ↓</div></section>
-    <section className={styles.projects}>{copy.projects.map((project) => <article key={project.number} className={styles.project}><div className={styles.projectInfo}><span className={styles.category}>{project.number} / {project.category}</span><h2>{project.title.split("\n").map((line, i) => <span key={i}>{line}</span>)}</h2><p>{project.description}</p><div className={styles.tags}>{project.tags.map((tag, i) => <span key={tag}>{i > 0 && <i>·</i>}{tag}</span>)}</div><a href={project.href}>{copy.view}<b>⟶</b></a></div><SeaducedVisual /></article>)}</section>
-    <section className={styles.more}><div className={styles.moreGlow} /><div><h2>{copy.moreTitle}</h2><p>{copy.moreCopy}</p></div><div className={styles.moreContact} id="contact"><span /><div><h3>{copy.contactTitle.split("\n").map((line, i) => <span key={i}>{line}</span>)}</h3><p>{copy.contactCopy}</p><a href="mailto:hello.weareleba@gmail.com">{copy.contact} <b>⟶</b></a></div></div></section>
-  </main>;
+
+  return (
+    <main className={`${styles.work} ${styles[`language${language.toUpperCase()}`]}`}>
+      <section className={styles.hero}>
+        <WorkSystemVisual />
+        <div className={styles.heroOverlay} />
+        <div className={styles.heroGlow} />
+        <div className={styles.heroContent}>
+          <span className={styles.eyebrow}>{copy.eyebrow}</span>
+          <h1>{copy.title}</h1>
+          <p>{copy.intro}</p>
+        </div>
+        <div className={styles.scroll}><span />{copy.scroll} ↓</div>
+      </section>
+      <section className={styles.projects}>
+        {copy.projects.map((project) => (
+          <article key={project.number} className={styles.project}>
+            <div className={styles.projectInfo}>
+              <span className={styles.category}>{project.number} / {project.category}</span>
+              <h2>{project.title.split("\n").map((line, i) => <span key={i}>{line}</span>)}</h2>
+              <p>{project.description}</p>
+              <div className={styles.tags}>{project.tags.map((tag, i) => <span key={tag}>{i > 0 && <i>·</i>}{tag}</span>)}</div>
+              <a href={project.href}>{copy.view}<b>⟶</b></a>
+            </div>
+            <SeaducedVisual />
+          </article>
+        ))}
+      </section>
+      <section className={styles.more}>
+        <div className={styles.moreGlow} />
+        <div><h2>{copy.moreTitle}</h2><p>{copy.moreCopy}</p></div>
+        <div className={styles.moreContact} id="contact">
+          <span />
+          <div>
+            <h3>{copy.contactTitle.split("\n").map((line, i) => <span key={i}>{line}</span>)}</h3>
+            <p>{copy.contactCopy}</p>
+            <a href="mailto:hello.weareleba@gmail.com">{copy.contact} <b>⟶</b></a>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
 }
