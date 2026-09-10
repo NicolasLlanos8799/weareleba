@@ -29,7 +29,6 @@ function HorizontalGallery({ images, label }: { images: string[]; label: string 
 
     let frame = 0;
     let resizeTimer = 0;
-
     const isMobile = () => window.matchMedia("(max-width: 800px)").matches;
     const getTravel = () => Math.max(0, Math.ceil(track.scrollWidth - window.innerWidth));
     const getCardHeight = () => Math.ceil(track.querySelector("." + styles.galleryCard)?.getBoundingClientRect().height || 0);
@@ -46,7 +45,6 @@ function HorizontalGallery({ images, label }: { images: string[]; label: string 
         setTrackX(mobileX.current);
         return;
       }
-
       const rect = section.getBoundingClientRect();
       const travel = getTravel();
       const h = Math.ceil(sticky.getBoundingClientRect().height);
@@ -58,11 +56,9 @@ function HorizontalGallery({ images, label }: { images: string[]; label: string 
     const measure = () => {
       const travel = getTravel();
       const h = getCardHeight();
-
       if (isMobile()) {
-        // The visual area stays exactly as tall as the images. The touch handler
-        // below supplies the horizontal scroll distance without creating a tall
-        // spacer under the gallery.
+        // Mobile uses direct touch-driven horizontal scrolling, so the visual
+        // section is only as tall as the images and never creates a spacer.
         section.style.height = `${h}px`;
         sticky.style.height = `${h}px`;
       } else {
@@ -70,14 +66,12 @@ function HorizontalGallery({ images, label }: { images: string[]; label: string 
         const desktopHeight = Math.ceil(sticky.getBoundingClientRect().height);
         section.style.height = `${desktopHeight + travel}px`;
       }
-
       update();
     };
 
     const onScroll = () => {
       if (!frame) frame = requestAnimationFrame(update);
     };
-
     const onResize = () => {
       clearTimeout(resizeTimer);
       resizeTimer = window.setTimeout(measure, 50);
@@ -90,24 +84,21 @@ function HorizontalGallery({ images, label }: { images: string[]; label: string 
 
     const onTouchMove = (event: TouchEvent) => {
       if (!isMobile() || touchY.current === null) return;
-
       const currentY = event.touches[0]?.clientY ?? touchY.current;
       const deltaY = currentY - touchY.current;
       if (!deltaY) return;
 
       const travel = getTravel();
       const nextX = mobileX.current + deltaY;
-      const canMoveHorizontally = travel > 0 && nextX < 0 && nextX > -travel;
-      const movingIntoGalleryFromStart = mobileX.current >= 0 && deltaY < 0;
-      const movingOutOfGalleryAtEnd = mobileX.current <= -travel && deltaY > 0;
+      const insideHorizontalRange = travel > 0 && nextX <= 0 && nextX >= -travel;
 
-      // iOS Safari needs the gesture to be consumed explicitly. While there is
-      // horizontal content left, vertical finger movement becomes horizontal.
-      // At either edge we manually pass the same delta to the page so the next
-      // vertical section can be reached without leaving a spacer behind.
+      // Always consume the touch gesture ourselves on mobile. This prevents
+      // Safari from scrolling the document while the gallery is being viewed.
+      // Once an edge is reached, the same gesture is handed back to the page
+      // by manually applying its vertical delta.
       event.preventDefault();
 
-      if (canMoveHorizontally || movingIntoGalleryFromStart || movingOutOfGalleryAtEnd === false && mobileX.current > -travel) {
+      if (insideHorizontalRange) {
         setTrackX(nextX);
       } else {
         window.scrollBy({ top: -deltaY, left: 0, behavior: "auto" });
@@ -116,25 +107,16 @@ function HorizontalGallery({ images, label }: { images: string[]; label: string 
       touchY.current = currentY;
     };
 
-    const onTouchEnd = () => {
-      touchY.current = null;
-    };
-
-    const onTouchCancel = () => {
-      touchY.current = null;
-    };
+    const onTouchEnd = () => { touchY.current = null; };
+    const onTouchCancel = () => { touchY.current = null; };
 
     const observer = new ResizeObserver(onResize);
     observer.observe(track);
     measure();
 
-    Promise.all(
-      Array.from(track.querySelectorAll("img")).map(image =>
-        image.complete
-          ? Promise.resolve()
-          : new Promise<void>(resolve => image.addEventListener("load", () => resolve(), { once: true }))
-      )
-    ).then(measure);
+    Promise.all(Array.from(track.querySelectorAll("img")).map(image =>
+      image.complete ? Promise.resolve() : new Promise<void>(resolve => image.addEventListener("load", () => resolve(), { once: true }))
+    )).then(measure);
 
     section.addEventListener("touchstart", onTouchStart, { passive: true });
     section.addEventListener("touchmove", onTouchMove, { passive: false });
