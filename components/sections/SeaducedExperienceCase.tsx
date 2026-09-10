@@ -18,65 +18,70 @@ function HorizontalGallery({ images, label }: { images: string[]; label: string 
   const sectionRef = useRef<HTMLDivElement>(null);
   const stickyRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
+  const mobileX = useRef(0);
+  const touchY = useRef<number | null>(null);
 
   useEffect(() => {
-    const section = sectionRef.current;
-    const sticky = stickyRef.current;
-    const track = trackRef.current;
+    const section = sectionRef.current, sticky = stickyRef.current, track = trackRef.current;
     if (!section || !sticky || !track) return;
-
-    let frame = 0;
-    let resizeTimer = 0;
+    let frame = 0, resizeTimer = 0;
+    const isMobile = () => window.matchMedia("(max-width: 800px)").matches;
     const getTravel = () => Math.max(0, Math.ceil(track.scrollWidth - window.innerWidth));
     const getStickyHeight = () => Math.ceil(sticky.getBoundingClientRect().height);
+    const setTrackX = (x: number) => { const travel = getTravel(); mobileX.current = Math.min(0, Math.max(-travel, x)); track.style.transform = `translate3d(${mobileX.current}px,0,0)`; };
 
     const measure = () => {
-      const travel = getTravel();
       const stickyHeight = getStickyHeight();
-      section.style.height = `${stickyHeight + travel}px`;
+      const travel = getTravel();
+      section.style.height = `${isMobile() ? stickyHeight : stickyHeight + travel}px`;
+      if (isMobile()) setTrackX(mobileX.current); else update();
     };
 
     const update = () => {
       frame = 0;
-      const rect = section.getBoundingClientRect();
-      const travel = getTravel();
-      const stickyHeight = getStickyHeight();
+      if (isMobile()) { setTrackX(mobileX.current); return; }
+      const rect = section.getBoundingClientRect(), travel = getTravel(), stickyHeight = getStickyHeight();
       const scrollDistance = Math.max(1, section.offsetHeight - stickyHeight);
       const progress = Math.min(1, Math.max(0, -rect.top / scrollDistance));
       track.style.transform = `translate3d(${-travel * progress}px,0,0)`;
     };
 
     const onScroll = () => { if (!frame) frame = requestAnimationFrame(update); };
-    const onResize = () => {
-      window.clearTimeout(resizeTimer);
-      resizeTimer = window.setTimeout(() => { measure(); update(); }, 50);
+    const onResize = () => { window.clearTimeout(resizeTimer); resizeTimer = window.setTimeout(() => { measure(); update(); }, 50); };
+    const onWheel = (event: WheelEvent) => {
+      if (!isMobile()) return;
+      const travel = getTravel(), next = mobileX.current - event.deltaY;
+      const atStart = mobileX.current >= 0 && event.deltaY < 0;
+      const atEnd = mobileX.current <= -travel && event.deltaY > 0;
+      if (atStart || atEnd || travel <= 0) return;
+      event.preventDefault();
+      setTrackX(next);
     };
-
-    const observer = new ResizeObserver(onResize);
-    observer.observe(track);
-    observer.observe(sticky);
-
-    const imageLoads = Array.from(track.querySelectorAll("img")).map((image) => {
-      if (image.complete) return Promise.resolve();
-      return new Promise<void>((resolve) => image.addEventListener("load", () => resolve(), { once: true }));
-    });
-
-    measure();
-    update();
-    Promise.all(imageLoads).then(() => { measure(); update(); });
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onResize);
-    window.visualViewport?.addEventListener("resize", onResize);
-
-    return () => {
-      observer.disconnect();
-      window.clearTimeout(resizeTimer);
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onResize);
-      window.visualViewport?.removeEventListener("resize", onResize);
-      if (frame) cancelAnimationFrame(frame);
+    const onTouchStart = (event: TouchEvent) => { if (isMobile()) touchY.current = event.touches[0]?.clientY ?? null; };
+    const onTouchMove = (event: TouchEvent) => {
+      if (!isMobile() || touchY.current === null) return;
+      const currentY = event.touches[0]?.clientY ?? touchY.current;
+      const deltaY = currentY - touchY.current;
+      if (!deltaY) return;
+      const travel = getTravel(), next = mobileX.current + deltaY;
+      const atStart = mobileX.current >= 0 && deltaY > 0;
+      const atEnd = mobileX.current <= -travel && deltaY < 0;
+      if (atStart || atEnd || travel <= 0) { touchY.current = currentY; return; }
+      event.preventDefault();
+      setTrackX(next);
+      touchY.current = currentY;
     };
+    const onTouchEnd = () => { touchY.current = null; };
+
+    const observer = new ResizeObserver(onResize); observer.observe(track); observer.observe(sticky);
+    const imageLoads = Array.from(track.querySelectorAll("img")).map((image) => image.complete ? Promise.resolve() : new Promise<void>((resolve) => image.addEventListener("load", () => resolve(), { once: true })));
+    measure(); update(); Promise.all(imageLoads).then(() => { measure(); update(); });
+    section.addEventListener("wheel", onWheel, { passive: false });
+    section.addEventListener("touchstart", onTouchStart, { passive: true });
+    section.addEventListener("touchmove", onTouchMove, { passive: false });
+    section.addEventListener("touchend", onTouchEnd, { passive: true });
+    window.addEventListener("scroll", onScroll, { passive: true }); window.addEventListener("resize", onResize); window.visualViewport?.addEventListener("resize", onResize);
+    return () => { observer.disconnect(); window.clearTimeout(resizeTimer); section.removeEventListener("wheel", onWheel); section.removeEventListener("touchstart", onTouchStart); section.removeEventListener("touchmove", onTouchMove); section.removeEventListener("touchend", onTouchEnd); window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onResize); window.visualViewport?.removeEventListener("resize", onResize); if (frame) cancelAnimationFrame(frame); };
   }, []);
 
   return <div className={styles.galleryScroll} ref={sectionRef}><div className={styles.gallerySticky} ref={stickyRef}><div className={styles.galleryTrack} ref={trackRef}>{images.map((image,index)=><figure className={styles.galleryCard} key={image}><Image src={`${base}/${image}`} alt={`${label} ${index+1}`} fill sizes="(max-width: 800px) 84vw, 72vw" quality={100} priority={index===0}/><span>{String(index+1).padStart(2,"0")}</span></figure>)}</div></div></div>;
