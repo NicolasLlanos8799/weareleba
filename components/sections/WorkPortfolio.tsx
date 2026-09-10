@@ -50,18 +50,45 @@ function SeaducedVisual() {
   );
 }
 
+const systemModules = [
+  { number: "01", label: "STRATEGY", detail: "Direction / positioning", className: "moduleStrategy" },
+  { number: "02", label: "DESIGN", detail: "Identity / experience", className: "moduleDesign" },
+  { number: "03", label: "BUILD", detail: "Product / technology", className: "moduleBuild" },
+  { number: "04", label: "GROWTH", detail: "Launch / evolution", className: "moduleGrowth" },
+];
+
 function WorkSystemVisual() {
   return (
     <div className={styles.heroBackdrop} aria-hidden="true">
-      <div className={`${styles.node} ${styles.nodeA}`}><span>01</span><i /></div>
-      <div className={`${styles.node} ${styles.nodeB}`}><span>02</span><i /></div>
-      <div className={`${styles.node} ${styles.nodeC}`}><span>03</span><i /></div>
-      <div className={`${styles.node} ${styles.nodeD}`}><span>04</span><i /></div>
-      <span className={`${styles.connection} ${styles.connectionOne}`} />
-      <span className={`${styles.connection} ${styles.connectionTwo}`} />
-      <span className={`${styles.connection} ${styles.connectionThree}`} />
-      <span className={styles.systemOrbit} />
-      <span className={styles.systemCore} />
+      <div className={styles.systemGrid} />
+      <div className={styles.systemVignette} />
+      <div className={styles.systemOrb} />
+      <div className={styles.systemStage}>
+        <div className={styles.stageHeader}><span>LEBA / DIGITAL SYSTEM</span><span>01—04</span></div>
+        <div className={`${styles.systemLine} ${styles.lineTop}`} />
+        <div className={`${styles.systemLine} ${styles.lineVertical}`} />
+        <div className={`${styles.systemLine} ${styles.lineDiagonal}`} />
+        <div className={styles.systemCore}>
+          <span className={`${styles.coreRing} ${styles.coreRingOne}`} />
+          <span className={`${styles.coreRing} ${styles.coreRingTwo}`} />
+          <span className={`${styles.coreCross} ${styles.coreCrossH}`} />
+          <span className={`${styles.coreCross} ${styles.coreCrossV}`} />
+          <span className={styles.corePoint} />
+          <strong>LEBA</strong>
+          <small>CONNECTED<br />SYSTEM</small>
+        </div>
+        {systemModules.map((module) => (
+          <div key={module.number} className={`${styles.systemModule} ${styles[module.className]}`}>
+            <div className={styles.moduleIndex}>{module.number}</div>
+            <div className={styles.moduleCopy}><strong>{module.label}</strong><span>{module.detail}</span></div>
+            <i>↗</i>
+          </div>
+        ))}
+        <div className={`${styles.systemMicro} ${styles.microOne}`}>INPUT</div>
+        <div className={`${styles.systemMicro} ${styles.microTwo}`}>EXPERIENCE</div>
+        <div className={`${styles.systemMicro} ${styles.microThree}`}>OUTPUT</div>
+        <div className={styles.systemFooter}><span>IDEA → SYSTEM → IMPACT</span><span className={styles.systemPulse}><i /> LIVE</span></div>
+      </div>
     </div>
   );
 }
