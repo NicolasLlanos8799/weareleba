@@ -4,6 +4,7 @@ import "./globals.css";
 import "../styles/hero-tuning.css";
 import "../styles/hero-reference-tuning.css";
 import "../styles/hero-redesign.css";
+import "../styles/hero-final-overrides.css";
 import "../styles/language-layout.css";
 
 const geist = Geist({
