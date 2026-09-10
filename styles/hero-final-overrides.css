@@ -1,0 +1,78 @@
+/* Final visual correction for the new hero. Loaded last on purpose. */
+.hero-cinematic .hero-reference-visual {
+  z-index: 0 !important;
+  opacity: 1 !important;
+}
+
+.hero-cinematic .hero-system {
+  z-index: 0 !important;
+  width: min(72vw, 1140px) !important;
+  right: -1vw !important;
+  top: 51% !important;
+}
+
+.hero-cinematic .hero-system::before {
+  opacity: 1 !important;
+}
+
+.hero-cinematic .hero-system-glow {
+  width: 42% !important;
+  background: radial-gradient(circle, rgba(210,155,88,.5) 0, rgba(210,155,88,.18) 30%, transparent 70%) !important;
+}
+
+.hero-cinematic .hero-orbit--outer { border-color: rgba(206,164,112,.27) !important; }
+.hero-cinematic .hero-orbit--middle { border-color: rgba(206,164,112,.2) !important; }
+.hero-cinematic .hero-orbit--inner { border-color: rgba(206,164,112,.19) !important; }
+
+.hero-cinematic .hero-system-screen {
+  border-color: rgba(210,164,105,.72) !important;
+  box-shadow: 0 25px 65px rgba(0,0,0,.48), inset 0 0 0 1px rgba(255,255,255,.05) !important;
+}
+
+.hero-cinematic .hero-system-screen--strategy { width: 34% !important; left: 18% !important; top: 10% !important; }
+.hero-cinematic .hero-system-screen--design { width: 27% !important; right: 0 !important; top: 28% !important; }
+.hero-cinematic .hero-system-screen--development { width: 32% !important; left: 7% !important; bottom: 18% !important; }
+.hero-cinematic .hero-system-screen--growth { width: 31% !important; right: 7% !important; bottom: 8% !important; }
+
+.hero-cinematic .hero-orbit-card {
+  z-index: 3 !important;
+  border-color: rgba(255,255,255,.25) !important;
+  background: rgba(9,12,13,.86) !important;
+  box-shadow: 0 18px 45px rgba(0,0,0,.38) !important;
+}
+
+.hero-cinematic .hero-orbit-card--strategy { left: 11% !important; top: 7% !important; }
+.hero-cinematic .hero-orbit-card--design { right: 3% !important; top: 23% !important; }
+.hero-cinematic .hero-orbit-card--development { left: 9% !important; top: 49% !important; }
+.hero-cinematic .hero-orbit-card--growth { right: 18% !important; bottom: 15% !important; }
+
+.hero-cinematic .hero-orbit-dot { width: 13px !important; }
+
+.hero-cinematic .hero-content { z-index: 5 !important; }
+.hero-cinematic .hero-copy-cinematic {
+  z-index: 6 !important;
+  max-width: 620px !important;
+}
+
+.hero-cinematic .hero-title {
+  font-size: clamp(78px, 6.7vw, 110px) !important;
+  line-height: .86 !important;
+}
+
+.hero-cinematic .hero-eyebrow {
+  color: #d7a365 !important;
+  letter-spacing: .23em !important;
+}
+
+@media (max-width: 700px) {
+  .hero-cinematic .hero-system {
+    width: 132vw !important;
+    right: -45vw !important;
+    top: 44% !important;
+  }
+  .hero-cinematic .hero-system-screen--strategy { left: 17% !important; top: 12% !important; }
+  .hero-cinematic .hero-system-screen--design { right: 1% !important; top: 31% !important; }
+  .hero-cinematic .hero-system-screen--development { left: 7% !important; bottom: 18% !important; }
+  .hero-cinematic .hero-system-screen--growth { right: 5% !important; bottom: 8% !important; }
+  .hero-cinematic .hero-title { font-size: clamp(58px, 16vw, 78px) !important; }
+}
