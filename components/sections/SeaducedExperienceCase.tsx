@@ -18,33 +18,16 @@ function HorizontalGallery({ images, label }: { images: string[]; label: string 
   const sectionRef = useRef<HTMLDivElement>(null);
   const stickyRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
-  const mobileX = useRef(0);
-  const touchY = useRef<number | null>(null);
 
   useEffect(() => {
-    const section = sectionRef.current;
-    const sticky = stickyRef.current;
-    const track = trackRef.current;
+    const section = sectionRef.current, sticky = stickyRef.current, track = trackRef.current;
     if (!section || !sticky || !track) return;
-
-    let frame = 0;
-    let resizeTimer = 0;
+    let frame = 0, resizeTimer = 0;
     const isMobile = () => window.matchMedia("(max-width: 800px)").matches;
     const getTravel = () => Math.max(0, Math.ceil(track.scrollWidth - window.innerWidth));
-    const getCardHeight = () => Math.ceil(track.querySelector("." + styles.galleryCard)?.getBoundingClientRect().height || 0);
-
-    const setTrackX = (x: number) => {
-      const travel = getTravel();
-      mobileX.current = Math.min(0, Math.max(-travel, x));
-      track.style.transform = `translate3d(${mobileX.current}px,0,0)`;
-    };
-
     const update = () => {
       frame = 0;
-      if (isMobile()) {
-        setTrackX(mobileX.current);
-        return;
-      }
+      if (isMobile()) return;
       const rect = section.getBoundingClientRect();
       const travel = getTravel();
       const h = Math.ceil(sticky.getBoundingClientRect().height);
@@ -52,92 +35,31 @@ function HorizontalGallery({ images, label }: { images: string[]; label: string 
       const progress = Math.min(1, Math.max(0, -rect.top / distance));
       track.style.transform = `translate3d(${-travel * progress}px,0,0)`;
     };
-
     const measure = () => {
+      const mobile = isMobile();
       const travel = getTravel();
-      const h = getCardHeight();
-      if (isMobile()) {
-        // Mobile uses direct touch-driven horizontal scrolling, so the visual
-        // section is only as tall as the images and never creates a spacer.
-        section.style.height = `${h}px`;
+      const card = track.querySelector("." + styles.galleryCard) as HTMLElement | null;
+      const h = Math.ceil(card?.getBoundingClientRect().height || 0);
+      if (mobile) {
         sticky.style.height = `${h}px`;
+        section.style.height = `${h}px`;
+        track.style.transform = "none";
       } else {
         sticky.style.removeProperty("height");
-        const desktopHeight = Math.ceil(sticky.getBoundingClientRect().height);
-        section.style.height = `${desktopHeight + travel}px`;
+        section.style.height = `${Math.ceil(sticky.getBoundingClientRect().height) + travel}px`;
+        update();
       }
-      update();
     };
-
-    const onScroll = () => {
-      if (!frame) frame = requestAnimationFrame(update);
-    };
-    const onResize = () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = window.setTimeout(measure, 50);
-    };
-
-    const onTouchStart = (event: TouchEvent) => {
-      if (!isMobile()) return;
-      touchY.current = event.touches[0]?.clientY ?? null;
-    };
-
-    const onTouchMove = (event: TouchEvent) => {
-      if (!isMobile() || touchY.current === null) return;
-      const currentY = event.touches[0]?.clientY ?? touchY.current;
-      const deltaY = currentY - touchY.current;
-      if (!deltaY) return;
-
-      const travel = getTravel();
-      const nextX = mobileX.current + deltaY;
-      const insideHorizontalRange = travel > 0 && nextX <= 0 && nextX >= -travel;
-
-      // Always consume the touch gesture ourselves on mobile. This prevents
-      // Safari from scrolling the document while the gallery is being viewed.
-      // Once an edge is reached, the same gesture is handed back to the page
-      // by manually applying its vertical delta.
-      event.preventDefault();
-
-      if (insideHorizontalRange) {
-        setTrackX(nextX);
-      } else {
-        window.scrollBy({ top: -deltaY, left: 0, behavior: "auto" });
-      }
-
-      touchY.current = currentY;
-    };
-
-    const onTouchEnd = () => { touchY.current = null; };
-    const onTouchCancel = () => { touchY.current = null; };
-
+    const onScroll = () => { if (!frame) frame = requestAnimationFrame(update); };
+    const onResize = () => { clearTimeout(resizeTimer); resizeTimer = window.setTimeout(measure, 50); };
     const observer = new ResizeObserver(onResize);
     observer.observe(track);
     measure();
-
-    Promise.all(Array.from(track.querySelectorAll("img")).map(image =>
-      image.complete ? Promise.resolve() : new Promise<void>(resolve => image.addEventListener("load", () => resolve(), { once: true }))
-    )).then(measure);
-
-    section.addEventListener("touchstart", onTouchStart, { passive: true });
-    section.addEventListener("touchmove", onTouchMove, { passive: false });
-    section.addEventListener("touchend", onTouchEnd, { passive: true });
-    section.addEventListener("touchcancel", onTouchCancel, { passive: true });
+    Promise.all(Array.from(track.querySelectorAll("img")).map(image => image.complete ? Promise.resolve() : new Promise<void>(resolve => image.addEventListener("load", () => resolve(), { once: true })))).then(measure);
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onResize);
     window.visualViewport?.addEventListener("resize", onResize);
-
-    return () => {
-      observer.disconnect();
-      clearTimeout(resizeTimer);
-      section.removeEventListener("touchstart", onTouchStart);
-      section.removeEventListener("touchmove", onTouchMove);
-      section.removeEventListener("touchend", onTouchEnd);
-      section.removeEventListener("touchcancel", onTouchCancel);
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onResize);
-      window.visualViewport?.removeEventListener("resize", onResize);
-      if (frame) cancelAnimationFrame(frame);
-    };
+    return () => { observer.disconnect(); clearTimeout(resizeTimer); window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onResize); window.visualViewport?.removeEventListener("resize", onResize); if (frame) cancelAnimationFrame(frame); };
   }, []);
 
   return <div className={styles.galleryScroll} ref={sectionRef}><div className={styles.gallerySticky} ref={stickyRef}><div className={styles.galleryTrack} ref={trackRef}>{images.map((image,index)=><figure className={styles.galleryCard} key={image}><Image src={`${base}/${image}`} alt={`${label} ${index+1}`} fill sizes="(max-width: 800px) 84vw, 72vw" quality={100} priority={index===0}/><span>{String(index+1).padStart(2,"0")}</span></figure>)}</div></div></div>;
