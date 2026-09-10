@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useLanguage } from "@/components/i18n/LanguageProvider";
 import styles from "./WorkPortfolio.module.css";
 
@@ -54,14 +53,15 @@ function SeaducedVisual() {
 function WorkHeroVisual() {
   return (
     <div className={styles.heroVisual} aria-hidden="true">
-      <Image
-        src="/assets/generated/portada.png"
-        alt=""
-        fill
-        priority
-        sizes="100vw"
-        className={styles.heroImage}
-      />
+      <picture className={styles.heroPicture}>
+        <source media="(max-width: 800px)" srcSet="/assets/portadaworksphones.png" />
+        <img
+          src="/assets/portadaworks.png"
+          alt=""
+          className={styles.heroImage}
+          fetchPriority="high"
+        />
+      </picture>
       <div className={styles.heroShade} />
       <div className={styles.heroVignette} />
     </div>
