@@ -5,17 +5,17 @@ import { HeroReferenceVisual } from "@/components/hero/HeroReferenceVisual";
 
 const copy = {
   en: {
-    eyebrow: "DIGITAL SOLUTIONS / FOR REAL IMPACT",
+    eyebrow: "IDEAS TO IMPACT",
     title: <>Ideas<br />in action<span className="hero-title-dot">.</span></>,
-    body: <>We design and build digital products, platforms and experiences that help businesses grow and make a real impact.</>,
-    explore: "SEE OUR WORK",
+    body: <>A selection of digital products, platforms and experiences we&apos;ve designed and built to create real impact.</>,
+    explore: "EXPLORE OUR WORK",
     scroll: "SCROLL TO EXPLORE",
   },
   es: {
-    eyebrow: "SOLUCIONES DIGITALES / PARA UN IMPACTO REAL",
+    eyebrow: "IDEAS TO IMPACT",
     title: <>Ideas<br />en acción<span className="hero-title-dot">.</span></>,
-    body: <>Diseñamos y construimos productos, plataformas y experiencias digitales que ayudan a las empresas a crecer y generar un impacto real.</>,
-    explore: "VER NUESTRO TRABAJO",
+    body: <>Una selección de productos, plataformas y experiencias digitales que hemos diseñado y construido para generar un impacto real.</>,
+    explore: "EXPLORAR NUESTRO TRABAJO",
     scroll: "DESLIZA PARA EXPLORAR",
   },
 };
@@ -36,8 +36,8 @@ export function Hero() {
 
           <div className="hero-actions motion-stagger-2" data-reveal>
             <a className="hero-work-link focusable" href="/work">
-              <span className="hero-work-label">{content.explore}</span>
-              <span className="hero-work-arrow" aria-hidden="true">→</span>
+              <span className="hero-work-icon" aria-hidden="true">→</span>
+              <span>{content.explore}</span>
             </a>
           </div>
         </div>
