@@ -15,76 +15,20 @@ const copy = {
 };
 
 function HorizontalGallery({ images, label }: { images: string[]; label: string }) {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const stickyRef = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const mobileX = useRef(0);
-  const touchY = useRef<number | null>(null);
-
-  useEffect(() => {
-    const section = sectionRef.current, sticky = stickyRef.current, track = trackRef.current;
-    if (!section || !sticky || !track) return;
-    let frame = 0, resizeTimer = 0;
-    const isMobile = () => window.matchMedia("(max-width: 800px)").matches;
-    const getTravel = () => Math.max(0, Math.ceil(track.scrollWidth - window.innerWidth));
-    const getStickyHeight = () => Math.ceil(sticky.getBoundingClientRect().height);
-    const setTrackX = (x: number) => { const travel = getTravel(); mobileX.current = Math.min(0, Math.max(-travel, x)); track.style.transform = `translate3d(${mobileX.current}px,0,0)`; };
-
-    const measure = () => {
-      const stickyHeight = getStickyHeight();
-      const travel = getTravel();
-      section.style.height = `${isMobile() ? stickyHeight : stickyHeight + travel}px`;
-      if (isMobile()) setTrackX(mobileX.current); else update();
-    };
-
-    const update = () => {
-      frame = 0;
-      if (isMobile()) { setTrackX(mobileX.current); return; }
-      const rect = section.getBoundingClientRect(), travel = getTravel(), stickyHeight = getStickyHeight();
-      const scrollDistance = Math.max(1, section.offsetHeight - stickyHeight);
-      const progress = Math.min(1, Math.max(0, -rect.top / scrollDistance));
-      track.style.transform = `translate3d(${-travel * progress}px,0,0)`;
-    };
-
-    const onScroll = () => { if (!frame) frame = requestAnimationFrame(update); };
-    const onResize = () => { window.clearTimeout(resizeTimer); resizeTimer = window.setTimeout(() => { measure(); update(); }, 50); };
-    const onWheel = (event: WheelEvent) => {
-      if (!isMobile()) return;
-      const travel = getTravel(), next = mobileX.current - event.deltaY;
-      const atStart = mobileX.current >= 0 && event.deltaY < 0;
-      const atEnd = mobileX.current <= -travel && event.deltaY > 0;
-      if (atStart || atEnd || travel <= 0) return;
-      event.preventDefault();
-      setTrackX(next);
-    };
-    const onTouchStart = (event: TouchEvent) => { if (isMobile()) touchY.current = event.touches[0]?.clientY ?? null; };
-    const onTouchMove = (event: TouchEvent) => {
-      if (!isMobile() || touchY.current === null) return;
-      const currentY = event.touches[0]?.clientY ?? touchY.current;
-      const deltaY = currentY - touchY.current;
-      if (!deltaY) return;
-      const travel = getTravel(), next = mobileX.current + deltaY;
-      const atStart = mobileX.current >= 0 && deltaY > 0;
-      const atEnd = mobileX.current <= -travel && deltaY < 0;
-      if (atStart || atEnd || travel <= 0) { touchY.current = currentY; return; }
-      event.preventDefault();
-      setTrackX(next);
-      touchY.current = currentY;
-    };
-    const onTouchEnd = () => { touchY.current = null; };
-
-    const observer = new ResizeObserver(onResize); observer.observe(track); observer.observe(sticky);
-    const imageLoads = Array.from(track.querySelectorAll("img")).map((image) => image.complete ? Promise.resolve() : new Promise<void>((resolve) => image.addEventListener("load", () => resolve(), { once: true })));
-    measure(); update(); Promise.all(imageLoads).then(() => { measure(); update(); });
-    section.addEventListener("wheel", onWheel, { passive: false });
-    section.addEventListener("touchstart", onTouchStart, { passive: true });
-    section.addEventListener("touchmove", onTouchMove, { passive: false });
-    section.addEventListener("touchend", onTouchEnd, { passive: true });
-    window.addEventListener("scroll", onScroll, { passive: true }); window.addEventListener("resize", onResize); window.visualViewport?.addEventListener("resize", onResize);
-    return () => { observer.disconnect(); window.clearTimeout(resizeTimer); section.removeEventListener("wheel", onWheel); section.removeEventListener("touchstart", onTouchStart); section.removeEventListener("touchmove", onTouchMove); section.removeEventListener("touchend", onTouchEnd); window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onResize); window.visualViewport?.removeEventListener("resize", onResize); if (frame) cancelAnimationFrame(frame); };
-  }, []);
-
+  const sectionRef = useRef<HTMLDivElement>(null); const stickyRef = useRef<HTMLDivElement>(null); const trackRef = useRef<HTMLDivElement>(null); const mobileX = useRef(0); const touchY = useRef<number | null>(null);
+  useEffect(() => { const section=sectionRef.current,sticky=stickyRef.current,track=trackRef.current;if(!section||!sticky||!track)return;let frame=0,resizeTimer=0;
+    const isMobile=()=>window.matchMedia("(max-width: 800px)").matches; const getTravel=()=>Math.max(0,Math.ceil(track.scrollWidth-window.innerWidth)); const getCardHeight=()=>Math.ceil(track.querySelector("."+styles.galleryCard)?.getBoundingClientRect().height||0); const setTrackX=(x:number)=>{const travel=getTravel();mobileX.current=Math.min(0,Math.max(-travel,x));track.style.transform=`translate3d(${mobileX.current}px,0,0)`};
+    const measure=()=>{const travel=getTravel();const h=isMobile()?getCardHeight():Math.ceil(sticky.getBoundingClientRect().height);section.style.height=`${isMobile()?h:h+travel}px`;if(isMobile())sticky.style.height=`${h}px`;else sticky.style.removeProperty("height");update()};
+    const update=()=>{frame=0;if(isMobile()){setTrackX(mobileX.current);return}const rect=section.getBoundingClientRect(),travel=getTravel(),h=Math.ceil(sticky.getBoundingClientRect().height),distance=Math.max(1,section.offsetHeight-h),progress=Math.min(1,Math.max(0,-rect.top/distance));track.style.transform=`translate3d(${-travel*progress}px,0,0)`};
+    const onScroll=()=>{if(!frame)frame=requestAnimationFrame(update)}; const onResize=()=>{clearTimeout(resizeTimer);resizeTimer=window.setTimeout(measure,50)};
+    const onTouchStart=(event:TouchEvent)=>{if(isMobile())touchY.current=event.touches[0]?.clientY??null};
+    const onTouchMove=(event:TouchEvent)=>{if(!isMobile()||touchY.current===null)return;const currentY=event.touches[0]?.clientY??touchY.current,deltaY=currentY-touchY.current;if(!deltaY)return;const travel=getTravel(),next=mobileX.current-deltaY;const atStart=mobileX.current>=0&&deltaY<0,atEnd=mobileX.current<=-travel&&deltaY>0;if(atStart||atEnd||travel<=0){touchY.current=currentY;return}event.preventDefault();setTrackX(next);touchY.current=currentY};
+    const onTouchEnd=()=>{touchY.current=null}; const observer=new ResizeObserver(onResize);observer.observe(track);measure();
+    Promise.all(Array.from(track.querySelectorAll("img")).map(image=>image.complete?Promise.resolve():new Promise<void>(resolve=>image.addEventListener("load",()=>resolve(),{once:true})))).then(measure);
+    section.addEventListener("touchstart",onTouchStart,{passive:true});section.addEventListener("touchmove",onTouchMove,{passive:false});section.addEventListener("touchend",onTouchEnd,{passive:true});window.addEventListener("scroll",onScroll,{passive:true});window.addEventListener("resize",onResize);window.visualViewport?.addEventListener("resize",onResize);
+    return()=>{observer.disconnect();clearTimeout(resizeTimer);section.removeEventListener("touchstart",onTouchStart);section.removeEventListener("touchmove",onTouchMove);section.removeEventListener("touchend",onTouchEnd);window.removeEventListener("scroll",onScroll);window.removeEventListener("resize",onResize);window.visualViewport?.removeEventListener("resize",onResize);if(frame)cancelAnimationFrame(frame)};
+  },[]);
   return <div className={styles.galleryScroll} ref={sectionRef}><div className={styles.gallerySticky} ref={stickyRef}><div className={styles.galleryTrack} ref={trackRef}>{images.map((image,index)=><figure className={styles.galleryCard} key={image}><Image src={`${base}/${image}`} alt={`${label} ${index+1}`} fill sizes="(max-width: 800px) 84vw, 72vw" quality={100} priority={index===0}/><span>{String(index+1).padStart(2,"0")}</span></figure>)}</div></div></div>;
 }
 
-export function SeaducedExperienceCase() { const { language } = useLanguage(); const t = copy[language]; return <main className={styles.caseStudy}><section className={styles.hero}><div className={styles.heroCopy}><span>SEADUCED EXPERIENCE</span><h1>{language === "es" ? <>UN SISTEMA.<br/>TODO CONECTADO.</> : <>ONE SYSTEM.<br/>FULLY CONNECTED.</>}</h1><div className={styles.systemFlow}>{t.flow.map((item,index)=><span key={item}>{item}{index<t.flow.length-1&&<b>↓</b>}</span>)}</div></div></section><section className={styles.chapter}><div className={styles.chapterHeader}><div><span>{t.website.eyebrow}</span><h2>{t.website.title}</h2></div><p>{t.website.body}</p></div><HorizontalGallery images={websiteImages} label={t.website.label}/></section><section className={`${styles.chapter} ${styles.dashboardChapter}`}><div className={styles.chapterHeader}><div><span>{t.dashboard.eyebrow}</span><h2>{t.dashboard.title}</h2></div><p>{t.dashboard.body}</p></div><HorizontalGallery images={dashboardImages} label={t.dashboard.label}/></section><section className={styles.automation}><div className={styles.automationTop}><span className={styles.automationLabel}>{t.automation.eyebrow}</span><span className={styles.systemActive}><i/> {t.automation.active}</span></div><div className={styles.automationIntro}><div><h2>{t.automation.title}</h2></div><p>{t.automation.body}</p></div><div className={styles.automationFlows}>{t.automation.cards.map(([title,steps],index)=><article key={title as string}><div className={styles.flowNumber}>{String(index+1).padStart(2,"0")}</div><h3>{title as string}</h3><div className={styles.flowSteps}>{(steps as string[]).map((step,stepIndex)=><div key={step}><span>{step}</span>{stepIndex<(steps as string[]).length-1&&<b>↓</b>}</div>)}</div></article>)}</div></section></main>; }
+export function SeaducedExperienceCase(){const{language}=useLanguage();const t=copy[language];return <main className={styles.caseStudy}><section className={styles.hero}><div className={styles.heroCopy}><span>SEADUCED EXPERIENCE</span><h1>{language==="es"?<>UN SISTEMA.<br/>TODO CONECTADO.</>:<>ONE SYSTEM.<br/>FULLY CONNECTED.</>}</h1><div className={styles.systemFlow}>{t.flow.map((item,index)=><span key={item}>{item}{index<t.flow.length-1&&<b>↓</b>}</span>)}</div></div></section><section className={styles.chapter}><div className={styles.chapterHeader}><div><span>{t.website.eyebrow}</span><h2>{t.website.title}</h2></div><p>{t.website.body}</p></div><HorizontalGallery images={websiteImages} label={t.website.label}/></section><section className={`${styles.chapter} ${styles.dashboardChapter}`}><div className={styles.chapterHeader}><div><span>{t.dashboard.eyebrow}</span><h2>{t.dashboard.title}</h2></div><p>{t.dashboard.body}</p></div><HorizontalGallery images={dashboardImages} label={t.dashboard.label}/></section><section className={styles.automation}><div className={styles.automationTop}><span className={styles.automationLabel}>{t.automation.eyebrow}</span><span className={styles.systemActive}><i/> {t.automation.active}</span></div><div className={styles.automationIntro}><div><h2>{t.automation.title}</h2></div><p>{t.automation.body}</p></div><div className={styles.automationFlows}>{t.automation.cards.map(([title,steps],index)=><article key={title as string}><div className={styles.flowNumber}>{String(index+1).padStart(2,"0")}</div><h3>{title as string}</h3><div className={styles.flowSteps}>{(steps as string[]).map((step,stepIndex)=><div key={step}><span>{step}</span>{stepIndex<(steps as string[]).length-1&&<b>↓</b>}</div>)}</div></article>)}</div></section></main>}
