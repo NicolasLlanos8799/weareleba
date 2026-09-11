@@ -56,7 +56,7 @@ function WorkHeroVisual() {
       <picture className={styles.heroPicture}>
         <source media="(max-width: 800px)" srcSet="/assets/portadaworksphones.png" />
         <img
-          src="/assets/portadaworks.png"
+          src="/assets/portadaworks2.png"
           alt=""
           className={styles.heroImage}
           fetchPriority="high"
