@@ -10,7 +10,7 @@ type Project = {
   description: string;
   tags: string[];
   href: string;
-  visual: "seaduced" | "bookea";
+  visual: "seaduced" | "bookea" | "orders";
 };
 
 const content = {
@@ -28,6 +28,7 @@ const content = {
     projects: [
       { number: "01", category: "WEBSITE", title: "Seaduced\nExperience", description: "A premium digital journey for private experiences on the water.", tags: ["WEB DESIGN", "DEVELOPMENT", "UX"], href: "/work/seaduced-experience", visual: "seaduced" },
       { number: "02", category: "SAAS PRODUCT", title: "Bookea", description: "A booking platform built to simplify how service businesses manage their appointments, clients and daily operations.", tags: ["PRODUCT DESIGN", "DEVELOPMENT", "SAAS"], href: "/work/bookea", visual: "bookea" },
+      { number: "03", category: "AUTOMATION SYSTEM", title: "Order\nFlow", description: "A web-based ordering system concept designed to turn conversations into structured orders and give businesses a clearer operational flow.", tags: ["SYSTEM DESIGN", "AUTOMATION", "DEVELOPMENT"], href: "/work/order-flow", visual: "orders" },
     ] as Project[],
   },
   es: {
@@ -44,6 +45,7 @@ const content = {
     projects: [
       { number: "01", category: "SITIO WEB", title: "Seaduced\nExperience", description: "Una experiencia digital premium para experiencias privadas en el agua.", tags: ["DISEÑO WEB", "DESARROLLO", "UX"], href: "/work/seaduced-experience", visual: "seaduced" },
       { number: "02", category: "PRODUCTO SAAS", title: "Bookea", description: "Una plataforma de reservas creada para simplificar la gestión diaria de negocios de servicios.", tags: ["DISEÑO DE PRODUCTO", "DESARROLLO", "SAAS"], href: "/work/bookea", visual: "bookea" },
+      { number: "03", category: "SISTEMA DE AUTOMATIZACIÓN", title: "Order\nFlow", description: "Un concepto de sistema web creado para convertir conversaciones en pedidos estructurados y dar a la operación un flujo más claro.", tags: ["DISEÑO DE SISTEMAS", "AUTOMATIZACIÓN", "DESARROLLO"], href: "/work/order-flow", visual: "orders" },
     ] as Project[],
   },
 };
@@ -96,6 +98,42 @@ function BookeaVisual({ href }: { href: string }) {
   );
 }
 
+function OrdersVisual({ href }: { href: string }) {
+  return (
+    <div className={`${styles.visual} ${styles.orders}`}>
+      <a href={href} className={styles.visualLink} aria-label="View automated ordering system project">
+        <div className={styles.ordersFrame}>
+          <div className={styles.ordersWindow}>
+            <div className={styles.ordersTop}>
+              <span>ORDER FLOW</span><small>LIVE OPERATIONS</small>
+            </div>
+            <div className={styles.ordersContent}>
+              <aside>
+                <b>Orders</b><span>Catalog</span><span>Customers</span><span>Sales</span>
+              </aside>
+              <div className={styles.ordersMain}>
+                <div className={styles.ordersTitle}><span>Today's orders</span><b>24</b></div>
+                <div className={styles.ordersCards}>
+                  <div><small>NEW</small><strong>08</strong></div>
+                  <div><small>PROCESSING</small><strong>11</strong></div>
+                  <div><small>READY</small><strong>05</strong></div>
+                </div>
+                <div className={styles.ordersList}>
+                  <div><span>#1048</span><b>WhatsApp</b><em>€42.00</em></div>
+                  <div><span>#1047</span><b>Instagram</b><em>€68.50</em></div>
+                  <div><span>#1046</span><b>WhatsApp</b><em>€31.00</em></div>
+                  <div><span>#1045</span><b>Web catalog</b><em>€54.00</em></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <span className={styles.visualMark}>03</span>
+        </div>
+      </a>
+    </div>
+  );
+}
+
 function WorkHeroVisual() {
   return (
     <div className={styles.heroVisual} aria-hidden="true">
@@ -137,7 +175,7 @@ export function WorkPortfolio() {
               </div>
               <a href={project.href}>{copy.view}<b>⟶</b></a>
             </div>
-            {project.visual === "seaduced" ? <SeaducedVisual href={project.href} /> : <BookeaVisual href={project.href} />}
+            {project.visual === "seaduced" ? <SeaducedVisual href={project.href} /> : project.visual === "bookea" ? <BookeaVisual href={project.href} /> : <OrdersVisual href={project.href} />}
           </article>
         ))}
       </section>
