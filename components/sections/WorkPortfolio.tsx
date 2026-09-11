@@ -34,18 +34,20 @@ const content = {
   },
 };
 
-function SeaducedVisual() {
+function SeaducedVisual({ href }: { href: string }) {
   return (
     <div className={`${styles.visual} ${styles.seaduced}`}>
-      <div className={styles.visualFrame}>
-        <img
-          src="/assets/seaducedexperience/seaduced-experience-1-1280.webp"
-          srcSet="/assets/seaducedexperience/seaduced-experience-1-800.webp 800w, /assets/seaducedexperience/seaduced-experience-1-1280.webp 1280w"
-          sizes="(max-width: 800px) 100vw, 60vw"
-          alt="Seaduced Experience website"
-        />
-        <span className={styles.visualMark}>01</span>
-      </div>
+      <a href={href} className={styles.visualLink} aria-label="View Seaduced Experience project">
+        <div className={styles.visualFrame}>
+          <img
+            src="/assets/seaducedexperience/seaduced-experience-1-1280.webp"
+            srcSet="/assets/seaducedexperience/seaduced-experience-1-800.webp 800w, /assets/seaducedexperience/seaduced-experience-1-1280.webp 1280w"
+            sizes="(max-width: 800px) 100vw, 60vw"
+            alt="Seaduced Experience website"
+          />
+          <span className={styles.visualMark}>01</span>
+        </div>
+      </a>
     </div>
   );
 }
@@ -55,12 +57,7 @@ function WorkHeroVisual() {
     <div className={styles.heroVisual} aria-hidden="true">
       <picture className={styles.heroPicture}>
         <source media="(max-width: 800px)" srcSet="/assets/portadaworksphones.png" />
-        <img
-          src="/assets/portadaworks2.png"
-          alt=""
-          className={styles.heroImage}
-          fetchPriority="high"
-        />
+        <img src="/assets/portadaworks2.png" alt="" className={styles.heroImage} fetchPriority="high" />
       </picture>
       <div className={styles.heroShade} />
       <div className={styles.heroVignette} />
@@ -93,7 +90,7 @@ export function WorkPortfolio() {
               <div className={styles.tags}>{project.tags.map((tag, i) => <span key={tag}>{i > 0 && <i>·</i>}{tag}</span>)}</div>
               <a href={project.href}>{copy.view}<b>⟶</b></a>
             </div>
-            <SeaducedVisual />
+            <SeaducedVisual href={project.href} />
           </article>
         ))}
       </section>
