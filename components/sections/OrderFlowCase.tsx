@@ -13,7 +13,7 @@ const content = {
     blocks: [
       ["01", "Digital catalog", "A structured product catalog gives customers a clearer way to browse, choose and build an order.", "/assets/orderflow/productos.png", "Order Flow product catalog"],
       ["02", "Order capture", "Incoming requests are translated into structured orders instead of being lost inside chat conversations.", "/assets/orderflow/pedidos.png", "Order Flow orders"],
-      ["03", "Live operations", "A central dashboard brings orders, products, customers and sales into one operational view.", "/assets/orderflow/panelcontrol.png", "Order Flow control panel"],
+      ["03", "Live operations", "A central dashboard brings orders, products, customers and sales into one operational view.", "/assets/orderflow/pedidos.png", "Order Flow operational orders"],
       ["04", "Statistics", "Clear operational data gives the business a better view of activity, sales and performance over time.", "/assets/orderflow/estadisticas.png", "Order Flow statistics"],
     ],
     closing: "A SYSTEM BUILT TO TURN CONVERSATIONS INTO OPERATIONS.",
@@ -28,7 +28,7 @@ const content = {
     blocks: [
       ["01", "Catálogo digital", "Un catálogo estructurado permite a los clientes explorar productos, elegir y construir su pedido de forma más clara.", "/assets/orderflow/productos.png", "Catálogo de productos de Order Flow"],
       ["02", "Captura de pedidos", "Las solicitudes entrantes se convierten en pedidos estructurados en lugar de perderse dentro de las conversaciones.", "/assets/orderflow/pedidos.png", "Pedidos de Order Flow"],
-      ["03", "Operación en tiempo real", "Un panel central reúne pedidos, productos, clientes y ventas en una única vista operativa.", "/assets/orderflow/panelcontrol.png", "Panel de control de Order Flow"],
+      ["03", "Operación en tiempo real", "Un panel central reúne pedidos, productos, clientes y ventas en una única vista operativa.", "/assets/orderflow/pedidos.png", "Operación de pedidos de Order Flow"],
       ["04", "Estadísticas", "Datos operativos claros permiten entender mejor la actividad, las ventas y el rendimiento del negocio a lo largo del tiempo.", "/assets/orderflow/estadisticas.png", "Estadísticas de Order Flow"],
     ],
     closing: "UN SISTEMA CREADO PARA CONVERTIR CONVERSACIONES EN OPERACIONES.",
