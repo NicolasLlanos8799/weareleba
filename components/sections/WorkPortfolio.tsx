@@ -57,12 +57,7 @@ function SeaducedVisual({ href }: { href: string }) {
     <div className={`${styles.visual} ${styles.seaduced}`}>
       <a href={href} className={styles.visualLink} aria-label="View Seaduced Experience project">
         <div className={styles.visualFrame}>
-          <img
-            src="/assets/seaducedexperience/seaduced-experience-1-1280.webp"
-            srcSet="/assets/seaducedexperience/seaduced-experience-1-800.webp 800w, /assets/seaducedexperience/seaduced-experience-1-1280.webp 1280w"
-            sizes="(max-width: 800px) 100vw, 60vw"
-            alt="Seaduced Experience website"
-          />
+          <img src="/assets/seaducedexperience/seaduced-experience-1-1280.webp" srcSet="/assets/seaducedexperience/seaduced-experience-1-800.webp 800w, /assets/seaducedexperience/seaduced-experience-1-1280.webp 1280w" sizes="(max-width: 800px) 100vw, 60vw" alt="Seaduced Experience website" />
           <span className={styles.visualMark}>01</span>
         </div>
       </a>
@@ -76,38 +71,13 @@ function BookeaVisual({ href }: { href: string }) {
       <a href={href} className={styles.visualLink} aria-label="View Bookea project">
         <div className={styles.bookeaFrame}>
           <div className={styles.bookeaWindow}>
-            <div className={styles.bookeaTop}>
-              <span>bookea</span>
-              <i />
-              <i />
-              <i />
-            </div>
+            <div className={styles.bookeaTop}><span>bookea</span><i /><i /><i /></div>
             <div className={styles.bookeaBody}>
-              <aside>
-                <b>Overview</b>
-                <span>Calendar</span>
-                <span>Bookings</span>
-                <span>Clients</span>
-                <span>Analytics</span>
-              </aside>
+              <aside><b>Overview</b><span>Calendar</span><span>Bookings</span><span>Clients</span><span>Analytics</span></aside>
               <div className={styles.bookeaMain}>
-                <div className={styles.bookeaHeading}>
-                  <span>Good morning</span>
-                  <strong>Tuesday, September 11</strong>
-                </div>
-                <div className={styles.bookeaStats}>
-                  <div><small>Today</small><b>18</b><em>bookings</em></div>
-                  <div><small>This month</small><b>142</b><em>appointments</em></div>
-                  <div><small>Revenue</small><b>18.4k</b><em>DKK</em></div>
-                </div>
-                <div className={styles.bookeaCalendar}>
-                  <div />
-                  <div />
-                  <div />
-                  <div />
-                  <div />
-                  <div />
-                </div>
+                <div className={styles.bookeaHeading}><span>Good morning</span><strong>Tuesday, September 11</strong></div>
+                <div className={styles.bookeaStats}><div><small>Today</small><b>18</b><em>bookings</em></div><div><small>This month</small><b>142</b><em>appointments</em></div><div><small>Revenue</small><b>18.4k</b><em>DKK</em></div></div>
+                <div className={styles.bookeaCalendar}><div /><div /><div /><div /><div /><div /></div>
               </div>
             </div>
           </div>
@@ -123,37 +93,7 @@ function OrdersVisual({ href }: { href: string }) {
     <div className={`${styles.visual} ${styles.orders}`}>
       <a href={href} className={styles.visualLink} aria-label="View automated ordering system project">
         <div className={styles.ordersFrame}>
-          <div className={styles.ordersWindow}>
-            <div className={styles.ordersTop}>
-              <span>ORDER FLOW</span>
-              <small>LIVE OPERATIONS</small>
-            </div>
-            <div className={styles.ordersContent}>
-              <aside>
-                <b>Orders</b>
-                <span>Catalog</span>
-                <span>Customers</span>
-                <span>Sales</span>
-              </aside>
-              <div className={styles.ordersMain}>
-                <div className={styles.ordersTitle}>
-                  <span>Today's orders</span>
-                  <b>24</b>
-                </div>
-                <div className={styles.ordersCards}>
-                  <div><small>NEW</small><strong>08</strong></div>
-                  <div><small>PROCESSING</small><strong>11</strong></div>
-                  <div><small>READY</small><strong>05</strong></div>
-                </div>
-                <div className={styles.ordersList}>
-                  <div><span>#1048</span><b>WhatsApp</b><em>€42.00</em></div>
-                  <div><span>#1047</span><b>Instagram</b><em>€68.50</em></div>
-                  <div><span>#1046</span><b>WhatsApp</b><em>€31.00</em></div>
-                  <div><span>#1045</span><b>Web catalog</b><em>€54.00</em></div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <img src="/assets/orderflow/panelcontrol.png" alt="Order Flow control panel" />
           <span className={styles.visualMark}>03</span>
         </div>
       </a>
@@ -167,34 +107,13 @@ function RebelsVisual({ href }: { href: string }) {
       <a href={href} className={styles.visualLink} aria-label="View Rebels Kite School project">
         <div className={styles.rebelsFrame}>
           <div className={styles.rebelsWindow}>
-            <div className={styles.rebelsTop}>
-              <span>REBELS</span>
-              <small>MANAGEMENT</small>
-            </div>
+            <div className={styles.rebelsTop}><span>REBELS</span><small>MANAGEMENT</small></div>
             <div className={styles.rebelsBody}>
-              <aside>
-                <b>Calendar</b>
-                <span>Students</span>
-                <span>Instructors</span>
-                <span>Payments</span>
-              </aside>
+              <aside><b>Calendar</b><span>Students</span><span>Instructors</span><span>Payments</span></aside>
               <div className={styles.rebelsMain}>
-                <div className={styles.rebelsHeading}>
-                  <span>Weekly schedule</span>
-                  <b>MON — SUN</b>
-                </div>
-                <div className={styles.rebelsBars}>
-                  <i />
-                  <i />
-                  <i />
-                  <i />
-                  <i />
-                </div>
-                <div className={styles.rebelsStats}>
-                  <div>LESSONS <b>32</b></div>
-                  <div>STUDENTS <b>86</b></div>
-                  <div>PAID <b>79</b></div>
-                </div>
+                <div className={styles.rebelsHeading}><span>Weekly schedule</span><b>MON — SUN</b></div>
+                <div className={styles.rebelsBars}><i /><i /><i /><i /><i /></div>
+                <div className={styles.rebelsStats}><div>LESSONS <b>32</b></div><div>STUDENTS <b>86</b></div><div>PAID <b>79</b></div></div>
               </div>
             </div>
           </div>
@@ -210,12 +129,7 @@ function WorkHeroVisual() {
     <div className={styles.heroVisual} aria-hidden="true">
       <picture className={styles.heroPicture}>
         <source media="(max-width: 800px)" srcSet="/assets/portadaworksphones.png" />
-        <img
-          src="/assets/portadaworks2.png"
-          alt=""
-          className={styles.heroImage}
-          fetchPriority="high"
-        />
+        <img src="/assets/portadaworks2.png" alt="" className={styles.heroImage} fetchPriority="high" />
       </picture>
       <div className={styles.heroShade} />
       <div className={styles.heroVignette} />
@@ -231,79 +145,30 @@ export function WorkPortfolio() {
     <main className={`${styles.work} ${styles[`language${language.toUpperCase()}`]}`}>
       <section className={styles.hero}>
         <WorkHeroVisual />
-        <div className={styles.heroContent}>
-          <span className={styles.eyebrow}>{copy.eyebrow}</span>
-          <h1>{copy.title}</h1>
-          <p>{copy.intro}</p>
-        </div>
-        <div className={styles.scroll}>
-          <span />
-          {copy.scroll} ↓
-        </div>
+        <div className={styles.heroContent}><span className={styles.eyebrow}>{copy.eyebrow}</span><h1>{copy.title}</h1><p>{copy.intro}</p></div>
+        <div className={styles.scroll}><span />{copy.scroll} ↓</div>
       </section>
-
       <section className={styles.projects}>
         {copy.projects.map((project) => (
           <article key={project.number} className={styles.project}>
             <div className={styles.projectInfo}>
-              <span className={styles.category}>
-                {project.number} / {project.category}
-              </span>
-              <h2>
-                {project.title.split("\n").map((line, i) => (
-                  <span key={i}>{line}</span>
-                ))}
-              </h2>
+              <span className={styles.category}>{project.number} / {project.category}</span>
+              <h2>{project.title.split("\n").map((line, i) => <span key={i}>{line}</span>)}</h2>
               <p>{project.description}</p>
-              <div className={styles.tags}>
-                {project.tags.map((tag, i) => (
-                  <span key={tag}>
-                    {i > 0 && <i>·</i>}
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <a href={project.href}>
-                {copy.view} <b>⟶</b>
-              </a>
+              <div className={styles.tags}>{project.tags.map((tag, i) => <span key={tag}>{i > 0 && <i>·</i>}{tag}</span>)}</div>
+              <a href={project.href}>{copy.view} <b>⟶</b></a>
             </div>
-
-            {project.visual === "seaduced" && (
-              <SeaducedVisual href={project.href} />
-            )}
-            {project.visual === "bookea" && (
-              <BookeaVisual href={project.href} />
-            )}
-            {project.visual === "orders" && (
-              <OrdersVisual href={project.href} />
-            )}
-            {project.visual === "rebels" && (
-              <RebelsVisual href={project.href} />
-            )}
+            {project.visual === "seaduced" && <SeaducedVisual href={project.href} />}
+            {project.visual === "bookea" && <BookeaVisual href={project.href} />}
+            {project.visual === "orders" && <OrdersVisual href={project.href} />}
+            {project.visual === "rebels" && <RebelsVisual href={project.href} />}
           </article>
         ))}
       </section>
-
       <section className={styles.more}>
         <div className={styles.moreGlow} />
-        <div>
-          <h2>{copy.moreTitle}</h2>
-          <p>{copy.moreCopy}</p>
-        </div>
-        <div className={styles.moreContact} id="contact">
-          <span />
-          <div>
-            <h3>
-              {copy.contactTitle.split("\n").map((line, i) => (
-                <span key={i}>{line}</span>
-              ))}
-            </h3>
-            <p>{copy.contactCopy}</p>
-            <a href="mailto:hello.weareleba@gmail.com">
-              {copy.contact} <b>⟶</b>
-            </a>
-          </div>
-        </div>
+        <div><h2>{copy.moreTitle}</h2><p>{copy.moreCopy}</p></div>
+        <div className={styles.moreContact} id="contact"><span /><div><h3>{copy.contactTitle.split("\n").map((line, i) => <span key={i}>{line}</span>)}</h3><p>{copy.contactCopy}</p><a href="mailto:hello@weareleba.com">{copy.contact} <b>⟶</b></a></div></div>
       </section>
     </main>
   );
