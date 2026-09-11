@@ -5,34 +5,34 @@ import { useLanguage } from "@/components/i18n/LanguageProvider";
 
 const content = {
   en: {
-    eyebrow: "AUTOMATION SYSTEM · CONCEPT",
+    eyebrow: "AUTOMATION SYSTEM",
     title: <>Orders,<br />without the friction.</>,
-    intro: "A web system concept designed to structure incoming orders from WhatsApp and Instagram, turning scattered conversations into a clear operational workflow.",
-    label: "THE IDEA",
-    idea: "We explored how a service business could move from manual order handling to a single operational system — connecting catalog, orders, customers and sales in one place.",
+    intro: "A web-based ordering system designed to structure incoming orders from WhatsApp and Instagram, turning scattered conversations into a clear operational workflow.",
+    label: "THE SYSTEM",
+    idea: "Order Flow connects the customer journey with the operational side of the business — bringing products, orders, customers and sales into one clear system.",
     blocks: [
-      ["01", "Digital catalog", "A structured product catalog gives customers a clearer way to browse and choose before sending an order."],
-      ["02", "Order capture", "Incoming requests are translated into structured orders instead of being lost inside chat conversations."],
-      ["03", "Live operations", "A central dashboard brings orders, products, customers and sales into one operational view."],
-      ["04", "Automation", "The system concept reduces repetitive work and creates a more consistent path from request to fulfillment."],
+      ["01", "Digital catalog", "A structured product catalog gives customers a clearer way to browse, choose and build an order.", "/assets/orderflow/productos.png", "Order Flow product catalog"],
+      ["02", "Order capture", "Incoming requests are translated into structured orders instead of being lost inside chat conversations.", "/assets/orderflow/pedidos.png", "Order Flow orders"],
+      ["03", "Live operations", "A central dashboard brings orders, products, customers and sales into one operational view.", "/assets/orderflow/panelcontrol.png", "Order Flow control panel"],
+      ["04", "Statistics", "Clear operational data gives the business a better view of activity, sales and performance over time.", "/assets/orderflow/estadisticas.png", "Order Flow statistics"],
     ],
     closing: "A SYSTEM BUILT TO TURN CONVERSATIONS INTO OPERATIONS.",
-    note: "This project was developed as a product concept and working demonstration to explore the opportunity and validate the system experience.",
+    note: "From the first customer request to the final operational view, Order Flow creates a clearer path through the entire ordering process.",
   },
   es: {
-    eyebrow: "SISTEMA DE AUTOMATIZACIÓN · CONCEPTO",
+    eyebrow: "SISTEMA DE AUTOMATIZACIÓN",
     title: <>Pedidos,<br />sin fricción.</>,
-    intro: "Un concepto de sistema web diseñado para estructurar pedidos provenientes de WhatsApp e Instagram y convertir conversaciones dispersas en un flujo operativo claro.",
-    label: "LA IDEA",
-    idea: "Exploramos cómo un negocio de servicios podía pasar de gestionar pedidos manualmente a trabajar desde un único sistema operativo, conectando catálogo, pedidos, clientes y ventas.",
+    intro: "Un sistema web diseñado para estructurar pedidos provenientes de WhatsApp e Instagram y convertir conversaciones dispersas en un flujo operativo claro.",
+    label: "EL SISTEMA",
+    idea: "Order Flow conecta la experiencia del cliente con la operación del negocio, reuniendo productos, pedidos, clientes y ventas dentro de un único sistema claro.",
     blocks: [
-      ["01", "Catálogo digital", "Un catálogo estructurado permite a los clientes explorar productos y elegir antes de enviar un pedido."],
-      ["02", "Captura de pedidos", "Las solicitudes entrantes se convierten en pedidos estructurados en lugar de perderse dentro de las conversaciones."],
-      ["03", "Operación en tiempo real", "Un panel central reúne pedidos, productos, clientes y ventas en una única vista operativa."],
-      ["04", "Automatización", "El concepto reduce tareas repetitivas y crea un recorrido más consistente desde la solicitud hasta la preparación."],
+      ["01", "Catálogo digital", "Un catálogo estructurado permite a los clientes explorar productos, elegir y construir su pedido de forma más clara.", "/assets/orderflow/productos.png", "Catálogo de productos de Order Flow"],
+      ["02", "Captura de pedidos", "Las solicitudes entrantes se convierten en pedidos estructurados en lugar de perderse dentro de las conversaciones.", "/assets/orderflow/pedidos.png", "Pedidos de Order Flow"],
+      ["03", "Operación en tiempo real", "Un panel central reúne pedidos, productos, clientes y ventas en una única vista operativa.", "/assets/orderflow/panelcontrol.png", "Panel de control de Order Flow"],
+      ["04", "Estadísticas", "Datos operativos claros permiten entender mejor la actividad, las ventas y el rendimiento del negocio a lo largo del tiempo.", "/assets/orderflow/estadisticas.png", "Estadísticas de Order Flow"],
     ],
     closing: "UN SISTEMA CREADO PARA CONVERTIR CONVERSACIONES EN OPERACIONES.",
-    note: "Este proyecto fue desarrollado como concepto de producto y demostración funcional para explorar la oportunidad y validar la experiencia del sistema.",
+    note: "Desde la primera solicitud del cliente hasta la visión operativa final, Order Flow crea un recorrido más claro para todo el proceso de pedidos.",
   },
 };
 
@@ -46,18 +46,8 @@ export function OrderFlowCase() {
         <div className={styles.heroMeta}>{copy.eyebrow}</div>
         <h1>{copy.title}</h1>
         <p>{copy.intro}</p>
-        <div className={styles.heroVisual} aria-hidden="true">
-          <div className={styles.mockup}>
-            <div className={styles.top}><b>ORDER FLOW</b><span>LIVE OPERATIONS</span></div>
-            <div className={styles.body}>
-              <aside><b>Orders</b><span>Catalog</span><span>Customers</span><span>Sales</span></aside>
-              <div className={styles.dashboard}>
-                <div className={styles.dashboardHead}><span>Today's orders</span><b>24</b></div>
-                <div className={styles.stats}><i><small>NEW</small><strong>08</strong></i><i><small>PROCESSING</small><strong>11</strong></i><i><small>READY</small><strong>05</strong></i></div>
-                <div className={styles.rows}><span>#1048</span><span>WhatsApp</span><b>€42.00</b><span>#1047</span><span>Instagram</span><b>€68.50</b><span>#1046</span><span>WhatsApp</span><b>€31.00</b></div>
-              </div>
-            </div>
-          </div>
+        <div className={styles.heroVisual}>
+          <img src="/assets/orderflow/panelcontrol.png" alt="Order Flow control panel" />
         </div>
       </section>
 
@@ -67,11 +57,14 @@ export function OrderFlowCase() {
       </section>
 
       <section className={styles.blocks}>
-        {copy.blocks.map(([number, title, text]) => (
+        {copy.blocks.map(([number, title, text, image, alt]) => (
           <article key={number}>
             <span>{number}</span>
             <h2>{title}</h2>
             <p>{text}</p>
+            <div className={styles.blockVisual}>
+              <img src={image} alt={alt} loading="lazy" />
+            </div>
           </article>
         ))}
       </section>
