@@ -8,7 +8,7 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="site-header">
+    <header className={`site-header${open ? " site-header-menu-open" : ""}`}>
       <div className="site-header-inner">
         <a className="site-brand focusable" href="#top" aria-label="LEBA">
           LEBA
