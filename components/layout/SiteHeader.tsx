@@ -15,12 +15,11 @@ export function SiteHeader({ tone = "light" }: SiteHeaderProps) {
   const { language, setLanguage } = useLanguage();
   const links = navigation[language];
   const labels = language === "en" ? { talk: "Let's talk", menu: "Menu", close: "Close" } : { talk: "Hablemos", menu: "Menú", close: "Cerrar" };
-  const isDark = tone === "dark";
-  const strong = isDark ? "rgba(255,255,255,.96)" : "#292a2d";
-  const muted = isDark ? "rgba(255,255,255,.72)" : "rgba(41,42,45,.68)";
-  const border = isDark ? "rgba(255,255,255,.48)" : "rgba(41,42,45,.32)";
+
+  // The navbar stays transparent. `difference` makes a white foreground
+  // automatically become dark over light backgrounds and light over dark ones.
+  const adaptive = { color: "#ffffff", mixBlendMode: "difference" } as CSSProperties;
   const headerStyle = {
-    color: strong,
     background: "transparent",
     backdropFilter: "blur(18px) saturate(110%)",
     WebkitBackdropFilter: "blur(18px) saturate(110%)",
@@ -30,25 +29,25 @@ export function SiteHeader({ tone = "light" }: SiteHeaderProps) {
     right: 0,
     zIndex: 100,
   } as CSSProperties;
-  const ctaStyle = { color: strong, borderColor: border } as CSSProperties;
+  const ctaStyle = { color: "inherit", borderColor: "currentColor" } as CSSProperties;
 
   return (
     <header className={`site-header site-header-${tone}`} style={headerStyle}>
-      <div className="site-header-inner">
-        <a className="site-brand focusable" style={{ color: strong }} href="/" aria-label="LEBA">LEBA</a>
-        <nav aria-label={language === "en" ? "Main navigation" : "Navegación principal"} className="desktop-nav site-nav" style={{ color: muted }}>
-          {links.map(([label, href]) => <a className="focusable" style={{ color: muted }} key={label} href={href}>{label}</a>)}
+      <div className="site-header-inner" style={adaptive}>
+        <a className="site-brand focusable" style={adaptive} href="/" aria-label="LEBA">LEBA</a>
+        <nav aria-label={language === "en" ? "Main navigation" : "Navegación principal"} className="desktop-nav site-nav" style={adaptive}>
+          {links.map(([label, href]) => <a className="focusable" style={adaptive} key={label} href={href}>{label}</a>)}
         </nav>
-        <div className="site-header-actions">
-          <div className="site-language-selector flex items-center gap-2 mr-5 text-[11px] tracking-[0.16em]" style={{ color: muted }} aria-label="Language selector">
-            <button className={`focusable border-0 bg-transparent p-0 cursor-pointer transition-opacity ${language === "en" ? "opacity-100" : "opacity-45 hover:opacity-100"}`} style={{ color: language === "en" ? strong : muted }} type="button" onClick={() => setLanguage("en")} aria-pressed={language === "en"}>EN</button>
-            <span style={{ opacity: .55 }}>/</span>
-            <button className={`focusable border-0 bg-transparent p-0 cursor-pointer transition-opacity ${language === "es" ? "opacity-100" : "opacity-45 hover:opacity-100"}`} style={{ color: language === "es" ? strong : muted }} type="button" onClick={() => setLanguage("es")} aria-pressed={language === "es"}>ES</button>
+        <div className="site-header-actions" style={adaptive}>
+          <div className="site-language-selector flex items-center gap-2 mr-5 text-[11px] tracking-[0.16em]" style={adaptive} aria-label="Language selector">
+            <button className={`focusable border-0 bg-transparent p-0 cursor-pointer transition-opacity ${language === "en" ? "opacity-100" : "opacity-45 hover:opacity-100"}`} style={adaptive} type="button" onClick={() => setLanguage("en")} aria-pressed={language === "en"}>EN</button>
+            <span style={{ opacity: .55 }}> / </span>
+            <button className={`focusable border-0 bg-transparent p-0 cursor-pointer transition-opacity ${language === "es" ? "opacity-100" : "opacity-45 hover:opacity-100"}`} style={adaptive} type="button" onClick={() => setLanguage("es")} aria-pressed={language === "es"}>ES</button>
           </div>
           <a className="focusable site-header-cta" style={ctaStyle} href="/#contact"><span>{labels.talk}</span><span aria-hidden="true">→</span></a>
           <button
             className="focusable menu-toggle"
-            style={{ color: strong }}
+            style={adaptive}
             type="button"
             aria-label={open ? labels.close : labels.menu}
             aria-expanded={open}
