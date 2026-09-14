@@ -67,10 +67,6 @@ export function OrderFlowCase() {
       </section>
 
       <section className={styles.problem}>
-        <div className={styles.problemVisual}>
-          <div className={styles.signal}><span>WEB</span><i /><span>WHATSAPP</span><i /><span>INSTAGRAM</span></div>
-          <div className={styles.signalCore}>ORDER<br />FLOW</div>
-        </div>
         <div className={styles.problemCopy}>
           <div className={styles.introNumber}>02</div>
           <span>{copy.problemLabel}</span>
