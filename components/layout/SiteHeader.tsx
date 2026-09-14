@@ -44,9 +44,22 @@ export function SiteHeader() {
       </div>
 
       {open && (
-        <nav aria-label="Mobile navigation" className="mobile-nav">
+        <nav
+          aria-label="Mobile navigation"
+          className="mobile-nav"
+          style={{
+            color: "rgba(255,255,255,.96)",
+            background: "rgba(8,8,8,.98)",
+            borderTopColor: "rgba(255,255,255,.14)",
+          }}
+        >
           {links.map((link) => (
-            <a key={link} href={`#${link.toLowerCase()}`} onClick={() => setOpen(false)}>
+            <a
+              key={link}
+              href={`#${link.toLowerCase()}`}
+              onClick={() => setOpen(false)}
+              style={{ color: "rgba(255,255,255,.96)" }}
+            >
               {link}
             </a>
           ))}
