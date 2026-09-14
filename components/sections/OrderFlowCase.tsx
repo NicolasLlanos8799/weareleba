@@ -11,9 +11,9 @@ const content = {
     label: "THE SYSTEM",
     idea: "Order Flow connects the customer journey with the operational side of the business — bringing products, orders, customers and sales into one clear system.",
     blocks: [
-      ["01", "Digital catalog", "A structured product catalog gives customers a clearer way to browse, choose and build an order.", "/assets/orderflow/productos.png", "Order Flow product catalog"],
-      ["02", "Order capture", "Incoming requests are translated into structured orders, with the essential customer and order details organized for the team.", "/assets/orderflow/pedidos.png", "Order Flow orders"],
-      ["03", "Operations & insights", "The operational view brings order activity and business data together, helping the team follow the flow of work and understand performance over time.", "/assets/orderflow/estadisticas.png", "Order Flow operational insights"],
+      ["01", "Product Management", "A centralized product management system where administrators can add and manage products, update prices, descriptions and stock, and keep everything organized from one place.", "/assets/orderflow/productos.png", "Order Flow product management"],
+      ["02", "Order Capture", "Incoming requests are translated into structured orders, with the essential customer and order details organized for the team.", "/assets/orderflow/pedidos.png", "Order Flow orders"],
+      ["03", "Operations & Insights", "The operational view brings order activity and business data together, helping the team follow the flow of work and understand performance over time.", "/assets/orderflow/estadisticas.png", "Order Flow operational insights"],
     ],
     closing: "A SYSTEM BUILT TO TURN CONVERSATIONS INTO OPERATIONS.",
     note: "From the first customer request to the final operational view, Order Flow creates a clearer path through the entire ordering process.",
@@ -25,7 +25,7 @@ const content = {
     label: "EL SISTEMA",
     idea: "Order Flow conecta la experiencia del cliente con la operación del negocio, reuniendo productos, pedidos, clientes y ventas dentro de un único sistema claro.",
     blocks: [
-      ["01", "Catálogo digital", "Un catálogo estructurado permite a los clientes explorar productos, elegir y construir su pedido de forma más clara.", "/assets/orderflow/productos.png", "Catálogo de productos de Order Flow"],
+      ["01", "Gestión de productos", "Un sistema centralizado para que los administradores puedan cargar y gestionar productos, actualizar precios, descripciones y stock, y mantener todo organizado desde un único lugar.", "/assets/orderflow/productos.png", "Gestión de productos de Order Flow"],
       ["02", "Captura de pedidos", "Las solicitudes entrantes se convierten en pedidos estructurados, con la información esencial del cliente y del pedido organizada para el equipo.", "/assets/orderflow/pedidos.png", "Pedidos de Order Flow"],
       ["03", "Operación y análisis", "La visión operativa reúne la actividad de los pedidos y los datos del negocio, facilitando el seguimiento del trabajo y la comprensión del rendimiento a lo largo del tiempo.", "/assets/orderflow/estadisticas.png", "Análisis operativo de Order Flow"],
     ],
@@ -65,11 +65,14 @@ export function OrderFlowCase() {
             </div>
           </article>
         ))}
-      </section>
 
-      <section className={styles.closing}>
-        <h2>{copy.closing}</h2>
-        <p>{copy.note}</p>
+        <article className={styles.statement}>
+          <span>04 / SYSTEM</span>
+          <div className={styles.statementContent}>
+            <h2>{copy.closing}</h2>
+            <p>{copy.note}</p>
+          </div>
+        </article>
       </section>
     </main>
   );
