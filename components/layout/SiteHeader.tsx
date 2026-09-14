@@ -15,12 +15,12 @@ export function SiteHeader({ tone = "light" }: SiteHeaderProps) {
   const { language, setLanguage } = useLanguage();
   const links = navigation[language];
   const labels = language === "en" ? { talk: "Let's talk", menu: "Menu", close: "Close" } : { talk: "Hablemos", menu: "Menú", close: "Cerrar" };
-  const strong = "#292a2d";
-  const muted = "rgba(41,42,45,.68)";
-  const border = "rgba(41,42,45,.32)";
+  const strong = "#f5f5f2";
+  const muted = "rgba(245,245,242,.68)";
+  const border = "rgba(245,245,242,.32)";
   const headerStyle = {
     color: strong,
-    background: "#ffffff",
+    background: "#000000",
     position: "fixed",
     top: 0,
     left: 0,
