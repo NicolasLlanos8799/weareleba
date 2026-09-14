@@ -15,6 +15,12 @@ const geist = Geist({
 export const metadata: Metadata = {
   title: "WE ARE LEBA — Digital Systems Studio",
   description: "Diseñamos sistemas digitales que organizan y potencian negocios.",
+  icons: {
+    icon: [
+      { url: "/assets/favicon.ico" },
+      { url: "/assets/favicon.svg", type: "image/svg+xml" },
+    ],
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
