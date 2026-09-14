@@ -6,7 +6,7 @@ import { useLanguage } from "@/components/i18n/LanguageProvider";
 const content = {
   en: {
     eyebrow: "AUTOMATION SYSTEM / ORDER MANAGEMENT",
-    title: <>From online orders<br />to operations.</>,
+    title: <>From online orders<br /><span className="nowrapWord">to operations.</span></>,
     intro: "Order Flow is a web-based order management system for businesses that receive orders through their website, WhatsApp and Instagram. It turns incoming orders and conversations into structured orders and gives the team one place to manage products, stock, customers and daily operations.",
     systemLabel: "THE SYSTEM",
     system: "Order Flow sits behind the online ordering experience — connecting incoming orders with the operational systems needed to run the business.",
@@ -22,7 +22,7 @@ const content = {
   },
   es: {
     eyebrow: "SISTEMA DE AUTOMATIZACIÓN / GESTIÓN DE PEDIDOS",
-    title: <>De los pedidos online<br />a la operación.</>,
+    title: <>De los pedidos online<br /><span className="nowrapWord">a la operación.</span></>,
     intro: "Order Flow es un sistema web de gestión de pedidos para negocios que reciben pedidos a través de su web, WhatsApp e Instagram. Convierte los pedidos y conversaciones entrantes en pedidos estructurados y permite al equipo gestionar productos, stock, clientes y la operación diaria desde un único lugar.",
     systemLabel: "EL SISTEMA",
     system: "Order Flow se sitúa detrás de la experiencia de pedidos online, conectando los pedidos entrantes con los sistemas operativos necesarios para gestionar el negocio.",
