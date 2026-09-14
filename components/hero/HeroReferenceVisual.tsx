@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export function HeroReferenceVisual() {
   return (
-    <div className="hero-reference-visual" aria-hidden="true">
+    <div className="hero-reference-visual" aria-hidden="true" data-scroll-motion="hero">
       <Image
         src="/assets/generated/portada.png"
         alt=""
