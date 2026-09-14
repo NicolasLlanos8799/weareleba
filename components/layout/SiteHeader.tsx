@@ -44,7 +44,7 @@ export function SiteHeader({ tone = "light" }: SiteHeaderProps) {
           current = current.parentElement;
         }
 
-        const match = background.match(/rgba?\\(([^)]+)\\)/);
+        const match = background.match(/rgba?\(([^)]+)\)/);
         if (match) {
           const parts = match[1].split(",").map((part) => parseFloat(part.trim()));
           const [r, g, b] = parts;
@@ -90,12 +90,15 @@ export function SiteHeader({ tone = "light" }: SiteHeaderProps) {
     right: 0,
     zIndex: 100,
     color: foreground,
+    "--header-fg": foreground,
+    "--header-muted": muted,
+    "--header-border": border,
     transition: "color 220ms ease",
   } as CSSProperties;
 
-  const textStyle = { color: foreground, transition: "color 220ms ease" } as CSSProperties;
-  const mutedStyle = { color: muted, transition: "color 220ms ease" } as CSSProperties;
-  const ctaStyle = { color: foreground, borderColor: border, transition: "color 220ms ease, border-color 220ms ease" } as CSSProperties;
+  const textStyle = { color: "var(--header-fg)", transition: "color 220ms ease" } as CSSProperties;
+  const mutedStyle = { color: "var(--header-muted)", transition: "color 220ms ease" } as CSSProperties;
+  const ctaStyle = { color: "var(--header-fg)", borderColor: "var(--header-border)", transition: "color 220ms ease, border-color 220ms ease" } as CSSProperties;
 
   return (
     <header className={`site-header site-header-${tone}`} style={headerStyle}>
