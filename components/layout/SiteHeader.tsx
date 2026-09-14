@@ -30,11 +30,15 @@ export function SiteHeader() {
           <button
             className="focusable menu-toggle"
             type="button"
-            aria-label={open ? "Close" : "Open menu"}
+            aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             onClick={() => setOpen(!open)}
           >
-            {open ? "Close" : "Menu"}
+            <span className={`hamburger-icon${open ? " is-open" : ""}`} aria-hidden="true">
+              <span />
+              <span />
+              <span />
+            </span>
           </button>
         </div>
       </div>
