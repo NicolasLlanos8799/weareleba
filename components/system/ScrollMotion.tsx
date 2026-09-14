@@ -12,6 +12,7 @@ export function ScrollMotion() {
 
     const revealElements = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
     const parallaxElements = Array.from(document.querySelectorAll<HTMLElement>("[data-parallax]"));
+    const scrollElements = Array.from(document.querySelectorAll<HTMLElement>("[data-scroll-motion]"));
 
     const revealObserver = new IntersectionObserver(
       (entries) => {
@@ -22,7 +23,7 @@ export function ScrollMotion() {
           }
         });
       },
-      { threshold: 0.14, rootMargin: "0px 0px -8% 0px" }
+      { threshold: 0.12, rootMargin: "0px 0px -10% 0px" }
     );
 
     revealElements.forEach((element) => revealObserver.observe(element));
@@ -39,9 +40,17 @@ export function ScrollMotion() {
         const rect = element.getBoundingClientRect();
         const elementProgress = (viewportHeight - rect.top) / (viewportHeight + rect.height);
         const centered = Math.max(-1, Math.min(1, elementProgress * 2 - 1));
-        element.style.setProperty("--motion-y", `${centered * -48}px`);
+        element.style.setProperty("--motion-y", `${centered * -34}px`);
         element.style.setProperty("--motion-progress", `${elementProgress}`);
       });
+
+      scrollElements.forEach((element) => {
+        const rect = element.getBoundingClientRect();
+        const center = rect.top + rect.height / 2;
+        const normalized = Math.max(-1, Math.min(1, (center - viewportHeight / 2) / viewportHeight));
+        element.style.setProperty("--scroll-progress", `${normalized}`);
+      });
+
       frame = 0;
     };
 
