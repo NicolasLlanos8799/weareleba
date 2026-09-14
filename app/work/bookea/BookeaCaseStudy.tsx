@@ -8,74 +8,205 @@ const images = [
   "/assets/bookea/sistema-reservas-2-opt.webp",
   "/assets/bookea/sistema-reservas-3-opt.webp",
   "/assets/bookea/sistema-reservas-4-opt.webp",
-  "/assets/bookea/sistema-reservas-5-opt.webp",
-  "/assets/bookea/sistema-reservas-6-opt.webp",
 ];
 
 const copy = {
   en: {
-    heroKicker: "PRODUCT — IN DEVELOPMENT", heroTitle: "Bookea", heroLead: "A booking and management system for service businesses, built by Leba.", heroSub: "From scattered conversations to one organized system.",
-    introTitle: "Bookea is a product we're building, not just a project we delivered.", intro: "Bookea is a product of our own — a booking and management platform for service businesses, currently in development. It represents the same way of thinking we bring to every client project: start from the operational problem, not the feature list.",
-    problemKicker: "01 — THE PROBLEM", problemTitle: "Bookings without a system", problem: "Many service businesses still run bookings through WhatsApp, Instagram DMs, phone calls, and paper or spreadsheet agendas. Requests arrive through different channels, the same questions get answered repeatedly, calendars become fragmented, double-bookings happen, and client history is left scattered across conversations and memory.",
-    whatKicker: "02 — WHAT IS BOOKEA?", whatTitle: "One system for booking and running the business", what: "Bookea is a booking and management SaaS for service businesses. It centralizes the reservation process and gives the business one place to manage its day-to-day operations — connecting the customer-facing booking experience with the calendar, clients, services, and business settings.",
-    howKicker: "03 — HOW IT WORKS", howTitle: "One flow, from the client's first click to the business's calendar", how: "A customer opens a business's booking page, selects a service, and chooses an available time. The reservation is created and reflected immediately on the business side — without manual entry or checking a separate calendar.",
-    systemKicker: "04 — THE SYSTEM", systemTitle: "More than a calendar", system: "A booking is not just a slot on a calendar. It is connected to a client, a service, and the business configuration. When one part changes, the rest of the system reflects it instead of requiring the business to update several places by hand.",
-    experienceKicker: "05 — PRODUCT EXPERIENCE", experienceTitle: "What the system looks like today", experience: "These are real Bookea screens from the product as it exists today. The interface will continue to evolve as the system moves forward.",
-    captions: [["01", "Booking experience", "The customer-facing side of Bookea."], ["02", "Calendar / appointment management", "The business view of its schedule and appointments."], ["03", "Client management", "A centralized view of clients and their booking information."], ["04", "Service management", "Where the business defines the services it offers."], ["05", "Business administration", "Controls for configuring the business inside Bookea."], ["06", "Product flow", "Another view of the system currently being built."]],
-    whyKicker: "06 — WHY WE BUILT IT", whyTitle: "The gap we kept seeing", why: "Small service businesses need digital tools, but many are either too generic or too complex. Meanwhile, the actual day-to-day still runs through messages, calls, and manual agendas. Bookea is our attempt to close that gap with a system that makes the operation simple, centralized, and structured.",
-    buildKicker: "07 — BUILDING THE PRODUCT", buildTitle: "A product we're actively building", build: "We are building Bookea the way we approach serious systems: starting from the problem, mapping how booking, clients, services, and the calendar connect, then iterating as real constraints surface. The booking flow and the business dashboard are two views of the same system.",
-    customKicker: "07.5 — FROM CUSTOM BUILDS TO A PRODUCT", customTitle: "Bookea started as implementations, before it became a SaaS", custom: "Before building Bookea as a self-serve platform, we implemented the same system directly for a small number of clients. That work informed Bookea SaaS — the self-service version now in development. The system is the same; what changes is how a business gets access to it.",
-    statusKicker: "08 — CURRENT STATUS", statusTitle: "In development", status: "Bookea is currently under development. The screens shown here represent the product as it exists today and will keep changing as the system evolves.", closeTitle: "This is how we think about products.", close: "Understand the real operational problem first, then build the system that solves it — not the other way around.", cta: "GET IN TOUCH →",
+    heroKicker: "PRODUCT · SAAS · DESIGN · DEVELOPMENT",
+    heroTitle: "Bookea",
+    heroLead: "A smarter reservation system for modern service businesses.",
+    heroBody: "Bookea replaces fragmented bookings across WhatsApp, Instagram and manual calendars with one simple system.",
+    problemKicker: "02 / THE PROBLEM",
+    problemTitle: "Bookings shouldn't live across conversations, notebooks and spreadsheets.",
+    problemBody: "Businesses were managing reservations across disconnected tools, creating unnecessary work for both owners and clients.",
+    problemFlow: ["INSTAGRAM", "WHATSAPP", "MESSAGES", "MANUAL CALENDAR", "MISSED BOOKINGS"],
+    ideaKicker: "03 / THE IDEA",
+    ideaTitle: "One system. Every booking.",
+    ideaBody: "Bookea brings the entire reservation journey into one connected system — from the moment a client discovers a service to the moment the booking is confirmed.",
+    ideaNodes: ["CLIENT", "BOOKEA", "BUSINESS"],
+    worksKicker: "04 / HOW IT WORKS",
+    worksTitle: "From discovery to booking.",
+    steps: [
+      ["01", "Discover", "Client finds the business."],
+      ["02", "Select", "Chooses service, date and time."],
+      ["03", "Book", "Completes the reservation."],
+      ["04", "Confirm", "Booking appears in the business dashboard."],
+      ["05", "Manage", "Business manages appointments, clients and availability."],
+    ],
+    productKicker: "05 / THE PRODUCT",
+    productTitle: "Built around the way businesses work.",
+    productIntro: "The product is organized around the core systems a service business needs every day.",
+    products: [
+      ["01", "BOOKING", "A frictionless booking experience for clients."],
+      ["02", "DASHBOARD", "Centralized appointment and calendar management."],
+      ["03", "CLIENTS", "Customer information and booking history in one place."],
+      ["04", "SERVICES", "A simple way to configure what the business offers."],
+    ],
+    experienceKicker: "06 / THE EXPERIENCE",
+    experienceTitle: "Two sides of the same system.",
+    clientTitle: "For clients",
+    clientBody: "Booking should feel effortless.",
+    clientFlow: "SERVICE → DATE → TIME → CONFIRMATION",
+    businessTitle: "For businesses",
+    businessBody: "Managing bookings should feel just as simple.",
+    businessFlow: "DASHBOARD → CALENDAR → CLIENTS → OPERATIONS",
+    systemKicker: "07 / THE SYSTEM",
+    systemTitle: "A connected business system.",
+    systemBody: "Bookea connects the customer experience with the operational side of the business. The booking, dashboard, clients and services are not separate features — they are views of one system.",
+    designKicker: "08 / DESIGN SYSTEM",
+    designTitle: "Designed as a system.",
+    designBody: "The interface is built from a consistent visual language across booking flows, dashboards, forms, calendars, cards and responsive states.",
+    designLabels: ["TYPE", "COLORS", "COMPONENTS", "LAYOUT"],
+    techKicker: "09 / TECHNOLOGY",
+    techTitle: "Built to scale.",
+    techBody: "A scalable architecture designed to support multiple businesses, services and booking flows from a single platform.",
+    techStack: ["NEXT.JS", "REACT", "TYPESCRIPT", "POSTGRESQL", "NEON"],
+    buildKicker: "10 / BUILDING",
+    buildTitle: "Currently building.",
+    buildBody: "Bookea is currently in development, evolving from a simple booking tool into a complete operating system for service-based businesses.",
+    now: ["BOOKING", "DASHBOARD", "CLIENTS"],
+    next: ["AUTOMATION", "ADVANCED ANALYTICS", "MORE INTEGRATIONS"],
+    outcomeKicker: "11 / OUTCOME",
+    outcomeTitle: "What we're building towards.",
+    outcomes: ["LESS MANUAL WORK", "FEWER MISSED BOOKINGS", "BETTER CLIENT EXPERIENCE", "ONE SOURCE OF TRUTH"],
+    finalTitle: "Bookea is more than a booking tool. It's the system behind the business.",
+    cta: "EXPLORE BOOKEA →",
   },
   es: {
-    heroKicker: "PRODUCTO — EN DESARROLLO", heroTitle: "Bookea", heroLead: "Un sistema de reservas y gestión para negocios de servicios, creado por Leba.", heroSub: "De conversaciones dispersas a un sistema organizado.",
-    introTitle: "Bookea es un producto que estamos construyendo, no solo un proyecto que entregamos.", intro: "Bookea es un producto propio — una plataforma de reservas y gestión para negocios de servicios, actualmente en desarrollo. Representa la misma forma de pensar que llevamos a cada proyecto: empezar por el problema operativo, no por la lista de funcionalidades.",
-    problemKicker: "01 — EL PROBLEMA", problemTitle: "Reservas sin un sistema", problem: "Muchos negocios de servicios todavía gestionan sus reservas mediante WhatsApp, Instagram, llamadas y agendas de papel o spreadsheets. Las solicitudes llegan por distintos canales, se responden las mismas preguntas una y otra vez, los calendarios se fragmentan, aparecen reservas duplicadas y el historial del cliente queda repartido entre conversaciones y memoria.",
-    whatKicker: "02 — ¿QUÉ ES BOOKEA?", whatTitle: "Un sistema para reservar y gestionar el negocio", what: "Bookea es un SaaS de reservas y gestión para negocios de servicios. Centraliza el proceso de reserva y ofrece un único lugar para gestionar la operación diaria, conectando la experiencia de reserva del cliente con calendario, clientes, servicios y configuración del negocio.",
-    howKicker: "03 — CÓMO FUNCIONA", howTitle: "Un flujo, desde el primer clic del cliente hasta el calendario del negocio", how: "El cliente abre la página de reservas, selecciona un servicio y elige un horario disponible. La reserva se crea y se refleja inmediatamente en el lado del negocio, sin entrada manual ni necesidad de comprobar otro calendario.",
-    systemKicker: "04 — EL SISTEMA", systemTitle: "Más que un calendario", system: "Una reserva no es solo un hueco en el calendario. Está conectada con un cliente, un servicio y la configuración del negocio. Cuando una parte cambia, el resto del sistema refleja ese cambio sin obligar a actualizar varios lugares manualmente.",
-    experienceKicker: "05 — EXPERIENCIA DE PRODUCTO", experienceTitle: "Así se ve el sistema hoy", experience: "Estas son pantallas reales de Bookea tal como existe hoy. La interfaz seguirá evolucionando a medida que avance el sistema.",
-    captions: [["01", "Experiencia de reserva", "La parte de Bookea que ve el cliente."], ["02", "Calendario / gestión de citas", "La vista del negocio sobre su agenda y citas."], ["03", "Gestión de clientes", "Una vista centralizada de clientes y sus reservas."], ["04", "Gestión de servicios", "Donde el negocio define los servicios que ofrece."], ["05", "Administración del negocio", "Controles para configurar el negocio dentro de Bookea."], ["06", "Flujo del producto", "Otra vista del sistema que estamos construyendo."]],
-    whyKicker: "06 — POR QUÉ LO CONSTRUIMOS", whyTitle: "La brecha que seguíamos viendo", why: "Los pequeños negocios de servicios necesitan herramientas digitales, pero muchas son demasiado genéricas o demasiado complejas. Mientras tanto, el día a día sigue funcionando mediante mensajes, llamadas y agendas manuales. Bookea intenta cerrar esa brecha con un sistema simple, centralizado y estructurado.",
-    buildKicker: "07 — CONSTRUYENDO EL PRODUCTO", buildTitle: "Un producto que estamos construyendo activamente", build: "Estamos construyendo Bookea como cualquier sistema serio: empezando por el problema, mapeando cómo se conectan reservas, clientes, servicios y calendario, e iterando a medida que aparecen restricciones reales. El flujo de reserva y el dashboard del negocio son dos vistas del mismo sistema.",
-    customKicker: "07.5 — DE IMPLEMENTACIONES A PRODUCTO", customTitle: "Bookea empezó como implementaciones antes de convertirse en SaaS", custom: "Antes de construir Bookea como plataforma self-service, implementamos el mismo sistema directamente para un pequeño número de clientes. Ese trabajo dio forma a Bookea SaaS — la versión self-service actualmente en desarrollo. El sistema es el mismo; lo que cambia es cómo un negocio accede a él.",
-    statusKicker: "08 — ESTADO ACTUAL", statusTitle: "En desarrollo", status: "Bookea está actualmente en desarrollo. Las pantallas mostradas representan el producto tal como existe hoy y seguirán cambiando a medida que evolucione el sistema.", closeTitle: "Así pensamos los productos.", close: "Entender primero el problema operativo real y después construir el sistema que lo resuelve — no al revés.", cta: "HABLEMOS →",
+    heroKicker: "PRODUCTO · SAAS · DISEÑO · DESARROLLO",
+    heroTitle: "Bookea",
+    heroLead: "Un sistema de reservas más inteligente para negocios de servicios modernos.",
+    heroBody: "Bookea reemplaza las reservas fragmentadas entre WhatsApp, Instagram y calendarios manuales por un único sistema simple.",
+    problemKicker: "02 / EL PROBLEMA",
+    problemTitle: "Las reservas no deberían vivir entre conversaciones, libretas y spreadsheets.",
+    problemBody: "Los negocios gestionaban sus reservas con herramientas desconectadas, creando trabajo innecesario tanto para propietarios como para clientes.",
+    problemFlow: ["INSTAGRAM", "WHATSAPP", "MENSAJES", "CALENDARIO MANUAL", "RESERVAS PERDIDAS"],
+    ideaKicker: "03 / LA IDEA",
+    ideaTitle: "Un sistema. Cada reserva.",
+    ideaBody: "Bookea conecta todo el recorrido de una reserva — desde que el cliente descubre un servicio hasta que la reserva queda confirmada.",
+    ideaNodes: ["CLIENTE", "BOOKEA", "NEGOCIO"],
+    worksKicker: "04 / CÓMO FUNCIONA",
+    worksTitle: "Del descubrimiento a la reserva.",
+    steps: [
+      ["01", "Descubrir", "El cliente encuentra el negocio."],
+      ["02", "Seleccionar", "Elige servicio, fecha y horario."],
+      ["03", "Reservar", "Completa la reserva."],
+      ["04", "Confirmar", "La reserva aparece en el dashboard."],
+      ["05", "Gestionar", "El negocio gestiona citas, clientes y disponibilidad."],
+    ],
+    productKicker: "05 / EL PRODUCTO",
+    productTitle: "Construido alrededor de cómo trabajan los negocios.",
+    productIntro: "El producto se organiza alrededor de los sistemas esenciales que un negocio de servicios necesita cada día.",
+    products: [
+      ["01", "BOOKING", "Una experiencia de reserva sencilla para clientes."],
+      ["02", "DASHBOARD", "Gestión centralizada de citas y calendario."],
+      ["03", "CLIENTES", "Información e historial de reservas en un solo lugar."],
+      ["04", "SERVICIOS", "Una forma simple de configurar lo que ofrece el negocio."],
+    ],
+    experienceKicker: "06 / LA EXPERIENCIA",
+    experienceTitle: "Dos lados del mismo sistema.",
+    clientTitle: "Para clientes",
+    clientBody: "Reservar debería sentirse effortless.",
+    clientFlow: "SERVICIO → FECHA → HORA → CONFIRMACIÓN",
+    businessTitle: "Para negocios",
+    businessBody: "Gestionar reservas debería ser igual de simple.",
+    businessFlow: "DASHBOARD → CALENDARIO → CLIENTES → OPERACIÓN",
+    systemKicker: "07 / EL SISTEMA",
+    systemTitle: "Un sistema conectado para el negocio.",
+    systemBody: "Bookea conecta la experiencia del cliente con la operación del negocio. Booking, dashboard, clientes y servicios no son funcionalidades separadas: son vistas de un mismo sistema.",
+    designKicker: "08 / SISTEMA DE DISEÑO",
+    designTitle: "Diseñado como un sistema.",
+    designBody: "La interfaz utiliza un lenguaje visual consistente en flujos de reserva, dashboards, formularios, calendarios, cards y estados responsive.",
+    designLabels: ["TIPOGRAFÍA", "COLORES", "COMPONENTES", "LAYOUT"],
+    techKicker: "09 / TECNOLOGÍA",
+    techTitle: "Construido para escalar.",
+    techBody: "Una arquitectura escalable preparada para soportar múltiples negocios, servicios y flujos de reserva desde una sola plataforma.",
+    techStack: ["NEXT.JS", "REACT", "TYPESCRIPT", "POSTGRESQL", "NEON"],
+    buildKicker: "10 / CONSTRUYENDO",
+    buildTitle: "Actualmente en construcción.",
+    buildBody: "Bookea está actualmente en desarrollo, evolucionando desde una herramienta de reservas hacia un sistema operativo completo para negocios de servicios.",
+    now: ["BOOKING", "DASHBOARD", "CLIENTES"],
+    next: ["AUTOMATIZACIÓN", "ANALYTICS AVANZADO", "MÁS INTEGRACIONES"],
+    outcomeKicker: "11 / OBJETIVO",
+    outcomeTitle: "Lo que estamos construyendo.",
+    outcomes: ["MENOS TRABAJO MANUAL", "MENOS RESERVAS PERDIDAS", "MEJOR EXPERIENCIA", "UNA ÚNICA FUENTE DE VERDAD"],
+    finalTitle: "Bookea es más que una herramienta de reservas. Es el sistema detrás del negocio.",
+    cta: "EXPLORAR BOOKEA →",
   },
 } as const;
-
-const flow = ["CUSTOMER", "BOOKING PAGE", "APPOINTMENT", "BUSINESS DASHBOARD"];
-const system = ["BOOKING", "CLIENTS", "SERVICES", "CALENDAR", "BUSINESS MANAGEMENT"];
-
-function Diagram({ items }: { items: readonly string[] }) {
-  return <div className="bk-diagram">{items.map((item, index) => <div className="bk-node" key={item}><span>0{index + 1}</span><strong>{item}</strong>{index < items.length - 1 && <i>→</i>}</div>)}</div>;
-}
 
 export function BookeaCaseStudy() {
   const { language } = useLanguage();
   const t = copy[language];
+
   return (
     <main className="bookea-page">
       <style>{`
-        .bookea-page{background:#f4f3ef;color:#111;overflow:hidden}.bk-wrap{width:min(1380px,calc(100% - 48px));margin:0 auto}.bk-kicker{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:600}.bk-hero{min-height:calc(100vh - 76px);display:grid;grid-template-columns:1fr 1.25fr;gap:64px;align-items:end;padding:92px 0 72px}.bk-hero-copy{padding-bottom:20px;max-width:620px}.bk-hero h1{font-size:clamp(76px,11vw,168px);line-height:.82;letter-spacing:-.065em;font-weight:500;margin:26px 0 34px}.bk-hero-lead{font-size:clamp(25px,2.6vw,40px);line-height:1.08;letter-spacing:-.035em;max-width:600px}.bk-hero-sub{font-size:14px;margin-top:24px;color:#555}.bk-hero-media{background:#fff;border:1px solid #d9d8d2;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.08)}.bk-hero-media img{display:block;width:100%;height:auto}.bk-section{padding:150px 0;border-top:1px solid #d5d4cf}.bk-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:70px}.bk-title{font-size:clamp(42px,5.4vw,78px);line-height:.95;letter-spacing:-.055em;font-weight:500;max-width:850px;margin:18px 0 30px}.bk-copy{font-size:18px;line-height:1.55;color:#4f4f4b;max-width:720px}.bk-diagram{margin-top:72px;border-top:1px solid #bbb9b2;border-bottom:1px solid #bbb9b2;display:grid;grid-template-columns:repeat(4,1fr)}.bk-node{position:relative;min-height:155px;padding:24px 22px;border-right:1px solid #bbb9b2;display:flex;flex-direction:column;justify-content:space-between}.bk-node:last-child{border-right:0}.bk-node span{font-size:10px;color:#777;letter-spacing:.08em}.bk-node strong{font-size:14px;letter-spacing:.03em}.bk-node i{position:absolute;right:-8px;top:50%;font-size:16px;font-style:normal;background:#f4f3ef;padding:0 2px;z-index:1}.bk-system{background:#111;color:#f4f3ef}.bk-system .bk-diagram{border-color:#454545}.bk-system .bk-node{border-color:#454545}.bk-system .bk-node i{background:#111}.bk-system .bk-copy{color:#aaa}.bk-experience-intro{max-width:760px;margin-left:auto}.bk-screens{margin-top:90px;display:grid;gap:90px}.bk-screen{display:grid;grid-template-columns:190px 1fr;gap:42px;align-items:start}.bk-screen-meta{padding-top:8px}.bk-screen-number{font-size:11px;letter-spacing:.1em}.bk-screen-title{font-size:18px;font-weight:500;margin-top:18px;line-height:1.15}.bk-screen-desc{font-size:13px;color:#777;line-height:1.45;margin-top:12px}.bk-image-frame{background:#fff;border:1px solid #d7d6d0;overflow:hidden}.bk-image-frame img{display:block;width:100%;height:auto}.bk-dark{background:#171717;color:#f4f3ef}.bk-dark .bk-copy{color:#aaa}.bk-dark .bk-kicker{color:#aaa}.bk-status{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end}.bk-status-title{font-size:clamp(64px,9vw,140px);line-height:.82;letter-spacing:-.065em;font-weight:500;margin-top:24px}.bk-close{padding:190px 0 120px;text-align:center}.bk-close h2{font-size:clamp(48px,7vw,100px);line-height:.9;letter-spacing:-.06em;font-weight:500;max-width:1000px;margin:0 auto 34px}.bk-close p{max-width:650px;margin:0 auto 40px;font-size:18px;line-height:1.5;color:#555}.bk-cta{display:inline-block;color:inherit;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:7px;font-size:12px;letter-spacing:.1em;font-weight:600}
-        @media(max-width:900px){.bk-wrap{width:min(100% - 32px,680px)}.bk-hero{min-height:auto;grid-template-columns:1fr;gap:48px;padding:110px 0 70px}.bk-hero h1{font-size:clamp(72px,20vw,130px)}.bk-hero-media{width:100%}.bk-section{padding:100px 0}.bk-grid{grid-template-columns:1fr;gap:30px}.bk-title{font-size:clamp(42px,11vw,70px)}.bk-diagram{grid-template-columns:1fr 1fr}.bk-node{border-bottom:1px solid #bbb9b2}.bk-node:nth-child(2){border-right:0}.bk-node:nth-child(3),.bk-node:nth-child(4){border-bottom:0}.bk-screen{grid-template-columns:1fr;gap:22px}.bk-screens{gap:70px}.bk-status{grid-template-columns:1fr;gap:45px}.bk-status-title{font-size:clamp(70px,18vw,130px)}.bk-close{padding:130px 0 90px}}
-        @media(max-width:560px){.bk-wrap{width:calc(100% - 28px)}.bk-hero{padding-top:92px}.bk-hero-lead{font-size:26px}.bk-section{padding:78px 0}.bk-diagram{grid-template-columns:1fr}.bk-node,.bk-node:nth-child(2),.bk-node:nth-child(3){border-right:0;border-bottom:1px solid #bbb9b2}.bk-node:last-child{border-bottom:0}.bk-node i{display:none}.bk-screen-title{font-size:17px}.bk-close h2{font-size:48px}.bk-close p{font-size:16px}}
+        .bookea-page{background:#f4f3ef;color:#111;overflow:hidden}.bk-wrap{width:min(1240px,calc(100% - 48px));margin:auto}.bk-kicker{font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:600}.bk-hero{min-height:calc(100vh - 72px);display:grid;grid-template-columns:.82fr 1.18fr;gap:56px;align-items:end;padding:82px 0 64px}.bk-hero-copy{padding-bottom:8px}.bk-hero h1{font-size:clamp(88px,13vw,176px);line-height:.78;letter-spacing:-.075em;font-weight:500;margin:24px 0 32px}.bk-hero-lead{font-size:clamp(28px,3.1vw,44px);line-height:1.04;letter-spacing:-.045em;max-width:610px}.bk-hero-body{font-size:15px;line-height:1.5;color:#666;max-width:470px;margin-top:24px}.bk-hero-media{background:#fff;border:1px solid #d7d5ce;overflow:hidden}.bk-hero-media img{display:block;width:100%;height:auto}.bk-meta{margin-top:24px;font-size:10px;letter-spacing:.13em;color:#777}.bk-section{padding:108px 0;border-top:1px solid #d5d3cc}.bk-grid{display:grid;grid-template-columns:.75fr 1.25fr;gap:64px}.bk-title{font-size:clamp(48px,6vw,82px);line-height:.91;letter-spacing:-.06em;font-weight:500;margin:16px 0 26px;max-width:900px}.bk-copy{font-size:18px;line-height:1.52;color:#555;max-width:720px}.bk-problem-flow{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid #bcbab3;border-bottom:1px solid #bcbab3;margin-top:64px}.bk-flow-node{min-height:130px;padding:18px 16px;border-right:1px solid #bcbab3;display:flex;align-items:flex-end;font-size:11px;letter-spacing:.08em}.bk-flow-node:last-child{border-right:0}.bk-flow-node:not(:last-child)::after{content:'→';position:absolute;transform:translateX(calc(100% + 7px));font-size:15px}.bk-idea{background:#111;color:#f4f3ef}.bk-idea .bk-copy{color:#aaa}.bk-idea-flow{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;margin-top:56px;border-top:1px solid #464646;border-bottom:1px solid #464646}.bk-idea-node{min-height:170px;padding:22px;border-right:1px solid #464646;display:flex;align-items:center;justify-content:center;font-size:15px;letter-spacing:.1em;position:relative}.bk-idea-node:last-child{border-right:0}.bk-idea-node:not(:last-child)::after{content:'↓';position:absolute;right:-8px;top:50%;background:#111;padding:0 3px;font-size:15px}.bk-steps{margin-top:56px;border-top:1px solid #bcbab3}.bk-step{display:grid;grid-template-columns:70px 190px 1fr;gap:28px;padding:22px 0;border-bottom:1px solid #d0cec7;align-items:baseline}.bk-step-num{font-size:10px;color:#777;letter-spacing:.1em}.bk-step-title{font-size:20px;letter-spacing:-.02em}.bk-step-desc{font-size:14px;color:#666}.bk-product-intro{max-width:650px;margin:0 0 52px auto}.bk-products{display:grid;grid-template-columns:1fr 1fr;gap:18px}.bk-product{background:#fff;border:1px solid #d7d5ce}.bk-product-copy{padding:20px 20px 22px}.bk-product-number{font-size:10px;color:#888;letter-spacing:.1em}.bk-product h3{font-size:26px;letter-spacing:-.04em;font-weight:500;margin:13px 0 7px}.bk-product p{font-size:13px;line-height:1.45;color:#666;margin:0}.bk-product-image{border-bottom:1px solid #d7d5ce;overflow:hidden}.bk-product-image img{display:block;width:100%;height:auto}.bk-experience{background:#e7e5df}.bk-experience-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#c8c6bf;margin-top:56px;border:1px solid #c8c6bf}.bk-experience-card{background:#e7e5df;padding:36px}.bk-experience-card h3{font-size:34px;letter-spacing:-.045em;font-weight:500;margin:14px 0 8px}.bk-experience-card p{font-size:16px;color:#666;margin:0 0 34px}.bk-experience-flow{font-size:11px;letter-spacing:.1em;border-top:1px solid #aaa79f;padding-top:16px}.bk-system{background:#111;color:#f4f3ef}.bk-system .bk-copy{color:#aaa}.bk-system-map{margin-top:58px;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #464646;border-bottom:1px solid #464646}.bk-system-node{min-height:135px;padding:20px;border-right:1px solid #464646;display:flex;align-items:center;justify-content:center;text-align:center;font-size:12px;letter-spacing:.08em;position:relative}.bk-system-node:last-child{border-right:0}.bk-system-node:not(:last-child)::after{content:'→';position:absolute;right:-7px;background:#111;padding:0 2px}.bk-design{display:grid;grid-template-columns:.75fr 1.25fr;gap:64px}.bk-design-board{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#c8c6bf;border:1px solid #c8c6bf}.bk-design-card{background:#f4f3ef;min-height:145px;padding:20px}.bk-design-card span{font-size:9px;letter-spacing:.12em;color:#777}.bk-design-card strong{display:block;font-size:32px;letter-spacing:-.06em;font-weight:500;margin-top:32px}.bk-design-card:nth-child(2) strong{font-size:13px;letter-spacing:.05em}.bk-design-card:nth-child(3) strong{font-size:14px;margin-top:42px}.bk-design-card:nth-child(4) strong{font-size:18px;margin-top:42px}.bk-tech{background:#171717;color:#f4f3ef}.bk-tech .bk-copy{color:#aaa}.bk-stack{display:flex;flex-wrap:wrap;gap:8px;margin-top:40px}.bk-stack span{border:1px solid #555;padding:10px 13px;font-size:10px;letter-spacing:.1em}.bk-build{display:grid;grid-template-columns:.75fr 1.25fr;gap:64px}.bk-build-title{font-size:clamp(60px,8vw,110px);line-height:.82;letter-spacing:-.07em;font-weight:500;margin-top:20px}.bk-build-columns{display:grid;grid-template-columns:1fr 1fr;gap:28px}.bk-build-column{border-top:1px solid #aaa79f;padding-top:16px}.bk-build-column h3{font-size:10px;letter-spacing:.13em;margin:0 0 20px}.bk-build-column div{font-size:13px;padding:10px 0;border-bottom:1px solid #d0cec7}.bk-outcomes{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid #bbb9b2;margin-top:54px}.bk-outcome{padding:26px 0;border-bottom:1px solid #bbb9b2;font-size:14px;letter-spacing:.05em}.bk-outcome:nth-child(odd){padding-right:30px;border-right:1px solid #bbb9b2}.bk-outcome:nth-child(even){padding-left:30px}.bk-final{padding:150px 0 120px;text-align:center}.bk-final h2{font-size:clamp(54px,8vw,112px);line-height:.86;letter-spacing:-.07em;font-weight:500;max-width:1050px;margin:0 auto 38px}.bk-cta{display:inline-block;color:inherit;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:8px;font-size:11px;letter-spacing:.12em;font-weight:600}
+        @media(max-width:900px){.bk-wrap{width:min(100% - 32px,680px)}.bk-hero{min-height:auto;grid-template-columns:1fr;gap:40px;padding:92px 0 70px}.bk-hero h1{font-size:clamp(82px,19vw,140px)}.bk-section{padding:82px 0}.bk-grid,.bk-design,.bk-build{grid-template-columns:1fr;gap:34px}.bk-title{font-size:clamp(46px,10vw,72px)}.bk-problem-flow{grid-template-columns:1fr 1fr}.bk-flow-node:nth-child(2){border-right:0}.bk-flow-node:nth-child(4),.bk-flow-node:nth-child(5){border-top:1px solid #bcbab3}.bk-flow-node:not(:last-child)::after{display:none}.bk-step{grid-template-columns:55px 150px 1fr;gap:18px}.bk-products{grid-template-columns:1fr}.bk-experience-grid{grid-template-columns:1fr}.bk-system-map{grid-template-columns:1fr 1fr}.bk-system-node:nth-child(2){border-right:0}.bk-system-node:nth-child(3),.bk-system-node:nth-child(4){border-top:1px solid #464646}.bk-system-node:nth-child(3){border-right:1px solid #464646}.bk-system-node:not(:last-child)::after{display:none}.bk-build-columns{grid-template-columns:1fr}.bk-outcomes{grid-template-columns:1fr}.bk-outcome:nth-child(odd){border-right:0;padding-right:0}.bk-outcome:nth-child(even){padding-left:0}.bk-final{padding:110px 0 90px}}
+        @media(max-width:560px){.bk-wrap{width:calc(100% - 28px)}.bk-hero{padding-top:82px}.bk-hero-lead{font-size:27px}.bk-section{padding:70px 0}.bk-title{font-size:clamp(43px,11vw,62px)}.bk-copy{font-size:16px}.bk-problem-flow,.bk-idea-flow,.bk-system-map{grid-template-columns:1fr}.bk-flow-node,.bk-idea-node,.bk-system-node{min-height:78px;border-right:0!important;border-top:1px solid #bcbab3}.bk-flow-node:first-child,.bk-idea-node:first-child,.bk-system-node:first-child{border-top:0}.bk-idea-node:not(:last-child)::after{content:'↓';right:auto;top:auto;bottom:-8px}.bk-step{grid-template-columns:40px 1fr;gap:10px}.bk-step-desc{grid-column:2}.bk-step-title{font-size:18px}.bk-product h3{font-size:23px}.bk-experience-card{padding:26px}.bk-experience-card h3{font-size:29px}.bk-design-board{grid-template-columns:1fr}.bk-design-card{min-height:120px}.bk-final h2{font-size:49px}}
       `}</style>
+
       <div className="bk-wrap">
         <section className="bk-hero">
-          <div className="bk-hero-copy"><div className="bk-kicker">{t.heroKicker}</div><h1>{t.heroTitle}</h1><div className="bk-hero-lead">{t.heroLead}</div><div className="bk-hero-sub">{t.heroSub}</div></div>
-          <div className="bk-hero-media"><Image src={images[0]} alt="Bookea product interface" width={1600} height={1000} priority /></div>
+          <div className="bk-hero-copy">
+            <div className="bk-kicker">{t.heroKicker}</div>
+            <h1>{t.heroTitle}</h1>
+            <div className="bk-hero-lead">{t.heroLead}</div>
+            <p className="bk-hero-body">{t.heroBody}</p>
+            <div className="bk-meta">PRODUCT / IN DEVELOPMENT</div>
+          </div>
+          <div className="bk-hero-media"><Image src={images[0]} alt="Bookea booking interface" width={1600} height={1000} priority /></div>
         </section>
-        <section className="bk-section"><div className="bk-grid"><div><div className="bk-kicker">BOOKEA / PRODUCT</div></div><div><h2 className="bk-title">{t.introTitle}</h2><p className="bk-copy">{t.intro}</p></div></div></section>
-        <section className="bk-section"><div className="bk-grid"><div><div className="bk-kicker">{t.problemKicker}</div></div><div><h2 className="bk-title">{t.problemTitle}</h2><p className="bk-copy">{t.problem}</p></div></div></section>
-        <section className="bk-section"><div className="bk-grid"><div><div className="bk-kicker">{t.whatKicker}</div></div><div><h2 className="bk-title">{t.whatTitle}</h2><p className="bk-copy">{t.what}</p></div></div></section>
-        <section className="bk-section"><div className="bk-grid"><div><div className="bk-kicker">{t.howKicker}</div></div><div><h2 className="bk-title">{t.howTitle}</h2><p className="bk-copy">{t.how}</p></div></div><Diagram items={flow}/></section>
-        <section className="bk-section bk-system"><div className="bk-grid"><div><div className="bk-kicker">{t.systemKicker}</div></div><div><h2 className="bk-title">{t.systemTitle}</h2><p className="bk-copy">{t.system}</p></div></div><Diagram items={system}/></section>
-        <section className="bk-section"><div className="bk-grid"><div><div className="bk-kicker">{t.experienceKicker}</div></div><div className="bk-experience-intro"><h2 className="bk-title">{t.experienceTitle}</h2><p className="bk-copy">{t.experience}</p></div></div><div className="bk-screens">{t.captions.map((caption,index)=><article className="bk-screen" key={caption[0]}><div className="bk-screen-meta"><div className="bk-screen-number">{caption[0]}</div><div className="bk-screen-title">{caption[1]}</div><div className="bk-screen-desc">{caption[2]}</div></div><div className="bk-image-frame"><Image src={images[index]} alt={caption[1]} width={1600} height={1000} loading={index===0?"eager":"lazy"}/></div></article>)}</div></section>
-        <section className="bk-section"><div className="bk-grid"><div><div className="bk-kicker">{t.whyKicker}</div></div><div><h2 className="bk-title">{t.whyTitle}</h2><p className="bk-copy">{t.why}</p></div></div></section>
-        <section className="bk-section bk-dark"><div className="bk-grid"><div><div className="bk-kicker">{t.buildKicker}</div></div><div><h2 className="bk-title">{t.buildTitle}</h2><p className="bk-copy">{t.build}</p></div></div></section>
-        <section className="bk-section"><div className="bk-grid"><div><div className="bk-kicker">{t.customKicker}</div></div><div><h2 className="bk-title">{t.customTitle}</h2><p className="bk-copy">{t.custom}</p></div></div></section>
-        <section className="bk-section bk-dark"><div className="bk-status"><div><div className="bk-kicker">{t.statusKicker}</div><div className="bk-status-title">{t.statusTitle}</div></div><p className="bk-copy">{t.status}</p></div></section>
-        <section className="bk-close"><h2>{t.closeTitle}</h2><p>{t.close}</p><a className="bk-cta" href="/#contact">{t.cta}</a></section>
+
+        <section className="bk-section">
+          <div className="bk-grid"><div><div className="bk-kicker">{t.problemKicker}</div></div><div><h2 className="bk-title">{t.problemTitle}</h2><p className="bk-copy">{t.problemBody}</p></div></div>
+          <div className="bk-problem-flow">{t.problemFlow.map((item)=><div className="bk-flow-node" key={item}>{item}</div>)}</div>
+        </section>
+
+        <section className="bk-section bk-idea">
+          <div className="bk-grid"><div><div className="bk-kicker">{t.ideaKicker}</div></div><div><h2 className="bk-title">{t.ideaTitle}</h2><p className="bk-copy">{t.ideaBody}</p></div></div>
+          <div className="bk-idea-flow">{t.ideaNodes.map((item)=><div className="bk-idea-node" key={item}>{item}</div>)}</div>
+        </section>
+
+        <section className="bk-section">
+          <div className="bk-grid"><div><div className="bk-kicker">{t.worksKicker}</div></div><div><h2 className="bk-title">{t.worksTitle}</h2></div></div>
+          <div className="bk-steps">{t.steps.map(([num,title,desc])=><div className="bk-step" key={num}><div className="bk-step-num">{num}</div><div className="bk-step-title">{title}</div><div className="bk-step-desc">{desc}</div></div>)}</div>
+        </section>
+
+        <section className="bk-section">
+          <div className="bk-grid"><div><div className="bk-kicker">{t.productKicker}</div></div><div><h2 className="bk-title">{t.productTitle}</h2><p className="bk-copy bk-product-intro">{t.productIntro}</p></div></div>
+          <div className="bk-products">{t.products.map(([num,title,desc],i)=><article className="bk-product" key={num}><div className="bk-product-image"><Image src={images[i]} alt={title} width={1600} height={1000} loading="lazy" /></div><div className="bk-product-copy"><div className="bk-product-number">{num}</div><h3>{title}</h3><p>{desc}</p></div></article>)}</div>
+        </section>
+
+        <section className="bk-section bk-experience">
+          <div className="bk-grid"><div><div className="bk-kicker">{t.experienceKicker}</div></div><div><h2 className="bk-title">{t.experienceTitle}</h2></div></div>
+          <div className="bk-experience-grid"><div className="bk-experience-card"><div className="bk-kicker">CLIENT SIDE</div><h3>{t.clientTitle}</h3><p>{t.clientBody}</p><div className="bk-experience-flow">{t.clientFlow}</div></div><div className="bk-experience-card"><div className="bk-kicker">BUSINESS SIDE</div><h3>{t.businessTitle}</h3><p>{t.businessBody}</p><div className="bk-experience-flow">{t.businessFlow}</div></div></div>
+        </section>
+
+        <section className="bk-section bk-system">
+          <div className="bk-grid"><div><div className="bk-kicker">{t.systemKicker}</div></div><div><h2 className="bk-title">{t.systemTitle}</h2><p className="bk-copy">{t.systemBody}</p></div></div>
+          <div className="bk-system-map">{["BOOKING","DASHBOARD","CLIENTS","SERVICES"].map(item=><div className="bk-system-node" key={item}>{item}</div>)}</div>
+        </section>
+
+        <section className="bk-section">
+          <div className="bk-design"><div><div className="bk-kicker">{t.designKicker}</div><h2 className="bk-title">{t.designTitle}</h2><p className="bk-copy">{t.designBody}</p></div><div className="bk-design-board">{t.designLabels.map((label,i)=><div className="bk-design-card" key={label}><span>{label}</span><strong>{i===0?"Aa":i===1?"●  ●  ●  ●":i===2?"[ BUTTON ]":"DESKTOP → MOBILE"}</strong></div>)}</div></div>
+        </section>
+
+        <section className="bk-section bk-tech">
+          <div className="bk-grid"><div><div className="bk-kicker">{t.techKicker}</div></div><div><h2 className="bk-title">{t.techTitle}</h2><p className="bk-copy">{t.techBody}</p><div className="bk-stack">{t.techStack.map(item=><span key={item}>{item}</span>)}</div></div></div>
+        </section>
+
+        <section className="bk-section">
+          <div className="bk-build"><div><div className="bk-kicker">{t.buildKicker}</div><div className="bk-build-title">{t.buildTitle}</div></div><div><p className="bk-copy">{t.buildBody}</p><div className="bk-build-columns"><div className="bk-build-column"><h3>NOW</h3>{t.now.map(item=><div key={item}>{item}</div>)}</div><div className="bk-build-column"><h3>NEXT</h3>{t.next.map(item=><div key={item}>{item}</div>)}</div></div></div></div>
+        </section>
+
+        <section className="bk-section">
+          <div className="bk-grid"><div><div className="bk-kicker">{t.outcomeKicker}</div></div><div><h2 className="bk-title">{t.outcomeTitle}</h2></div></div>
+          <div className="bk-outcomes">{t.outcomes.map(item=><div className="bk-outcome" key={item}>{item}</div>)}</div>
+        </section>
+
+        <section className="bk-final"><h2>{t.finalTitle}</h2><a className="bk-cta" href="/#contact">{t.cta}</a></section>
       </div>
     </main>
   );
