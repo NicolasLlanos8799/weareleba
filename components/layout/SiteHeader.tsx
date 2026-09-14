@@ -19,7 +19,14 @@ export function SiteHeader({ tone = "light" }: SiteHeaderProps) {
   const strong = isDark ? "#292a2d" : "rgba(255,255,255,.92)";
   const muted = isDark ? "rgba(41,42,45,.68)" : "rgba(255,255,255,.78)";
   const border = isDark ? "rgba(41,42,45,.32)" : "rgba(255,255,255,.75)";
-  const headerStyle = (isDark ? { color: strong, background: "rgba(232,231,227,.92)" } : { color: strong }) as CSSProperties;
+  const headerStyle = {
+    ...(isDark ? { color: strong, background: "rgba(232,231,227,.92)" } : { color: strong }),
+    position: "fixed",
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 100,
+  } as CSSProperties;
   const ctaStyle = { color: strong, borderColor: border } as CSSProperties;
 
   return (
@@ -36,7 +43,25 @@ export function SiteHeader({ tone = "light" }: SiteHeaderProps) {
             <button className={`focusable border-0 bg-transparent p-0 cursor-pointer transition-opacity ${language === "es" ? "opacity-100" : "opacity-45 hover:opacity-100"}`} style={{ color: language === "es" ? strong : muted }} type="button" onClick={() => setLanguage("es")} aria-pressed={language === "es"}>ES</button>
           </div>
           <a className="focusable site-header-cta" style={ctaStyle} href="/#contact"><span>{labels.talk}</span><span aria-hidden="true">→</span></a>
-          <button className="focusable menu-toggle" style={{ color: strong }} type="button" aria-label={open ? labels.close : labels.menu} aria-expanded={open} onClick={() => setOpen(!open)}>{open ? labels.close : labels.menu}</button>
+          <button
+            className="focusable menu-toggle"
+            style={{ color: strong }}
+            type="button"
+            aria-label={open ? labels.close : labels.menu}
+            aria-expanded={open}
+            onClick={() => setOpen(!open)}
+          >
+            <span className="sr-only">{open ? labels.close : labels.menu}</span>
+            {open ? (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M5 5L19 19M19 5L5 19" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+              </svg>
+            ) : (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M4 7H20M4 12H20M4 17H20" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+              </svg>
+            )}
+          </button>
         </div>
       </div>
       {open && <nav aria-label={language === "en" ? "Mobile navigation" : "Navegación móvil"} className="mobile-nav">
