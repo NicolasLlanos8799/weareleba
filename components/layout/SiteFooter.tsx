@@ -4,8 +4,8 @@ import { useLanguage } from "@/components/i18n/LanguageProvider";
 import styles from "./SiteFooter.module.css";
 
 const content = {
-  en: { eyebrow: "LET'S BUILD WHAT'S NEXT", title: <>Have an idea<br />worth building?</>, cta: "START A CONVERSATION", contactLabel: "GET IN TOUCH", navLabel: "EXPLORE", socialLabel: "FOLLOW", nav: [["WHAT WE DO", "/#what-we-do"], ["THE TEAM", "/#team"]] },
-  es: { eyebrow: "LET'S BUILD WHAT'S NEXT", title: <>¿Tienes una idea<br />que vale la pena construir?</>, cta: "INICIEMOS UNA CONVERSACIÓN", contactLabel: "HABLEMOS", navLabel: "EXPLORA", socialLabel: "SÍGUENOS", nav: [["LO QUE HACEMOS", "/#what-we-do"], ["EL EQUIPO", "/#team"]] },
+  en: { eyebrow: "LET'S BUILD WHAT'S NEXT", title: <>Have an idea<br />worth building?</>, cta: "START A CONVERSATION", contactLabel: "GET IN TOUCH", navLabel: "EXPLORE", socialLabel: "FOLLOW", nav: [["WHAT WE DO", "/#what-we-do"], ["THE TEAM", "/about#team"]] },
+  es: { eyebrow: "LET'S BUILD WHAT'S NEXT", title: <>¿Tienes una idea<br />que vale la pena construir?</>, cta: "INICIEMOS UNA CONVERSACIÓN", contactLabel: "HABLEMOS", navLabel: "EXPLORA", socialLabel: "SÍGUENOS", nav: [["LO QUE HACEMOS", "/#what-we-do"], ["EL EQUIPO", "/nosotros#team"]] },
 };
 
 export function SiteFooter() {
