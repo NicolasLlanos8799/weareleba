@@ -4,7 +4,6 @@ import { SiteFooter } from "@/components/layout/SiteFooter";
 import { ScrollMotion } from "@/components/system/ScrollMotion";
 import { Hero } from "@/components/sections/Hero";
 import { WhatWeDo } from "@/components/sections/WhatWeDo";
-import { ProcessSection } from "@/components/sections/ProcessSection";
 import { WeAreLeba } from "@/components/sections/WeAreLeba";
 
 export default function Home() {
@@ -15,7 +14,6 @@ export default function Home() {
       <main>
         <Hero />
         <WhatWeDo />
-        <ProcessSection />
         <WeAreLeba />
       </main>
       <SiteFooter />
