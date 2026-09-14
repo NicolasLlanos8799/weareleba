@@ -4,6 +4,20 @@
   background: #090a0b;
   color: #f2f0eb;
   padding: clamp(50px, 5.6vw, 92px) clamp(28px, 5.9vw, 102px) 0;
+  border-top: 1px solid rgba(255,255,255,.22);
+  box-shadow: 0 -28px 60px rgba(0,0,0,.18);
+}
+
+/* Creates a clear visual threshold between the page content and the footer. */
+.footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(255,255,255,.5);
+  opacity: .55;
 }
 
 .inner { width: 100%; max-width: 1560px; margin: 0 auto; }
