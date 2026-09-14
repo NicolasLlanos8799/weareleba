@@ -75,8 +75,8 @@ export function OrderFlowCase() {
       </section>
 
       <section className={`${styles.feature} ${styles.productFeature}`}>
-        <div className={styles.featureMeta}><span>03</span><span>PRODUCT MANAGEMENT</span></div>
         <div className={styles.featureHeader}>
+          <div className={styles.featureMeta}><span>03</span><span>PRODUCT MANAGEMENT</span></div>
           <h2>{copy.blocks[0][1]}</h2>
           <p>{copy.blocks[0][2]}</p>
         </div>
