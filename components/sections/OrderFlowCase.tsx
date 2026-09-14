@@ -89,7 +89,7 @@ export function OrderFlowCase() {
         </div>
       </section>
 
-      <section className={styles.feature altFeature}>
+      <section className={`${styles.feature} ${styles.altFeature}`}>
         <div className={styles.featureVisual}><img src={copy.blocks[1][3]} alt={copy.blocks[1][4]} loading="lazy" /></div>
         <div className={styles.featureHeader}>
           <div className={styles.featureMeta}><span>04</span><span>ORDER CAPTURE</span></div>
