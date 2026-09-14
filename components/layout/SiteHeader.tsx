@@ -57,7 +57,7 @@ export function SiteHeader({ tone = "light" }: SiteHeaderProps) {
   const ctaStyle = { color: "var(--header-fg)", borderColor: "var(--header-border)", transition: "color 220ms ease, border-color 220ms ease" } as CSSProperties;
 
   return (
-    <header className={`site-header site-header-${tone}`} style={headerStyle}>
+    <header className={`site-header site-header-${tone}${open ? " site-header-menu-open" : ""}`} style={headerStyle}>
       <div className="site-header-inner">
         <a className="site-brand focusable" style={textStyle} href="/" aria-label="LEBA">LEBA</a>
         <nav aria-label={language === "en" ? "Main navigation" : "Navegación principal"} className="desktop-nav site-nav" style={mutedStyle}>
