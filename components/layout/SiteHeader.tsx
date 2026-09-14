@@ -1,6 +1,6 @@
 "use client";
 
-import { CSSProperties, useEffect, useState } from "react";
+import { CSSProperties, useState } from "react";
 import { useLanguage } from "@/components/i18n/LanguageProvider";
 
 const navigation = {
@@ -12,57 +12,18 @@ type SiteHeaderProps = { tone?: "light" | "dark" };
 
 export function SiteHeader({ tone = "light" }: SiteHeaderProps) {
   const [open, setOpen] = useState(false);
-  const [isDarkBackground, setIsDarkBackground] = useState(tone === "dark");
   const { language, setLanguage } = useLanguage();
   const links = navigation[language];
   const labels = language === "en" ? { talk: "Let's talk", menu: "Menu", close: "Close" } : { talk: "Hablemos", menu: "Menú", close: "Cerrar" };
-
-  useEffect(() => {
-    const detectBackground = () => {
-      const probe = document.elementFromPoint(window.innerWidth / 2, 72);
-      let node: Element | null = probe;
-      let background = "rgba(0, 0, 0, 0)";
-
-      while (node) {
-        const value = window.getComputedStyle(node).backgroundColor;
-        if (value && value !== "rgba(0, 0, 0, 0)" && value !== "transparent") {
-          background = value;
-          break;
-        }
-        node = node.parentElement;
-      }
-
-      const match = background.match(/rgba?\(([^)]+)\)/);
-      if (match) {
-        const values = match[1].split(",").map((value) => Number.parseFloat(value.trim()));
-        if (values.length >= 3) {
-          const alpha = values.length === 4 ? values[3] : 1;
-          if (alpha > 0.05) {
-            const luminance = (0.299 * values[0] + 0.587 * values[1] + 0.114 * values[2]) / 255;
-            setIsDarkBackground(luminance < 0.52);
-            return;
-          }
-        }
-      }
-    };
-
-    detectBackground();
-    window.addEventListener("scroll", detectBackground, { passive: true });
-    window.addEventListener("resize", detectBackground);
-    return () => {
-      window.removeEventListener("scroll", detectBackground);
-      window.removeEventListener("resize", detectBackground);
-    };
-  }, [tone]);
-
-  const strong = isDarkBackground ? "rgba(255,255,255,.96)" : "#292a2d";
-  const muted = isDarkBackground ? "rgba(255,255,255,.72)" : "rgba(41,42,45,.68)";
-  const border = isDarkBackground ? "rgba(255,255,255,.48)" : "rgba(41,42,45,.32)";
+  const isDark = tone === "dark";
+  const strong = isDark ? "rgba(255,255,255,.96)" : "#292a2d";
+  const muted = isDark ? "rgba(255,255,255,.72)" : "rgba(41,42,45,.68)";
+  const border = isDark ? "rgba(255,255,255,.48)" : "rgba(41,42,45,.32)";
   const headerStyle = {
     color: strong,
-    background: isDarkBackground ? "rgba(10,10,10,.72)" : "rgba(242,240,235,.78)",
-    backdropFilter: "blur(18px) saturate(115%)",
-    WebkitBackdropFilter: "blur(18px) saturate(115%)",
+    background: "transparent",
+    backdropFilter: "blur(18px) saturate(110%)",
+    WebkitBackdropFilter: "blur(18px) saturate(110%)",
     position: "fixed",
     top: 0,
     left: 0,
