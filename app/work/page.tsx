@@ -1,5 +1,1 @@
-import { redirect } from "next/navigation";
-
-export default function WorkPage() {
-  redirect("/workinprocess");
-}
+export { default } from "../workinprocess/page";
