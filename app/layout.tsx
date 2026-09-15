@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import Script from "next/script";
 import { Geist } from "next/font/google";
 import "./globals.css";
@@ -82,7 +83,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: "/portada.png",
+        url: "/assets/generated/portada.png",
         width: 1600,
         height: 900,
         alt: "WE ARE LEBA — Digital Systems Studio",
@@ -93,7 +94,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "WE ARE LEBA — Digital Systems Studio",
     description: "We design digital systems that organize, automate and help modern businesses grow.",
-    images: ["/portada.png"],
+    images: ["/assets/generated/portada.png"],
   },
   icons: {
     icon: [
@@ -103,9 +104,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const pathname = (await headers()).get("x-pathname") ?? "";
+  const language = pathname === "/nosotros" || pathname.startsWith("/nosotros/") ? "es" : "en";
+
   return (
-    <html lang="en">
+    <html lang={language}>
       <body className={geist.variable}>
         {children}
         <script
