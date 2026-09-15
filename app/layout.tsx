@@ -14,8 +14,61 @@ const geist = Geist({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://weareleba.com"),
   title: "WE ARE LEBA — Digital Systems Studio",
-  description: "Diseñamos sistemas digitales que organizan y potencian negocios.",
+  description: "We design digital systems that organize, automate and help modern businesses grow.",
+  keywords: [
+    "digital systems studio",
+    "digital systems",
+    "digital transformation",
+    "web design",
+    "custom software",
+    "business automation",
+    "AI automation",
+    "digital solutions",
+    "Copenhagen digital studio",
+    "Denmark digital studio",
+    "WE ARE LEBA",
+  ],
+  authors: [{ name: "WE ARE LEBA" }],
+  creator: "WE ARE LEBA",
+  publisher: "WE ARE LEBA",
+  alternates: {
+    canonical: "https://weareleba.com/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  openGraph: {
+    type: "website",
+    url: "https://weareleba.com/",
+    siteName: "WE ARE LEBA",
+    title: "WE ARE LEBA — Digital Systems Studio",
+    description: "We design digital systems that organize, automate and help modern businesses grow.",
+    locale: "en_US",
+    images: [
+      {
+        url: "/portada.png",
+        width: 1600,
+        height: 900,
+        alt: "WE ARE LEBA — Digital Systems Studio",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "WE ARE LEBA — Digital Systems Studio",
+    description: "We design digital systems that organize, automate and help modern businesses grow.",
+    images: ["/portada.png"],
+  },
   icons: {
     icon: [
       { url: "/assets/favicon.ico" },
@@ -26,7 +79,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="es">
+    <html lang="en">
       <body className={geist.variable}>
         {children}
         <Script id="google-analytics" strategy="afterInteractive">
