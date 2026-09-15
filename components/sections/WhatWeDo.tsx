@@ -30,12 +30,29 @@ const serviceImages: Record<Service["visual"], string> = {
   systems: "/assets/services/system.png",
 };
 
-function ServiceVisual({ type }: { type: Service["visual"] }) {
+const serviceImageMeta: Record<"en" | "es", Record<Service["visual"], { alt: string; title: string }>> = {
+  en: {
+    website: { alt: "Professional website design by WE ARE LEBA", title: "Website design" },
+    software: { alt: "Custom software system designed by WE ARE LEBA", title: "Custom software" },
+    automation: { alt: "Business automation and AI system by WE ARE LEBA", title: "Automation & AI" },
+    systems: { alt: "Connected digital systems by WE ARE LEBA", title: "Connected systems" },
+  },
+  es: {
+    website: { alt: "Diseño de páginas web profesionales por WE ARE LEBA", title: "Diseño web" },
+    software: { alt: "Sistema de software a medida diseñado por WE ARE LEBA", title: "Software a medida" },
+    automation: { alt: "Sistema de automatización e IA para negocios por WE ARE LEBA", title: "Automatización e IA" },
+    systems: { alt: "Sistemas digitales conectados por WE ARE LEBA", title: "Sistemas conectados" },
+  },
+};
+
+function ServiceVisual({ type, language }: { type: Service["visual"]; language: "en" | "es" }) {
+  const imageMeta = serviceImageMeta[language][type];
   return (
-    <div className={`${visualStyles.visual} ${visualStyles[type]}`} aria-hidden="true">
+    <div className={`${visualStyles.visual} ${visualStyles[type]}`}>
       <img
         src={serviceImages[type]}
-        alt=""
+        alt={imageMeta.alt}
+        title={imageMeta.title}
         loading="lazy"
         decoding="async"
       />
@@ -46,5 +63,5 @@ function ServiceVisual({ type }: { type: Service["visual"] }) {
 export function WhatWeDo() {
   const { language } = useLanguage();
   const copy = content[language] || content.en;
-  return <section className={`what-we-do language-${language}`} id="what-we-do"><div className="what-we-do-inner"><div className="what-we-do-intro"><div className="section-kicker" data-reveal="left"><span /> {copy.sectionLabel}</div><h2 data-reveal>{copy.heading}</h2><p className="motion-stagger-1" data-reveal="right">{copy.intro}</p></div><div className="service-grid">{copy.services.map((service, index) => <article className={`service-card ${service.visual === "systems" ? "service-card-systems" : ""} motion-stagger-${index + 1}`} data-reveal="scale" key={service.number}><div className="service-topline"><span>{service.number}</span><i /></div><ServiceVisual type={service.visual} /><div className={service.visual === "systems" ? "service-card-systems-copy" : ""}><h3>{service.title}</h3><p className="service-description">{service.description}</p><p className="service-note">{service.note}</p></div></article>)}</div><div className="what-we-do-footer" data-reveal><div><span><i /> {copy.footer}</span><p className="what-we-do-portfolio-prompt">{copy.portfolioPrompt}</p></div><Link className="what-we-do-work-link focusable" href="/work">{copy.exploreWork} <b>⟶</b></Link></div></div></section>;
+  return <section className={`what-we-do language-${language}`} id="what-we-do"><div className="what-we-do-inner"><div className="what-we-do-intro"><div className="section-kicker" data-reveal="left"><span /> {copy.sectionLabel}</div><h2 data-reveal>{copy.heading}</h2><p className="motion-stagger-1" data-reveal="right">{copy.intro}</p></div><div className="service-grid">{copy.services.map((service, index) => <article className={`service-card ${service.visual === "systems" ? "service-card-systems" : ""} motion-stagger-${index + 1}`} data-reveal="scale" key={service.number}><div className="service-topline"><span>{service.number}</span><i /></div><ServiceVisual type={service.visual} language={language} /><div className={service.visual === "systems" ? "service-card-systems-copy" : ""}><h3>{service.title}</h3><p className="service-description">{service.description}</p><p className="service-note">{service.note}</p></div></article>)}</div><div className="what-we-do-footer" data-reveal><div><span><i /> {copy.footer}</span><p className="what-we-do-portfolio-prompt">{copy.portfolioPrompt}</p></div><Link className="what-we-do-work-link focusable" href="/work">{copy.exploreWork} <b>⟶</b></Link></div></div></section>;
 }
