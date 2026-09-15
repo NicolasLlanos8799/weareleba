@@ -2,10 +2,11 @@ import Image from "next/image";
 
 export function HeroReferenceVisual() {
   return (
-    <div className="hero-reference-visual" aria-hidden="true" data-scroll-motion="hero">
+    <div className="hero-reference-visual" data-scroll-motion="hero">
       <Image
         src="/assets/generated/portada.png"
-        alt=""
+        alt="WE ARE LEBA — Digital Systems Studio"
+        title="WE ARE LEBA — Digital Systems Studio"
         fill
         priority
         sizes="100vw"
