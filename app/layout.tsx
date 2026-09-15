@@ -13,6 +13,32 @@ const geist = Geist({
   subsets: ["latin"],
 });
 
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "WE ARE LEBA",
+  url: "https://weareleba.com/",
+  logo: "https://weareleba.com/assets/favicon.svg",
+  description: "We design digital systems that organize, automate and help modern businesses grow.",
+  sameAs: [
+    "https://www.instagram.com/weareleba/",
+    "https://www.linkedin.com/company/weareleba/",
+  ],
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "WE ARE LEBA",
+  url: "https://weareleba.com/",
+  description: "We design digital systems that organize, automate and help modern businesses grow.",
+  publisher: {
+    "@type": "Organization",
+    name: "WE ARE LEBA",
+    url: "https://weareleba.com/",
+  },
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://weareleba.com"),
   title: "WE ARE LEBA — Digital Systems Studio",
@@ -82,6 +108,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en">
       <body className={geist.variable}>
         {children}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([organizationSchema, websiteSchema]).replace(/</g, "\\u003c"),
+          }}
+        />
         <Script id="google-analytics" strategy="afterInteractive">
           {`window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
