@@ -23,6 +23,7 @@ export type CaseStudyData = {
     services: { en: string; es: string };
     technologies: { en: string; es: string };
     year: string;
+    website?: string;
   };
   projectDescription: { en: string; es: string };
   challenge: {
@@ -59,6 +60,7 @@ const labels = {
     technologies: "Technologies",
     year: "Year",
     view: "VIEW PROJECT",
+    website: "Website",
   },
   es: {
     project: "PROYECTO",
@@ -76,6 +78,7 @@ const labels = {
     technologies: "Tecnologías",
     year: "Año",
     view: "VER PROYECTO",
+    website: "Sitio web",
   },
 };
 
