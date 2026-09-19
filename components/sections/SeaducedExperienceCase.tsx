@@ -1,62 +1,89 @@
 "use client";
 
-import { ProjectCaseStudy, type CaseStudyData } from "@/components/ProjectCaseStudy";
+import styles from "./SeaducedExperienceCase.module.css";
 import { useLanguage } from "@/components/i18n/LanguageProvider";
 
-const base = "/assets/seaducedexperience";
+const base="/assets/seaducedexperience";
 
-const data: CaseStudyData = {
-  project: { en: "SEADUCED EXPERIENCE", es: "SEADUCED EXPERIENCE" },
-  category: { en: "Website · Software · Automation", es: "Sitio web · Software · Automatización" },
-  description: { en: "Digital infrastructure for a premium sailing experience.", es: "Infraestructura digital para una experiencia premium de navegación." },
-  heroImage: { src: base + "/seaduced-experience-1-1280.webp", alt: { en: "Seaduced Experience website", es: "Sitio web de Seaduced Experience" }, fit: "cover", priority: true },
-  projectInfo: {
-    client: { en: "Seaduced Experience", es: "Seaduced Experience" },
-    industry: { en: "Premium experiences · Sailing", es: "Experiencias premium · Navegación" },
-    services: { en: "Website · Dashboard · Automation", es: "Sitio web · Dashboard · Automatización" },
-    technologies: { en: "Next.js · React · Automation", es: "Next.js · React · Automatización" },
-    year: "2026",
+const content={
+  en:{
+    eyebrow:"DIGITAL SYSTEM / PREMIUM SAILING EXPERIENCE",
+    title:<>A premium experience<br/><span>built as a system.</span></>,
+    intro:"Seaduced Experience connects the customer journey with the operational side of the business — from discovery and booking to management and automated follow-up.",
+    systemLabel:"THE SYSTEM",
+    system:"One connected digital layer across Website, Dashboard and Automation. The experience customers see and the operation the team runs work as one system.",
+    problemLabel:"THE PROBLEM",
+    problem:"A premium sailing experience needed more than a website. Customer discovery, bookings, internal management and follow-up were separated across different processes. The system brings them together.",
+    websiteLabel:"WEBSITE",
+    websiteTitle:"A clearer path to booking.",
+    websiteText:"A premium digital experience designed to make the service easy to understand, explore and book without losing the character of the brand.",
+    dashboardLabel:"DASHBOARD",
+    dashboardTitle:"Operations in one place.",
+    dashboardText:"A central operational workspace for bookings, calendar, activity and business visibility — turning the service behind the experience into a manageable digital layer.",
+    automationLabel:"AUTOMATION",
+    automationTitle:"The system keeps moving.",
+    automationText:"Automated follow-up handles recurring moments after and around bookings, reducing repetitive work while keeping the customer journey connected.",
+    closing:"ONE EXPERIENCE. ONE CONNECTED SYSTEM.",
+    note:"From the first interaction to the operational follow-up, Seaduced Experience now has a digital foundation built to evolve with the business.",
+    next:"BACK TO WORK →"
   },
-  projectDescription: {
-    en: "We connected the customer journey with the operational side of the business: discovery, booking, management and automated follow-up become one digital system.",
-    es: "Conectamos la experiencia del cliente con la operación del negocio: descubrimiento, reserva, gestión y seguimiento automatizado se convierten en un único sistema digital.",
-  },
-  challenge: {
-    intro: { en: "A premium experience needed a digital system capable of connecting customer experience and operations.", es: "Una experiencia premium necesitaba un sistema digital capaz de conectar la experiencia del cliente con la operación." },
-    points: [
-      { title: { en: "Disconnected experience", es: "Experiencia desconectada" }, body: { en: "The journey from discovery to booking needed a clearer digital path.", es: "El recorrido desde el descubrimiento hasta la reserva necesitaba un camino digital más claro." } },
-      { title: { en: "Manual operations", es: "Operaciones manuales" }, body: { en: "Bookings, activity and follow-up needed to live in one operational layer.", es: "Las reservas, la actividad y el seguimiento necesitaban convivir en una misma capa operativa." } },
-      { title: { en: "Scaling limitations", es: "Limitaciones para escalar" }, body: { en: "The system needed to reduce repetitive work while keeping the experience premium.", es: "El sistema debía reducir el trabajo repetitivo manteniendo una experiencia premium." } },
-    ],
-  },
-  solution: {
-    intro: { en: "One connected system across the customer journey and the business.", es: "Un único sistema conectado entre la experiencia del cliente y el negocio." },
-    areas: [
-      { number: "01", title: { en: "Website", es: "Website" }, body: { en: "A clear, premium digital journey for discovering experiences and making a booking.", es: "Un recorrido digital claro y premium para descubrir experiencias y realizar una reserva." } },
-      { number: "02", title: { en: "Dashboard", es: "Dashboard" }, body: { en: "A central operational workspace for bookings, calendar, activity and business visibility.", es: "Un espacio operativo central para reservas, calendario, actividad y visibilidad del negocio." } },
-      { number: "03", title: { en: "Automation", es: "Automatización" }, body: { en: "Automated follow-up for completed experiences, unfinished bookings and booking issues.", es: "Seguimiento automatizado para experiencias finalizadas, reservas incompletas e incidencias durante la reserva." } },
-    ],
-  },
-  visuals: [
-    { src: base + "/seaduced-experience-2-1280.webp", alt: { en: "Seaduced Experience website detail", es: "Detalle del sitio web de Seaduced Experience" }, fit: "cover" },
-    { src: base + "/dashboard-complete.png", alt: { en: "Seaduced Experience dashboard", es: "Dashboard de Seaduced Experience" }, fit: "contain" },
-  ],
-  results: {
-    qualitative: [
-      { title: { en: "One digital journey", es: "Un único recorrido digital" }, body: { en: "Customer-facing experience and internal operations are connected instead of working as separate layers.", es: "La experiencia del cliente y la operación interna quedan conectadas en lugar de funcionar como capas separadas." } },
-      { title: { en: "Less repetitive work", es: "Menos trabajo repetitivo" }, body: { en: "Automated follow-up handles recurring moments without adding manual tasks to the team.", es: "El seguimiento automatizado resuelve momentos recurrentes sin sumar tareas manuales al equipo." } },
-      { title: { en: "A system ready to evolve", es: "Un sistema preparado para evolucionar" }, body: { en: "The foundation can grow as the experience, operations and business needs evolve.", es: "La base puede crecer a medida que evolucionan la experiencia, la operación y las necesidades del negocio." } },
-    ],
-  },
-  client: {
-    en: "Seaduced Experience creates premium private sailing experiences. The project brings its digital touchpoints and operational workflow into one connected system.",
-    es: "Seaduced Experience crea experiencias privadas premium de navegación. El proyecto reúne sus puntos de contacto digitales y su flujo operativo en un único sistema conectado.",
-  },
-  previous: { title: { en: "Work", es: "Trabajo" }, href: "/work" },
-  next: { title: { en: "Bookea", es: "Bookea" }, href: "/work/bookea" },
+  es:{
+    eyebrow:"SISTEMA DIGITAL / EXPERIENCIA PREMIUM DE NAVEGACIÓN",
+    title:<>Una experiencia premium<br/><span>construida como sistema.</span></>,
+    intro:"Seaduced Experience conecta la experiencia del cliente con la operación del negocio — desde el descubrimiento y la reserva hasta la gestión y el seguimiento automatizado.",
+    systemLabel:"EL SISTEMA",
+    system:"Una única capa digital conectando Website, Dashboard y Automatización. La experiencia que ve el cliente y la operación del equipo funcionan como un solo sistema.",
+    problemLabel:"EL PROBLEMA",
+    problem:"Una experiencia premium de navegación necesitaba más que un sitio web. El descubrimiento, las reservas, la gestión interna y el seguimiento estaban separados en distintos procesos. El sistema los conecta.",
+    websiteLabel:"WEBSITE",
+    websiteTitle:"Un camino más claro hacia la reserva.",
+    websiteText:"Una experiencia digital premium diseñada para hacer que el servicio sea fácil de entender, explorar y reservar sin perder el carácter de la marca.",
+    dashboardLabel:"DASHBOARD",
+    dashboardTitle:"La operación en un solo lugar.",
+    dashboardText:"Un espacio operativo central para reservas, calendario, actividad y visibilidad del negocio — convirtiendo la operación detrás de la experiencia en una capa digital gestionable.",
+    automationLabel:"AUTOMATIZACIÓN",
+    automationTitle:"El sistema sigue funcionando.",
+    automationText:"El seguimiento automatizado resuelve momentos recurrentes alrededor de las reservas, reduciendo trabajo repetitivo y manteniendo conectado el recorrido del cliente.",
+    closing:"UNA EXPERIENCIA. UN ÚNICO SISTEMA CONECTADO.",
+    note:"Desde la primera interacción hasta el seguimiento operativo, Seaduced Experience cuenta ahora con una base digital preparada para evolucionar con el negocio.",
+    next:"VOLVER A WORK →"
+  }
 };
 
-export function SeaducedExperienceCase() {
-  const { language } = useLanguage();
-  return <ProjectCaseStudy key={language} data={data} />;
+export function SeaducedExperienceCase(){
+  const {language}=useLanguage();
+  const c=content[language];
+  return <main className={styles.case}>
+    <section className={styles.hero}>
+      <div className={styles.eyebrow}>{c.eyebrow}</div>
+      <div className={styles.heroGrid}>
+        <div className={styles.heroCopy}><h1>{c.title}</h1><p>{c.intro}</p></div>
+        <div className={styles.heroVisual}><img src={base+"/seaduced-experience-1-1280.webp"} alt="Seaduced Experience website" /></div>
+      </div>
+      <div className={styles.scrollHint}><span/> SCROLL TO EXPLORE</div>
+    </section>
+    <section className={styles.context}>
+      <div className={styles.number}>01</div>
+      <div className={styles.contextContent}><span>{c.systemLabel}</span><p>{c.system}</p></div>
+    </section>
+    <section className={styles.problem}>
+      <div className={styles.problemCopy}><div className={styles.number}>02</div><span>{c.problemLabel}</span><p>{c.problem}</p></div>
+    </section>
+    <section className={styles.feature+" "+styles.website}>
+      <div className={styles.featureHead}><div className={styles.meta}><span>03</span><span>{c.websiteLabel}</span></div><h2>{c.websiteTitle}</h2><p>{c.websiteText}</p></div>
+      <div className={styles.featureVisual}><img src={base+"/seaduced-experience-2-1280.webp"} alt="Seaduced Experience website interface" loading="lazy"/></div>
+    </section>
+    <section className={styles.feature+" "+styles.dashboard}>
+      <div className={styles.featureVisual}><img src={base+"/dashboard-complete.png"} alt="Seaduced Experience dashboard" loading="lazy"/></div>
+      <div className={styles.featureHead}><div className={styles.meta}><span>04</span><span>{c.dashboardLabel}</span></div><h2>{c.dashboardTitle}</h2><p>{c.dashboardText}</p></div>
+    </section>
+    <section className={styles.automation}>
+      <div className={styles.automationCopy}><div className={styles.meta}><span>05</span><span>{c.automationLabel}</span></div><h2>{c.automationTitle}</h2><p>{c.automationText}</p></div>
+      <div className={styles.automationVisual}><img src={base+"/dashboard-analytics.png"} alt="Seaduced Experience analytics and automation view" loading="lazy"/></div>
+    </section>
+    <section className={styles.statement}>
+      <div className={styles.number}>06 / SYSTEM</div><div><h2>{c.closing}</h2><p>{c.note}</p></div>
+    </section>
+    <div className={styles.next}><a href="/work">{c.next} <span>→</span></a></div>
+  </main>;
 }
