@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, type CSSProperties } from "react";
 import Image from "next/image";
 import { useLanguage } from "@/components/i18n/LanguageProvider";
 import styles from "./OrderFlowCase.module.css";
+import { ShowcaseImage } from "@/components/system/ShowcaseImage";
 
 const base = "/assets/orderflow";
 const images = ["panelcontrol.png", "productos.png", "pedidos.png", "estadisticas.png"];
@@ -148,11 +149,13 @@ function BrowserFrame({ src, alt, priority }: { src: string; alt: string; priori
 
 function Showcase({ screens, label }: { screens: Screen[]; label: string }) {
   const [active, setActive] = useState(0);
+  const { language } = useLanguage();
+  const items = screens.map(([title], i) => ({ src: `${base}/${images[i]}`, alt: `${label}: ${title}` }));
   return (
     <div className={`${styles.showcase} ${styles.showcaseFlip}`}>
-      <div className={styles.showcaseImage}>
+      <ShowcaseImage className={styles.showcaseImage} lang={language} active={active} onChange={setActive} items={items}>
         <BrowserFrame src={`${base}/${images[active]}`} alt={`${label}: ${screens[active][0]}`} priority={active === 0} />
-      </div>
+      </ShowcaseImage>
       <ol className={styles.screenList}>
         {screens.map(([title, description], index) => (
           <li key={title} {...rv(index + 1)}>

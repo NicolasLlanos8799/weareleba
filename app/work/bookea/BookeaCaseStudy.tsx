@@ -4,6 +4,7 @@ import { useRef, useState, type CSSProperties } from "react";
 import Image from "next/image";
 import { useLanguage } from "@/components/i18n/LanguageProvider";
 import styles from "@/components/sections/BookeaCaseStudy.module.css";
+import { ShowcaseImage } from "@/components/system/ShowcaseImage";
 import { BookeaWaitlist } from "@/components/sections/BookeaWaitlist";
 import { rv, useScrollEffects } from "@/components/sections/bookeaShared";
 
@@ -30,7 +31,7 @@ const copy = {
       active: "RESERVA EN 5 PASOS",
       title: <>DEL DESCUBRIMIENTO<br />A LA RESERVA.</>,
       body: "El cliente avanza por un asistente de cinco pasos, siempre con claridad sobre dónde está y qué falta.",
-      icons: ["✂", "▦", "◷", "✎", "✓"],
+      icons: ["✂\uFE0E", "▦", "◷", "✎", "✓"],
       stages: [
         ["Servicio", "PASO 1", "Elige qué quiere reservar entre los servicios activos del negocio."],
         ["Fecha", "PASO 2", "Selecciona un día disponible en el calendario."],
@@ -68,7 +69,7 @@ const copy = {
       active: "SISTEMA ACTIVO",
       title: <>EL SISTEMA<br />SIGUE TRABAJANDO.</>,
       body: "Las comunicaciones y los controles importantes ocurren solos, para que nadie tenga que acordarse.",
-      icons: ["✉", "↺", "◔", "⛨"],
+      icons: ["✉\uFE0E", "↺", "◔", "⛨"],
       stages: [
         ["Confirmación", "AL RESERVAR", "El cliente recibe un email con los detalles de su turno apenas termina la reserva."],
         ["Link de cancelación", "EN EL EMAIL", "Puede cancelar por su cuenta desde un link, sin escribir al negocio."],
@@ -114,7 +115,7 @@ const copy = {
       active: "BOOK IN 5 STEPS",
       title: <>FROM DISCOVERY<br />TO BOOKING.</>,
       body: "Clients move through a five-step flow, always clear about where they are and what is left.",
-      icons: ["✂", "▦", "◷", "✎", "✓"],
+      icons: ["✂\uFE0E", "▦", "◷", "✎", "✓"],
       stages: [
         ["Service", "STEP 1", "Picks what to book from the business's active services."],
         ["Date", "STEP 2", "Selects an available day on the calendar."],
@@ -152,7 +153,7 @@ const copy = {
       active: "SYSTEM ACTIVE",
       title: <>THE SYSTEM<br />KEEPS WORKING.</>,
       body: "Communication and key safeguards happen on their own, so nobody has to remember.",
-      icons: ["✉", "↺", "◔", "⛨"],
+      icons: ["✉\uFE0E", "↺", "◔", "⛨"],
       stages: [
         ["Confirmation", "ON BOOKING", "The client gets an email with the appointment details as soon as the booking is done."],
         ["Cancellation link", "IN THE EMAIL", "They can cancel on their own from a link, without messaging the business."],
@@ -187,17 +188,19 @@ const copy = {
 
 function Showcase({ screens, label, flip }: { screens: Screen[]; label: string; flip?: boolean }) {
   const [active, setActive] = useState(0);
+  const { language } = useLanguage();
+  const items = screens.map(({ title, shot: s }) => ({ src: shot(s), alt: `${label}: ${title}` }));
   const current = screens[active];
   return (
     <div className={`${styles.showcase} ${flip ? styles.showcaseFlip : ""}`}>
-      <div className={styles.showcaseImage}>
+      <ShowcaseImage className={styles.showcaseImage} lang={language} active={active} onChange={setActive} items={items}>
         <div className={styles.frame} data-par>
           <div className={styles.frameBar}><i /><i /><i /></div>
           <div className={styles.frameShot} key={current.shot}>
             <Image src={shot(current.shot)} alt={`${label}: ${current.title}`} fill sizes="(max-width: 900px) 92vw, 56vw" quality={90} priority={active === 0} />
           </div>
         </div>
-      </div>
+      </ShowcaseImage>
       <ol className={styles.screenList}>
         {screens.map(({ title, text }, index) => (
           <li key={title} {...rv(index + 1)}>

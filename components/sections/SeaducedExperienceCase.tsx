@@ -2,8 +2,10 @@
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import Image from "next/image";
+import { ArrowUpRight } from "@/components/system/ArrowUpRight";
 import { useLanguage } from "@/components/i18n/LanguageProvider";
 import styles from "./SeaducedExperienceCase.module.css";
+import { ShowcaseImage } from "@/components/system/ShowcaseImage";
 
 const base = "/assets/seaducedexperience";
 const websiteImages = ["seaduced-experience-1-1280.webp", "seaduced-experience-2-1280.webp", "seaduced-experience-3-1280.webp", "seaduced-experience-4-1280.webp"];
@@ -180,11 +182,13 @@ function BrowserFrame({ src, alt, sizes, priority, dark }: { src: string; alt: s
 
 function Showcase({ images, screens, label, flip, dark }: { images: string[]; screens: Screen[]; label: string; flip?: boolean; dark?: boolean }) {
   const [active, setActive] = useState(0);
+  const { language } = useLanguage();
+  const items = screens.map(([title], i) => ({ src: `${base}/${images[i]}`, alt: `${label}: ${title}` }));
   return (
     <div className={`${styles.showcase} ${flip ? styles.showcaseFlip : ""}`}>
-      <div className={styles.showcaseImage}>
+      <ShowcaseImage className={styles.showcaseImage} lang={language} active={active} onChange={setActive} items={items}>
         <BrowserFrame src={`${base}/${images[active]}`} alt={`${label}: ${screens[active][0]}`} sizes="(max-width: 900px) 92vw, 56vw" priority={active === 0} dark={dark} />
-      </div>
+      </ShowcaseImage>
       <ol className={styles.screenList}>
         {screens.map(([title, description], index) => (
           <li key={title} {...rv(index + 1)}>
@@ -227,8 +231,8 @@ export function SeaducedExperienceCase() {
   const t = copy[language];
   const mainRef = useRef<HTMLElement>(null);
   useScrollEffects(mainRef, language);
-  const mockIcons = ["✉", "◷", "◌"];
-  const stepIcons = ["●", "✉", "✓"];
+  const mockIcons = ["✉\uFE0E", "◷", "◌"];
+  const stepIcons = ["●", "✉\uFE0E", "✓"];
 
   return (
     <main className={styles.caseStudy} ref={mainRef}>
@@ -239,7 +243,7 @@ export function SeaducedExperienceCase() {
             <div>
               <h1>{t.title}</h1>
               <p className={styles.lead}>{t.lead}</p>
-              <a className={styles.visit} href="https://www.seaducedexperience.com" target="_blank" rel="noreferrer"><span>{t.visit}</span><b>www.seaducedexperience.com ↗</b></a>
+              <a className={styles.visit} href="https://www.seaducedexperience.com" target="_blank" rel="noreferrer"><span>{t.visit}</span><b>www.seaducedexperience.com <ArrowUpRight /></b></a>
             </div>
             <dl className={styles.meta}>
               {t.meta.map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}
@@ -310,7 +314,7 @@ export function SeaducedExperienceCase() {
               ))}
             </ul>
           </div>
-          <a className={styles.visit} href="https://www.seaducedexperience.com" target="_blank" rel="noreferrer"><span>{t.visit}</span><b>www.seaducedexperience.com ↗</b></a>
+          <a className={styles.visit} href="https://www.seaducedexperience.com" target="_blank" rel="noreferrer"><span>{t.visit}</span><b>www.seaducedexperience.com <ArrowUpRight /></b></a>
           <a className={styles.back} href="/work">← {t.closing.back}</a>
         </div>
       </section>

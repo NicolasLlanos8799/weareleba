@@ -1,0 +1,554 @@
+.work {
+  background: #080b0d;
+  color: #f3f1ec;
+}
+
+/* ───────── Intro ───────── */
+.hero {
+  position: relative;
+  min-height: 92svh;
+  display: flex;
+  align-items: center;
+  padding: 150px clamp(28px, 5.9vw, 102px) 90px;
+  background: radial-gradient(circle at 74% 46%, rgba(214, 160, 96, .16), transparent 62%), #0b0908;
+  overflow: hidden;
+}
+
+.heroContent {
+  position: relative;
+  max-width: 620px;
+}
+
+.eyebrow {
+  display: block;
+  margin: 0 0 26px;
+  font-size: 10px;
+  letter-spacing: .18em;
+  font-weight: 600;
+  color: rgba(255, 255, 255, .58);
+}
+
+.hero h1 {
+  margin: 0;
+  max-width: 620px;
+  font-size: clamp(64px, 6.25vw, 106px);
+  line-height: .88;
+  font-weight: 400;
+  letter-spacing: -.068em;
+  color: rgba(255, 255, 255, .96);
+  text-wrap: balance;
+}
+
+.hero p {
+  max-width: 500px;
+  margin: clamp(26px, 3vw, 38px) 0 0;
+  font-size: clamp(16px, 1.35vw, 21px);
+  line-height: 1.45;
+  letter-spacing: -.025em;
+  color: rgba(255, 255, 255, .66);
+}
+
+.scrollHint {
+  position: absolute;
+  left: clamp(28px, 4vw, 66px);
+  bottom: 42px;
+  display: flex;
+  align-items: flex-start;
+  gap: 28px;
+  font-size: 10px;
+  letter-spacing: .18em;
+  color: rgba(255, 255, 255, .76);
+}
+
+.scrollHint span {
+  display: block;
+  width: 1px;
+  height: 112px;
+  margin-top: -18px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, .65), rgba(255, 255, 255, .12));
+}
+
+/* ───────── Pinned stage ───────── */
+.track {
+  position: relative;
+  height: calc(var(--n) * 100svh);
+}
+
+.stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+  background: #0b0908;
+  color: #f7f5f0;
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: .9fr 1.1fr;
+  align-items: center;
+  gap: 2vw;
+  padding: 130px clamp(28px, 5.4vw, 90px) 56px clamp(28px, 4.6vw, 66px);
+  visibility: hidden;
+  opacity: 0;
+}
+
+.scene[data-first] {
+  visibility: visible;
+  opacity: 1;
+}
+
+.glow {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 74% 46%, var(--glow), transparent 62%);
+}
+
+.info,
+.cardWrap {
+  position: relative;
+  z-index: 1;
+}
+
+.info {
+  align-self: center;
+}
+
+.info h2 {
+  position: relative;
+  margin: 0;
+  font-size: clamp(60px, 8.6vw, 124px);
+  line-height: .88;
+  font-weight: 400;
+  letter-spacing: -.065em;
+}
+
+.info h2 span {
+  display: block;
+}
+
+.category {
+  display: block;
+  margin: 36px 0 14px;
+  font-size: 10px;
+  letter-spacing: .18em;
+  font-weight: 600;
+}
+
+.info p {
+  margin: 0;
+  max-width: 340px;
+  font-size: 18px;
+  line-height: 1.45;
+  opacity: .72;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin: 30px 0 30px;
+  font-size: 9px;
+  letter-spacing: .12em;
+  opacity: .8;
+}
+
+.tags span {
+  white-space: nowrap;
+}
+
+.tags i {
+  margin-right: 9px;
+  font-style: normal;
+  opacity: .5;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  padding-bottom: 9px;
+  border-bottom: 1px solid currentColor;
+  font-size: 10px;
+  letter-spacing: .1em;
+  color: inherit;
+  text-decoration: none;
+}
+
+.link b {
+  font-size: 19px;
+  font-weight: 400;
+}
+
+/* Card: same browser frame the /work hero collage already uses */
+.cardWrap {
+  display: block;
+  color: inherit;
+  perspective: 1600px;
+  cursor: pointer;
+}
+
+.card {
+  border-radius: 10px;
+  overflow: hidden;
+  background: #111416;
+  border: 1px solid var(--line);
+  box-shadow: 0 40px 90px rgba(0, 0, 0, var(--sh));
+  transform: rotateY(-12deg) rotateX(3deg) rotateZ(-1.5deg);
+  transition: transform .9s cubic-bezier(.2, .7, .2, 1);
+}
+
+.cardWrap:hover .card {
+  transform: rotateY(-5deg) rotateX(1deg) rotateZ(-.5deg) scale(1.015);
+}
+
+.bar {
+  position: relative;
+  height: 24px;
+  background: linear-gradient(#1b1f21, #141819);
+  border-bottom: 1px solid rgba(255, 255, 255, .06);
+}
+
+.bar::before {
+  content: "";
+  position: absolute;
+  left: 12px;
+  top: 9px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4a4f52;
+  box-shadow: 11px 0 #4a4f52, 22px 0 #4a4f52;
+}
+
+.cardBody {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #111416;
+}
+
+.shot {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.triptych {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3%;
+  padding: 5%;
+  background: #161a1d;
+}
+
+.triptych div {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.triptych img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.poster {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 6% 7%;
+  overflow: hidden;
+  background: #0e1214;
+  color: #f1eee8;
+}
+
+.poster::before {
+  content: "";
+  position: absolute;
+  right: -12%;
+  top: -30%;
+  width: 70%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(232, 160, 110, .28), transparent 65%);
+}
+
+.posterTop,
+.posterDate,
+.posterBottom {
+  position: relative;
+}
+
+.posterTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: clamp(12px, 1.4vw, 18px);
+  letter-spacing: -.02em;
+}
+
+.posterTop em {
+  padding: 6px 12px;
+  border: 1px solid rgba(241, 238, 232, .4);
+  border-radius: 999px;
+  font-style: normal;
+  font-size: clamp(8px, .8vw, 11px);
+  letter-spacing: .18em;
+}
+
+.posterDate {
+  display: grid;
+  gap: 6px;
+}
+
+.posterDate strong {
+  font-size: clamp(56px, 8vw, 132px);
+  font-weight: 400;
+  line-height: .85;
+  letter-spacing: -.07em;
+}
+
+.posterDate small {
+  font-size: clamp(9px, .9vw, 12px);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  opacity: .7;
+}
+
+.posterBottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(241, 238, 232, .2);
+}
+
+.posterBottom p {
+  max-width: 60%;
+  margin: 0;
+  font-size: clamp(10px, 1.05vw, 14px);
+  line-height: 1.4;
+  opacity: .8;
+}
+
+.posterBottom span {
+  padding: 9px 14px;
+  border-radius: 999px;
+  background: #f1eee8;
+  color: #0e1214;
+  font-size: clamp(8px, .85vw, 11px);
+  letter-spacing: .16em;
+  white-space: nowrap;
+}
+
+/* Stage chrome */
+.count {
+  position: absolute;
+  right: clamp(28px, 4.6vw, 66px);
+  top: 150px;
+  z-index: 3;
+  font-size: 10px;
+  letter-spacing: .18em;
+  opacity: .7;
+}
+
+.rail {
+  position: absolute;
+  right: clamp(12px, 2vw, 30px);
+  top: 50%;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transform: translateY(-50%);
+}
+
+.rail button {
+  display: block;
+  width: 14px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  color: inherit;
+}
+
+.rail button::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 4px;
+  width: 2px;
+  height: 24px;
+  background: currentColor;
+  opacity: .25;
+  transition: height .5s cubic-bezier(.2, .7, .2, 1), opacity .4s, top .5s cubic-bezier(.2, .7, .2, 1);
+}
+
+.rail button.on::after {
+  top: -4px;
+  height: 40px;
+  opacity: 1;
+}
+
+/* ───────── Mobile: same world, stacked ───────── */
+@media (max-width: 800px) {
+  .hero {
+    min-height: 780px;
+    align-items: flex-start;
+    padding: 120px 7vw 80px;
+  }
+
+  .heroContent {
+    padding-top: 78px;
+  }
+
+  .hero h1 {
+    margin: 30px 0;
+    font-size: clamp(72px, 20vw, 104px);
+  }
+
+  .hero p {
+    max-width: 340px;
+    font-size: 16px;
+  }
+
+  .scrollHint {
+    left: 7vw;
+    bottom: 34px;
+  }
+
+  .scrollHint span {
+    height: 72px;
+  }
+
+  .scene {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 22px;
+    padding: 96px 26px 30px 20px;
+  }
+
+  .info {
+    order: 1;
+    width: 100%;
+    padding-top: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cardWrap {
+    order: 2;
+    width: 100%;
+    perspective: 900px;
+  }
+
+  .info h2 {
+    order: 1;
+    margin-top: 0;
+    font-size: clamp(50px, 16.5vw, 78px);
+  }
+
+  .category {
+    order: 2;
+    margin: 18px 0 0;
+  }
+
+  .info p {
+    order: 5;
+    margin-top: 22px;
+    max-width: none;
+    font-size: 15px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .tags {
+    order: 6;
+    margin: 16px 0 20px;
+  }
+
+  .link {
+    order: 7;
+    align-self: flex-start;
+  }
+
+  .card {
+    transform: rotateY(-7deg) rotateX(2deg) rotateZ(-1deg);
+    box-shadow: 0 24px 50px rgba(0, 0, 0, var(--sh));
+  }
+
+  .bar {
+    height: 18px;
+  }
+
+  .bar::before {
+    top: 6px;
+  }
+
+  .count {
+    right: 26px;
+    top: 100px;
+  }
+
+  .rail {
+    right: 4px;
+  }
+
+  .poster {
+    padding: 5% 6%;
+  }
+
+  .posterDate strong {
+    font-size: clamp(44px, 16vw, 80px);
+  }
+
+  .posterBottom p {
+    font-size: 10px;
+    max-width: 64%;
+  }
+}
+
+/* short phones: drop the copy, keep the composition */
+@media (max-width: 800px) and (max-height: 720px) {
+  .info p {
+    display: none;
+  }
+
+  .scene {
+    gap: 14px;
+  }
+}
+
+@media (min-width: 801px) and (max-height: 760px) {
+  .info {
+    padding-top: 70px;
+  }
+
+  .info h2 {
+    font-size: clamp(52px, 7.2vw, 100px);
+  }
+
+  .info p {
+    display: none;
+  }
+}

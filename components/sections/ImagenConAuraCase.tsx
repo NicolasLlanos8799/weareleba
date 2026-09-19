@@ -2,8 +2,10 @@
 
 import { useRef, useState, type CSSProperties } from "react";
 import Image from "next/image";
+import { ArrowUpRight } from "@/components/system/ArrowUpRight";
 import { useLanguage } from "@/components/i18n/LanguageProvider";
 import styles from "./BookeaCaseStudy.module.css";
+import { ShowcaseImage } from "@/components/system/ShowcaseImage";
 import { rv, useScrollEffects } from "./bookeaShared";
 
 const base = "/assets/imagenconaura";
@@ -56,7 +58,7 @@ const copy = {
       active: "SISTEMA ACTIVO",
       title: <>UN SISTEMA<br />PARA EL TALLER.</>,
       body: "Lo que la clienta no ve: cómo llega cada pedido, ordenado y completo, a la fotógrafa.",
-      icons: ["☁", "▤", "◔", "✉"],
+      icons: ["☁", "▤", "◔", "✉\uFE0E"],
       stages: [
         ["Fotos directo a Drive", "SIN COMPRESIÓN", "Las fotos se suben por partes a una carpeta de Google Drive de la fotógrafa, incluso las más pesadas."],
         ["Una carpeta por pedido", "ORDEN", "Cada pedido crea su carpeta, con una subcarpeta por pack y un resumen con los datos de la clienta."],
@@ -115,7 +117,7 @@ const copy = {
       active: "SYSTEM ACTIVE",
       title: <>A SYSTEM<br />FOR THE WORKSHOP.</>,
       body: "What the client doesn't see: how each order reaches the photographer, organized and complete.",
-      icons: ["☁", "▤", "◔", "✉"],
+      icons: ["☁", "▤", "◔", "✉\uFE0E"],
       stages: [
         ["Photos straight to Drive", "UNCOMPRESSED", "Photos are uploaded in parts to a Google Drive folder of the photographer, even the heaviest ones."],
         ["One folder per order", "ORDER", "Each order creates its folder, with a subfolder per pack and a summary with the client's details."],
@@ -134,17 +136,19 @@ const copy = {
 
 function Showcase({ screens, label }: { screens: Screen[]; label: string }) {
   const [active, setActive] = useState(0);
+  const { language } = useLanguage();
+  const items = screens.map(({ title, img }) => ({ src: `${base}/${img}.webp`, alt: `${label}: ${title}` }));
   const current = screens[active];
   return (
     <div className={`${styles.showcase} ${styles.showcaseFlip}`}>
-      <div className={styles.showcaseImage}>
+      <ShowcaseImage className={styles.showcaseImage} lang={language} active={active} onChange={setActive} items={items}>
         <div className={styles.frame} data-par>
           <div className={styles.frameBar}><i /><i /><i /></div>
           <div className={styles.frameShot} key={current.img}>
             <Image src={`${base}/${current.img}.webp`} alt={`${label}: ${current.title}`} fill sizes="(max-width: 900px) 92vw, 56vw" quality={90} priority={active === 0} />
           </div>
         </div>
-      </div>
+      </ShowcaseImage>
       <ol className={styles.screenList}>
         {screens.map(({ title, text }, index) => (
           <li key={title} {...rv(index + 1)}>
@@ -201,7 +205,7 @@ export function ImagenConAuraCase() {
             <div>
               <h1>{t.title}</h1>
               <p className={styles.lead}>{t.lead}</p>
-              <a className={styles.visit} href="https://imagenconaura.com" target="_blank" rel="noreferrer"><span>{t.visit}</span><b>imagenconaura.com ↗</b></a>
+              <a className={styles.visit} href="https://imagenconaura.com" target="_blank" rel="noreferrer"><span>{t.visit}</span><b>imagenconaura.com <ArrowUpRight /></b></a>
             </div>
             <dl className={styles.meta}>
               {t.meta.map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}
@@ -252,7 +256,7 @@ export function ImagenConAuraCase() {
               ))}
             </ul>
           </div>
-          <a className={styles.visit} href="https://imagenconaura.com" target="_blank" rel="noreferrer"><span>{t.visit}</span><b>imagenconaura.com ↗</b></a>
+          <a className={styles.visit} href="https://imagenconaura.com" target="_blank" rel="noreferrer"><span>{t.visit}</span><b>imagenconaura.com <ArrowUpRight /></b></a>
           <a className={styles.back} href="/work">← {t.closing.back}</a>
         </div>
       </section>

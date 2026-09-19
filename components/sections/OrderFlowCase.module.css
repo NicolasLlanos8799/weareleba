@@ -157,3 +157,12 @@
 
 /* Keep words whole: the global EN layout enables automatic hyphenation */
 :global(html[data-language]) .caseStudy :is(h1, h2, h3, p, li, span, b) { hyphens: manual; }
+
+/* Mobile: keep the screenshot in view while reading/tapping the list below it */
+@media (max-width: 900px) {
+  .showcaseImage { position: sticky; top: 76px; z-index: 5; }
+  .showcaseImage .frame { box-shadow: 0 14px 30px rgba(0, 0, 0, .45); }
+  .screenList button { min-height: 56px; }
+}
+
+@media (max-width: 900px) { .back { display: inline-flex; align-items: center; min-height: 44px; padding: 12px 0 4px; } }

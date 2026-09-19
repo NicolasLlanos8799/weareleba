@@ -45,3 +45,10 @@
 
 @media (max-width: 900px) { .hero { grid-template-columns: 1fr; align-items: start; } .infoGrid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 640px) { .footer { padding: 54px 24px 0; } .hero { padding: 42px 0 50px; gap: 34px; } .hero h2 { font-size: clamp(48px, 14vw, 72px); } .cta { width: 100%; } .infoGrid { grid-template-columns: 1fr; gap: 36px; padding-bottom: 52px; } .bottom { align-items: flex-start; flex-direction: column; line-height: 1.5; } .wordmark { margin-top: 40px; font-size: 26vw; } }
+
+/* Touch: footer links get comfortable tap areas on phones */
+@media (max-width: 900px) {
+  .links { gap: 0; }
+  .links a { display: block; padding: 14px 0; }
+  .email { display: inline-block; padding: 10px 0; }
+}

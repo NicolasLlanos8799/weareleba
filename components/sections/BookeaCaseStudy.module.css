@@ -119,7 +119,7 @@
 @keyframes itemIn { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
 .overlay { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; padding: 3vh 3vw; background: rgba(5, 7, 8, .78); backdrop-filter: blur(10px); animation: fadeIn .3s ease both; color: #f1eee8; font-family: var(--font-geist), Arial, sans-serif; }
 .sheet { position: relative; width: min(1120px, 100%); max-height: 100%; overflow-y: auto; border-radius: 16px; background: #0e1214; border: 1px solid rgba(241, 238, 232, .16); box-shadow: 0 40px 120px rgba(0, 0, 0, .6); animation: sheetIn .5s cubic-bezier(.2, .7, .2, 1) both; overscroll-behavior: contain; }
-.sheetClose { position: sticky; top: 14px; float: right; margin: 14px 14px 0 0; z-index: 3; padding: 10px 16px; border-radius: 999px; border: 1px solid rgba(241, 238, 232, .3); background: rgba(9, 12, 14, .8); color: inherit; font: inherit; font-size: 10px; letter-spacing: .16em; cursor: pointer; backdrop-filter: blur(6px); transition: background .3s, color .3s; }
+.sheetClose { position: sticky; top: 12px; display: block; width: fit-content; height: 40px; margin: 12px 12px -52px auto; z-index: 3; padding: 0 16px; border-radius: 999px; border: 1px solid rgba(241, 238, 232, .3); background: rgba(9, 12, 14, .8); color: inherit; font: inherit; font-size: 10px; letter-spacing: .16em; cursor: pointer; backdrop-filter: blur(6px); transition: background .3s, color .3s; }
 .sheetClose:hover { background: #f1eee8; color: #090c0e; }
 .sheetTop { display: grid; grid-template-columns: .9fr 1.1fr; gap: 0; }
 .sheetMedia { position: relative; min-height: 340px; overflow: hidden; }
@@ -346,3 +346,22 @@
 /* Keep words whole: the global EN layout enables automatic hyphenation */
 :global(html[data-language]) .caseStudy :is(h1, h2, h3, p, li, span, b) { hyphens: manual; }
 :global(html[data-language]) .overlay :is(h3, p, li, span, b) { hyphens: manual; }
+
+/* Mobile: keep the screenshot in view while reading/tapping the list below it */
+@media (max-width: 900px) {
+  .showcaseImage { position: sticky; top: 76px; z-index: 5; }
+  .showcaseImage .frame { box-shadow: 0 14px 30px rgba(0, 0, 0, .45); }
+  .screenList button { min-height: 56px; }
+}
+
+/* Mobile: full-height sheet, close button overlays the image (no float squeezing the layout), thumb-sized targets */
+@media (max-width: 900px) {
+  .sheet { max-height: 96dvh; }
+  .sheetClose { height: 44px; margin-bottom: -56px; padding: 0 18px; font-size: 11px; background: rgba(9, 12, 14, .88); }
+  .sheetFoot { flex-direction: column; align-items: stretch; gap: 18px; padding: 20px 24px max(24px, env(safe-area-inset-bottom)); }
+  .sheetNav { width: 100%; }
+  .sheetNav button { flex: 1; min-height: 48px; }
+  .thumbs button { width: 52px; }
+}
+
+@media (max-width: 900px) { .back { display: inline-flex; align-items: center; min-height: 44px; padding: 12px 0 4px; } }

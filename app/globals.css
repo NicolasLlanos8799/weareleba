@@ -167,3 +167,9 @@ button { font: inherit; }
   .hero-system-caption { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
+
+/* Touch: header language + menu controls get a 44px hit area on phones */
+@media (max-width: 700px) {
+  .site-language-selector button, .menu-toggle { min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+  .site-language-selector { margin-right: 4px !important; gap: 0 !important; }
+}

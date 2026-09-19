@@ -21,7 +21,7 @@ const copy = {
       eyebrow: "01 / LA BASE COMÚN",
       title: <>LO QUE LOS TRES<br />COMPARTEN.</>,
       body: "Antes de personalizar nada, los tres sistemas parten del mismo núcleo. Por eso una parte del panel funciona igual en todos.",
-      icons: ["▤", "✂", "▦", "◷", "◔", "⚙"],
+      icons: ["▤", "✂\uFE0E", "▦", "◷", "◔", "⚙"],
       items: [
         ["Estadísticas", "PANEL", "Ingresos realizados y proyectados del mes y total de turnos, para ver cómo va el negocio."],
         ["Servicios", "PANEL", "Alta, edición y baja de servicios con su duración, precio y estado, desde el mismo panel."],
@@ -79,7 +79,7 @@ const copy = {
       eyebrow: "01 / THE COMMON BASE",
       title: <>WHAT ALL THREE<br />SHARE.</>,
       body: "Before anything is customized, the three systems start from the same core. That is why part of the panel works the same in all of them.",
-      icons: ["▤", "✂", "▦", "◷", "◔", "⚙"],
+      icons: ["▤", "✂\uFE0E", "▦", "◷", "◔", "⚙"],
       items: [
         ["Statistics", "PANEL", "Completed and projected revenue for the month and total appointments, to see how the business is doing."],
         ["Services", "PANEL", "Add, edit and remove services with their duration, price and status, from the same panel."],

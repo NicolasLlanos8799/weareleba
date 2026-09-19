@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
+import { ArrowUpRight } from "@/components/system/ArrowUpRight";
 import styles from "./BookeaCaseStudy.module.css";
 
 export const base = "/assets/bookea";
@@ -93,7 +94,7 @@ export function CustomDetail({ items, index, labels, onClose, onNav }: { items: 
             <span className={styles.customType}>{item.type}</span>
             <h3>{item.name}</h3>
             <p>{item.lead}</p>
-            {item.url && <a className={styles.visitLink} href={item.url} target="_blank" rel="noreferrer">{labels.visit} <b>↗</b><span>{item.url.replace(/^https?:\/\//, "")}</span></a>}
+            {item.url && <a className={styles.visitLink} href={item.url} target="_blank" rel="noreferrer">{labels.visit} <b><ArrowUpRight /></b><span>{item.url.replace(/^https?:\/\//, "")}</span></a>}
           </div>
         </div>
         {item.highlights && (
