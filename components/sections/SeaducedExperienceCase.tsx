@@ -7,7 +7,7 @@ const base = "/assets/seaducedexperience";
 
 const data: CaseStudyData = {
   project: { en: "SEADUCED EXPERIENCE", es: "SEADUCED EXPERIENCE" },
-  category: { en: "Website · Software · Automation", es: "Sitio web · Software · Automatización" },
+  category: { en: "Website · Dashboard · Automation", es: "Sitio web · Dashboard · Automatización" },
   description: { en: "Digital infrastructure for a premium sailing experience.", es: "Infraestructura digital para una experiencia premium de navegación." },
   heroImage: { src: base + "/seaduced-experience-1.png", alt: { en: "Seaduced Experience website", es: "Sitio web de Seaduced Experience" }, fit: "cover", priority: true },
   projectInfo: {
@@ -16,6 +16,7 @@ const data: CaseStudyData = {
     services: { en: "Website · Dashboard · Automation", es: "Sitio web · Dashboard · Automatización" },
     technologies: { en: "Next.js · React · Automation", es: "Next.js · React · Automatización" },
     year: "2026",
+    website: "https://www.seaducedexperience.com",
   },
   projectDescription: {
     en: "We connected the customer journey with the operational side of the business: discovery, booking, management and automated follow-up become one digital system.",
