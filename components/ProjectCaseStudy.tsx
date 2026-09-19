@@ -165,7 +165,6 @@ export function ProjectCaseStudy({ data }: { data: CaseStudyData }) {
         <div className={styles.sectionLabel}>
           <span>05</span>
           <span>{l.visuals}</span>
-          <em>{data.visuals.length} selected</em>
         </div>
         <div className={styles.visuals}>
           {data.visuals.slice(0, 3).map((image, index) => (
