@@ -22,7 +22,8 @@ button { font: inherit; }
 .site-header-cta { min-width: 170px; height: 56px; padding: 0 24px; display: inline-flex; align-items: center; justify-content: space-between; gap: 24px; border: 1px solid rgba(255,255,255,.75); border-radius: 999px; font-size: 13px; color: rgba(255,255,255,.92); }
 .site-header-cta:hover { background: rgba(255,255,255,.08); }
 .menu-toggle { display: none; padding: 0; border: 0; color: white; background: transparent; cursor: pointer; }
-.mobile-nav { display: grid; gap: 18px; padding: 18px 20px 28px; background: rgba(8,8,8,.94); border-top: 1px solid rgba(255,255,255,.12); }
+.mobile-nav { display: grid; gap: 18px; padding: 18px 20px 28px; background: transparent; color: var(--header-fg); border-top: 1px solid var(--header-border); }
+.mobile-nav a, .mobile-nav button { color: inherit; transition: color 220ms ease; }
 
 /* Cinematic hero */
 .hero-cinematic { position: relative; min-height: 100svh; isolation: isolate; overflow: hidden; background: #0b0908; color: #f7f5f0; }
