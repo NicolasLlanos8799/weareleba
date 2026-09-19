@@ -34,7 +34,6 @@ export type CaseStudyData = {
     intro: { en: string; es: string };
     areas: Array<{ number: string; title: { en: string; es: string }; body: { en: string; es: string } }>;
   };
-  visuals: CaseStudyImage[];
   results:
     | { metrics: Array<{ value: string; label: { en: string; es: string } }> }
     | { qualitative: Array<{ title: { en: string; es: string }; body: { en: string; es: string } }> };
@@ -48,7 +47,6 @@ const labels = {
     project: "PROJECT",
     challenge: "THE CHALLENGE",
     solution: "THE SOLUTION",
-    visuals: "SELECTED VISUALS",
     results: "RESULTS",
     client: "ABOUT THE CLIENT",
     previous: "PREVIOUS PROJECT",
@@ -66,7 +64,6 @@ const labels = {
     project: "PROYECTO",
     challenge: "EL DESAFÍO",
     solution: "LA SOLUCIÓN",
-    visuals: "VISUALES SELECCIONADOS",
     results: "RESULTADOS",
     client: "SOBRE EL CLIENTE",
     previous: "PROYECTO ANTERIOR",
@@ -164,20 +161,8 @@ export function ProjectCaseStudy({ data }: { data: CaseStudyData }) {
         </div>
       </section>
 
-      <section className={styles.section + " " + styles.visualSection}>
-        <div className={styles.sectionLabel}>
-          <span>05</span>
-          <span>{l.visuals}</span>
-        </div>
-        <div className={styles.visuals}>
-          {data.visuals.slice(0, 3).map((image, index) => (
-            <CaseImage key={image.src} image={image} index={index} />
-          ))}
-        </div>
-      </section>
-
       <section className={styles.section}>
-        <div className={styles.sectionLabel}><span>06</span><span>{l.results}</span></div>
+        <div className={styles.sectionLabel}><span>05</span><span>{l.results}</span></div>
         <div className={styles.results}>
           {"metrics" in data.results
             ? data.results.metrics.map((metric) => (
@@ -197,7 +182,7 @@ export function ProjectCaseStudy({ data }: { data: CaseStudyData }) {
       </section>
 
       <section className={styles.clientSection}>
-        <div className={styles.sectionLabel}><span>07</span><span>{l.client}</span></div>
+        <div className={styles.sectionLabel}><span>06</span><span>{l.client}</span></div>
         <div className={styles.clientBlock}>
           <span className={styles.clientMark}>SEADUCED</span>
           <h2>{text(data.client)}</h2>
