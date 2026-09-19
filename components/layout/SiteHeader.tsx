@@ -4,8 +4,8 @@ import { CSSProperties, useEffect, useState } from "react";
 import { useLanguage } from "@/components/i18n/LanguageProvider";
 
 const navigation = {
-  en: [["Portfolio", "/work"], ["Solutions", "/#what-we-do"], ["About", "/about"]],
-  es: [["Portfolio", "/work"], ["Soluciones", "/#what-we-do"], ["Nosotros", "/nosotros"]],
+  en: [["Portfolio", "/workinprocess"], ["Solutions", "/#what-we-do"], ["About", "/about"]],
+  es: [["Portfolio", "/workinprocess"], ["Soluciones", "/#what-we-do"], ["Nosotros", "/nosotros"]],
 };
 
 type SiteHeaderProps = { tone?: "light" | "dark" };
