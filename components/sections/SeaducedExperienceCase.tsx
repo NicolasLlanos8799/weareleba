@@ -9,7 +9,7 @@ const data: CaseStudyData = {
   project: { en: "SEADUCED EXPERIENCE", es: "SEADUCED EXPERIENCE" },
   category: { en: "Website · Software · Automation", es: "Sitio web · Software · Automatización" },
   description: { en: "Digital infrastructure for a premium sailing experience.", es: "Infraestructura digital para una experiencia premium de navegación." },
-  heroImage: { src: base + "/seaduced-experience-1-1280.webp", alt: { en: "Seaduced Experience website", es: "Sitio web de Seaduced Experience" }, fit: "cover", priority: true },
+  heroImage: { src: base + "/seaduced-experience-1.png", alt: { en: "Seaduced Experience website", es: "Sitio web de Seaduced Experience" }, fit: "cover", priority: true },
   projectInfo: {
     client: { en: "Seaduced Experience", es: "Seaduced Experience" },
     industry: { en: "Premium experiences · Sailing", es: "Experiencias premium · Navegación" },
