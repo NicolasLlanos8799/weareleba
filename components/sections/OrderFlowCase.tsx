@@ -1,112 +1,261 @@
 "use client";
 
-import styles from "./OrderFlowCase.module.css";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
+import Image from "next/image";
 import { useLanguage } from "@/components/i18n/LanguageProvider";
+import styles from "./OrderFlowCase.module.css";
 
-const content = {
-  en: {
-    eyebrow: "AUTOMATION SYSTEM / ORDER MANAGEMENT",
-    title: <>From online orders<br /><span className={styles.nowrapWord}>to operations.</span></>,
-    intro: "Order Flow is a web-based order management system for businesses that receive orders through their website, WhatsApp and Instagram. It turns incoming orders and conversations into structured orders and gives the team one place to manage products, stock, customers and daily operations.",
-    systemLabel: "THE SYSTEM",
-    system: "Order Flow sits behind the online ordering experience — connecting incoming orders with the operational systems needed to run the business.",
-    problemLabel: "THE PROBLEM",
-    problem: "Orders were coming through different channels, product information lived separately, and the team had to manually organize the operation. The system brings those pieces together.",
-    blocks: [
-      ["01", "Product Management", "A centralized product management system where administrators can add and manage products, update prices, descriptions and stock, and keep everything organized from one place.", "/assets/orderflow/productos.png", "Order Flow product management"],
-      ["02", "Order Capture", "Incoming orders from the website, WhatsApp and Instagram are organized into structured orders, with the essential customer and order details ready for the team.", "/assets/orderflow/pedidos.png", "Order Flow orders"],
-      ["03", "Operations & Insights", "The operational view brings order activity and business data together, helping the team follow the flow of work and understand performance over time.", "/assets/orderflow/estadisticas.png", "Order Flow operational insights"],
-    ],
-    closing: "A SYSTEM BUILT TO TURN ORDERS INTO OPERATIONS.",
-    note: "From the first customer order to the final operational view, Order Flow creates a clearer path through the entire ordering process.",
-  },
+const base = "/assets/orderflow";
+const images = ["panelcontrol.png", "productos.png", "pedidos.png", "estadisticas.png"];
+
+// Scroll-reveal helper: elements fade/rise in once, staggered by index.
+const rv = (i = 0) => ({ "data-r": "", style: { "--d": `${i * 90}ms` } as CSSProperties });
+
+function useScrollEffects(root: React.RefObject<HTMLElement | null>, language: string) {
+  useEffect(() => {
+    const main = root.current;
+    if (!main || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    main.classList.add(styles.armed);
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add(styles.in); observer.unobserve(entry.target); }
+      });
+    }, { threshold: 0.15, rootMargin: "0px 0px -8% 0px" });
+    main.querySelectorAll("[data-r]").forEach(el => observer.observe(el));
+
+    // Scroll-linked progress (0 -> 1 as an element travels into view) for depth.
+    const par = Array.from(main.querySelectorAll<HTMLElement>("[data-par]"));
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const vh = window.innerHeight;
+      par.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        const p = Math.min(1, Math.max(0, (vh - rect.top) / (vh * 0.75)));
+        el.style.setProperty("--p", p.toFixed(3));
+      });
+    };
+    const onScroll = () => { if (!frame) frame = requestAnimationFrame(update); };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => { observer.disconnect(); window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll); if (frame) cancelAnimationFrame(frame); };
+  }, [root, language]); // re-observe on language change: keyed lists remount their nodes
+}
+
+const copy = {
   es: {
-    eyebrow: "SISTEMA DE AUTOMATIZACIÓN / GESTIÓN DE PEDIDOS",
-    title: <>De los pedidos online<br /><span className={styles.nowrapWord}>a la operación.</span></>,
-    intro: "Order Flow es un sistema web de gestión de pedidos para negocios que reciben pedidos a través de su web, WhatsApp e Instagram. Convierte los pedidos y conversaciones entrantes en pedidos estructurados y permite al equipo gestionar productos, stock, clientes y la operación diaria desde un único lugar.",
-    systemLabel: "EL SISTEMA",
-    system: "Order Flow se sitúa detrás de la experiencia de pedidos online, conectando los pedidos entrantes con los sistemas operativos necesarios para gestionar el negocio.",
-    problemLabel: "EL PROBLEMA",
-    problem: "Los pedidos llegaban a través de distintos canales, la información de los productos estaba separada y el equipo tenía que organizar la operación manualmente. El sistema reúne esas piezas.",
-    blocks: [
-      ["01", "Gestión de productos", "Un sistema centralizado para que los administradores puedan cargar y gestionar productos, actualizar precios, descripciones y stock, y mantener todo organizado desde un único lugar.", "/assets/orderflow/productos.png", "Gestión de productos de Order Flow"],
-      ["02", "Captura de pedidos", "Los pedidos provenientes de la web, WhatsApp e Instagram se organizan como pedidos estructurados, con la información esencial del cliente y del pedido preparada para el equipo.", "/assets/orderflow/pedidos.png", "Pedidos de Order Flow"],
-      ["03", "Operación y análisis", "La visión operativa reúne la actividad de los pedidos y los datos del negocio, facilitando el seguimiento del trabajo y la comprensión del rendimiento a lo largo del tiempo.", "/assets/orderflow/estadisticas.png", "Análisis operativo de Order Flow"],
+    kicker: "CASO DE ESTUDIO · SISTEMA · AUTOMATIZACIÓN · GESTIÓN DE PEDIDOS",
+    title: <>DE LOS PEDIDOS<br />A LA OPERACIÓN.</>,
+    lead: "Order Flow es un sistema web que convierte los pedidos y conversaciones de la web, WhatsApp e Instagram en pedidos estructurados, y da al equipo un único lugar para gestionar su día a día.",
+    meta: [["TIPO", "Sistema de gestión de pedidos"], ["CANALES", "Web · WhatsApp · Instagram"], ["SERVICIOS", "Diseño de sistemas · Automatización · Desarrollo"], ["ENTREGABLES", "Centro de control, catálogo, pedidos y analíticas"]],
+    overview: [
+      ["01 / EL PROBLEMA", "Pedidos por todas partes.", "Los pedidos llegaban por distintos canales, la información de los productos estaba separada y el equipo organizaba la operación a mano."],
+      ["02 / EL SISTEMA", "Un núcleo detrás de la tienda.", "Order Flow se sitúa detrás de la experiencia de pedidos online y conecta los pedidos entrantes con los sistemas que hacen funcionar el negocio."],
+      ["03 / EL RESULTADO", "Un recorrido claro, de principio a fin.", "Del primer pedido del cliente a la visión operativa final, el equipo sigue todo el proceso desde un mismo panel."],
     ],
-    closing: "UN SISTEMA CREADO PARA CONVERTIR PEDIDOS EN OPERACIÓN.",
-    note: "Desde el primer pedido del cliente hasta la visión operativa final, Order Flow crea un recorrido más claro para todo el proceso de pedidos.",
+    panel: {
+      eyebrow: "01 / EL PANEL",
+      title: <>TODO EL NEGOCIO,<br />EN UN PANEL.</>,
+      body: "Productos, stock, clientes, pedidos y analíticas conviven en una interfaz clara, pensada para usarse cada día sin fricción.",
+      label: "Vista de Order Flow",
+      points: ["Centro de control con accesos directos a cada área", "Catálogo con precio, estado y stock por producto", "Pedidos organizados por estado, con búsqueda y filtros", "Analíticas de conversaciones y productos más consultados"],
+      screens: [
+        ["Centro de control", "El punto de partida del equipo: accesos a la tienda, la gestión del negocio, el catálogo, los pedidos y las analíticas, con las métricas clave a la vista."],
+        ["Gestión de productos", "Inventario con foto, SKU, precio, estado y stock. Filtros por estado y categoría, e importación y exportación para trabajar en bloque."],
+        ["Captura de pedidos", "Pestañas por estado, búsqueda por cliente o #ID y filtro por fecha. Cada pedido muestra contacto, método de pago y total, con la acción de preparar a un clic."],
+        ["Operación y análisis", "Conversaciones, conversión, distribución de intenciones y productos más consultados en un mismo tablero, para entender el rendimiento."],
+      ],
+    },
+    lifecycle: {
+      eyebrow: "02 / EL RECORRIDO",
+      active: "SISTEMA ACTIVO",
+      title: <>DEL PEDIDO<br />A LA ENTREGA.</>,
+      body: "Cada pedido avanza por estados claros. El equipo siempre sabe qué hay que hacer y qué está resuelto.",
+      stages: [
+        ["Nuevo pedido", "NUEVO", "Entra desde la web, WhatsApp o Instagram y se registra con cliente, contacto, método de pago y total."],
+        ["En preparación", "EN PREPARACIÓN", "El equipo lo toma con un clic desde la lista y ve de un vistazo qué falta por preparar."],
+        ["Despachado", "DESPACHADO", "Se marca como despachado y queda registrado en el historial del pedido y del cliente."],
+        ["Entregado", "ENTREGADO", "El pedido se cierra y pasa a alimentar las analíticas de ventas del negocio."],
+      ],
+      note: "Los pedidos cancelados tienen su propia pestaña, para no perderlos de vista.",
+    },
+    closing: {
+      eyebrow: "03 / EN CONJUNTO",
+      title: <>UN SISTEMA PARA<br />CONVERTIR PEDIDOS<br />EN OPERACIÓN.</>,
+      pillars: [["CAPTURA", "Reúne los pedidos de todos los canales."], ["GESTIÓN", "Ordena productos, stock y clientes."], ["ANÁLISIS", "Convierte la actividad en decisiones."]],
+      back: "VER MÁS PROYECTOS",
+    },
+  },
+  en: {
+    kicker: "CASE STUDY · SYSTEM · AUTOMATION · ORDER MANAGEMENT",
+    title: <>FROM ONLINE ORDERS<br />TO OPERATIONS.</>,
+    lead: "Order Flow is a web-based system that turns orders and conversations from the website, WhatsApp and Instagram into structured orders, and gives the team one place to run the day to day.",
+    meta: [["TYPE", "Order management system"], ["CHANNELS", "Website · WhatsApp · Instagram"], ["SERVICES", "System design · Automation · Development"], ["DELIVERABLES", "Control center, catalog, orders and analytics"]],
+    overview: [
+      ["01 / THE PROBLEM", "Orders everywhere.", "Orders came through different channels, product information lived separately and the team organized the operation by hand."],
+      ["02 / THE SYSTEM", "A core behind the store.", "Order Flow sits behind the online ordering experience and connects incoming orders with the systems that run the business."],
+      ["03 / THE RESULT", "A clear path, start to finish.", "From the first customer order to the final operational view, the team follows the whole process from one panel."],
+    ],
+    panel: {
+      eyebrow: "01 / THE PANEL",
+      title: <>THE WHOLE BUSINESS,<br />IN ONE PANEL.</>,
+      body: "Products, stock, customers, orders and analytics live in one clear interface, designed to be used every day without friction.",
+      label: "Order Flow view",
+      points: ["Control center with shortcuts to every area", "Catalog with price, status and stock per product", "Orders organized by status, with search and filters", "Analytics on conversations and most-asked products"],
+      screens: [
+        ["Control center", "The team's starting point: shortcuts to the store, business settings, catalog, orders and analytics, with key metrics in view."],
+        ["Product management", "Inventory with photo, SKU, price, status and stock. Filter by status and category, plus import and export for bulk work."],
+        ["Order capture", "Tabs by status, search by customer or #ID and a date filter. Each order shows contact, payment method and total, with a one-click prepare action."],
+        ["Operations & insights", "Conversations, conversion, intent distribution and most-asked products on one board, to understand performance over time."],
+      ],
+    },
+    lifecycle: {
+      eyebrow: "02 / THE JOURNEY",
+      active: "SYSTEM ACTIVE",
+      title: <>FROM ORDER<br />TO DELIVERY.</>,
+      body: "Every order moves through clear statuses. The team always knows what needs doing and what is done.",
+      stages: [
+        ["New order", "NEW", "Comes in from the website, WhatsApp or Instagram and is recorded with customer, contact, payment method and total."],
+        ["In preparation", "IN PREPARATION", "The team picks it up with one click from the list and sees at a glance what is left to prepare."],
+        ["Dispatched", "DISPATCHED", "It is marked as dispatched and kept in the order and customer history."],
+        ["Delivered", "DELIVERED", "The order is closed and feeds the business's sales analytics."],
+      ],
+      note: "Cancelled orders have their own tab, so they never go out of sight.",
+    },
+    closing: {
+      eyebrow: "03 / TOGETHER",
+      title: <>A SYSTEM TO TURN<br />ORDERS INTO<br />OPERATIONS.</>,
+      pillars: [["CAPTURE", "Brings orders from every channel together."], ["MANAGE", "Keeps products, stock and customers in order."], ["ANALYZE", "Turns activity into decisions."]],
+      back: "MORE PROJECTS",
+    },
   },
 };
 
+type Screen = string[];
+
+function BrowserFrame({ src, alt, priority }: { src: string; alt: string; priority?: boolean }) {
+  return (
+    <div className={styles.frame} data-par>
+      <div className={styles.frameBar}><i /><i /><i /></div>
+      <div className={styles.frameShot} key={src}>
+        <Image src={src} alt={alt} fill sizes="(max-width: 900px) 92vw, 56vw" quality={90} priority={priority} />
+      </div>
+    </div>
+  );
+}
+
+function Showcase({ screens, label }: { screens: Screen[]; label: string }) {
+  const [active, setActive] = useState(0);
+  return (
+    <div className={`${styles.showcase} ${styles.showcaseFlip}`}>
+      <div className={styles.showcaseImage}>
+        <BrowserFrame src={`${base}/${images[active]}`} alt={`${label}: ${screens[active][0]}`} priority={active === 0} />
+      </div>
+      <ol className={styles.screenList}>
+        {screens.map(([title, description], index) => (
+          <li key={title} {...rv(index + 1)}>
+            <button type="button" className={index === active ? styles.screenActive : ""} onClick={() => setActive(index)} onMouseEnter={() => setActive(index)} onFocus={() => setActive(index)} aria-pressed={index === active}>
+              <span className={styles.screenNumber}>{String(index + 1).padStart(2, "0")}</span>
+              <span className={styles.screenText}><b>{title}</b><span>{description}</span></span>
+            </button>
+          </li>
+        ))}
+      </ol>
+    </div>
+  );
+}
+
 export function OrderFlowCase() {
   const { language } = useLanguage();
-  const copy = content[language];
+  const t = copy[language];
+  const mainRef = useRef<HTMLElement>(null);
+  useScrollEffects(mainRef, language);
+  const icons = ["●", "◐", "➜", "✓"];
 
   return (
-    <main className={styles.case}>
+    <main className={styles.caseStudy} ref={mainRef}>
       <section className={styles.hero}>
-        <div className={styles.heroMeta}>{copy.eyebrow}</div>
-        <div className={styles.heroGrid}>
-          <div className={styles.heroCopy}>
-            <h1>{copy.title}</h1>
-            <p>{copy.intro}</p>
+        <div className={styles.wrap}>
+          <span className={styles.eyebrow}>{t.kicker}</span>
+          <div className={styles.heroGrid}>
+            <div>
+              <h1>{t.title}</h1>
+              <p className={styles.lead}>{t.lead}</p>
+            </div>
+            <dl className={styles.meta}>
+              {t.meta.map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}
+            </dl>
           </div>
-          <div className={styles.heroVisual}>
-            <img src="/assets/orderflow/panelcontrol.png" alt="Order Flow control panel" />
+        </div>
+      </section>
+
+      <section className={styles.overview}>
+        <div className={`${styles.wrap} ${styles.overviewGrid}`}>
+          {t.overview.map(([kicker, title, body], i) => (
+            <article key={kicker} {...rv(i)}>
+              <span className={styles.eyebrow}>{kicker}</span>
+              <h3>{title}</h3>
+              <p>{body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className={styles.chapter}>
+        <div className={styles.wrap}>
+          <div className={styles.chapterHeader}>
+            <div>
+              <span className={styles.eyebrow} {...rv()}>{t.panel.eyebrow}</span>
+              <h2 {...rv(1)}>{t.panel.title}</h2>
+            </div>
+            <div className={styles.chapterAside}>
+              <p {...rv(2)}>{t.panel.body}</p>
+              <ul>{t.panel.points.map((point, i) => <li key={point} {...rv(i + 3)}>{point}</li>)}</ul>
+            </div>
           </div>
-        </div>
-        <div className={styles.scrollHint}><span /> SCROLL TO EXPLORE</div>
-      </section>
-
-      <section className={styles.systemIntro}>
-        <div className={styles.introNumber}>01</div>
-        <div className={styles.introContent}>
-          <span>{copy.systemLabel}</span>
-          <p>{copy.system}</p>
+          <Showcase screens={t.panel.screens} label={t.panel.label} />
         </div>
       </section>
 
-      <section className={styles.problem}>
-        <div className={styles.problemCopy}>
-          <div className={styles.introNumber}>02</div>
-          <span>{copy.problemLabel}</span>
-          <p>{copy.problem}</p>
+      <section className={styles.lifecycle}>
+        <div className={styles.wrap}>
+          <div className={styles.lifecycleTop}>
+            <span className={styles.eyebrow}>{t.lifecycle.eyebrow}</span>
+            <span className={styles.systemActive}><i /> {t.lifecycle.active}</span>
+          </div>
+          <div className={styles.lifecycleIntro}>
+            <h2 {...rv()}>{t.lifecycle.title}</h2>
+            <p {...rv(2)}>{t.lifecycle.body}</p>
+          </div>
+          <ol className={styles.stages} {...rv()}>
+            {t.lifecycle.stages.map(([title, pill, text], i) => (
+              <li className={styles.stage} key={title} {...rv(i)}>
+                <div className={styles.stageTop}><span className={styles.stageNode}>{icons[i]}</span><span className={styles.stageNumber}>{String(i + 1).padStart(2, "0")}</span></div>
+                <span className={styles.pill}>{pill}</span>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </li>
+            ))}
+          </ol>
+          <p className={styles.stageNote}><i /> {t.lifecycle.note}</p>
         </div>
       </section>
 
-      <section className={`${styles.feature} ${styles.productFeature}`}>
-        <div className={styles.featureHeader}>
-          <div className={styles.featureMeta}><span>03</span><span>PRODUCT MANAGEMENT</span></div>
-          <h2>{copy.blocks[0][1]}</h2>
-          <p>{copy.blocks[0][2]}</p>
+      <section className={styles.closing}>
+        <div className={styles.wrap}>
+          <span className={styles.eyebrow}>{t.closing.eyebrow}</span>
+          <div className={styles.closingGrid}>
+            <h2 {...rv()}>{t.closing.title}</h2>
+            <ul>
+              {t.closing.pillars.map(([name, text], index) => (
+                <li key={name} {...rv(index + 1)}><span>{String(index + 1).padStart(2, "0")}</span><b>{name}</b><em>{text}</em></li>
+              ))}
+            </ul>
+          </div>
+          <a className={styles.back} href="/work">← {t.closing.back}</a>
         </div>
-        <div className={styles.featureVisual}>
-          <img src={copy.blocks[0][3]} alt={copy.blocks[0][4]} loading="lazy" />
-        </div>
-      </section>
-
-      <section className={`${styles.feature} ${styles.altFeature}`}>
-        <div className={styles.featureVisual}><img src={copy.blocks[1][3]} alt={copy.blocks[1][4]} loading="lazy" /></div>
-        <div className={styles.featureHeader}>
-          <div className={styles.featureMeta}><span>04</span><span>ORDER CAPTURE</span></div>
-          <h2>{copy.blocks[1][1]}</h2>
-          <p>{copy.blocks[1][2]}</p>
-        </div>
-      </section>
-
-      <section className={styles.insights}>
-        <div className={styles.insightsCopy}>
-          <div className={styles.featureMeta}><span>05</span><span>OPERATIONS & INSIGHTS</span></div>
-          <h2>{copy.blocks[2][1]}</h2>
-          <p>{copy.blocks[2][2]}</p>
-        </div>
-        <div className={styles.insightsVisual}><img src={copy.blocks[2][3]} alt={copy.blocks[2][4]} loading="lazy" /></div>
-      </section>
-
-      <section className={styles.statement}>
-        <div className={styles.statementIndex}>06 / SYSTEM</div>
-        <h2>{copy.closing}</h2>
-        <p>{copy.note}</p>
       </section>
     </main>
   );
