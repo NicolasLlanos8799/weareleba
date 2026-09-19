@@ -188,3 +188,24 @@
 }
 
 @media (max-width: 900px) { .back { display: inline-flex; align-items: center; min-height: 44px; padding: 12px 0 4px; } }
+
+/* Mobile: the three automation flows become a swipeable carousel with compact cards */
+@media (max-width: 900px) {
+  .automationIntro { padding: 30px 0 32px; gap: 18px; }
+  .automationFlows { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 7vw; margin: 0 -7vw; padding: 0 7vw 6px; -webkit-overflow-scrolling: touch; scrollbar-width: none; overscroll-behavior-x: contain; }
+  .automationFlows::-webkit-scrollbar { display: none; }
+  .automationFlows article { flex: 0 0 84%; scroll-snap-align: start; gap: 14px; padding: 18px; }
+  .flowCopy { min-height: 0; }
+  .flowCopy h3 { font-size: 26px; margin-bottom: 8px; }
+  .flowCopy p { font-size: 13px; line-height: 1.5; }
+  .timeline { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .timeline:before { left: 16%; right: 16%; top: 15px; bottom: auto; width: auto; height: 1px; background: repeating-linear-gradient(90deg, rgba(17, 20, 22, .4) 0 5px, transparent 5px 10px); }
+  .timeline li { flex-direction: column; gap: 8px; text-align: center; align-items: center; }
+  .timeline span { font-size: 8.5px; letter-spacing: .06em; }
+  .email { flex: none; box-shadow: 0 12px 26px rgba(17, 20, 22, .1); }
+  .emailBar { padding: 10px 12px; }
+  .emailBody { flex: none; padding: 14px 14px 12px; }
+  .emailBody strong { font-size: 17px; margin-bottom: 6px; }
+  .emailBody p { flex: none; margin: 0 0 12px; }
+  .emailBody small { margin-top: 10px; }
+}

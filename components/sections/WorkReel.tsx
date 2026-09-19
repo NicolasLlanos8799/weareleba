@@ -47,7 +47,7 @@ const covers = [
 const content = {
   en: {
     eyebrow: "OUR WORK",
-    title: <>Ideas<br />in action.</>,
+    titleLines: ["Ideas", "in action."],
     intro: "A selection of digital products, platforms and experiences we've designed and built to create real impact.",
     scroll: "SCROLL TO EXPLORE",
     view: "VIEW PROJECT",
@@ -62,7 +62,7 @@ const content = {
   },
   es: {
     eyebrow: "NUESTRO TRABAJO",
-    title: <>Ideas<br />en acción.</>,
+    titleLines: ["Ideas", "en acción."],
     intro: "Una selección de productos, plataformas y experiencias digitales que hemos diseñado y construido para generar un impacto real.",
     scroll: "SCROLL PARA EXPLORAR",
     view: "VER PROYECTO",
@@ -106,6 +106,7 @@ export function WorkReel() {
   const es = language === "es";
   const total = copy.projects.length;
 
+  const heroRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const sceneRefs = useRef<(HTMLElement | null)[]>([]);
@@ -119,6 +120,18 @@ export function WorkReel() {
     const span = track.offsetHeight - window.innerHeight;
     window.scrollTo({ top: top + (span * to) / Math.max(1, total - 1) + 1, behavior: "smooth" });
   }, [total]);
+
+  // Intro: each title line rises out of its own mask, then the rest fades in.
+  useEffect(() => {
+    const hero = heroRef.current;
+    if (!hero || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const ctx = gsap.context(() => {
+      gsap.timeline({ delay: 0.15 })
+        .fromTo("[data-hero-line]", { y: 0, yPercent: 112, rotate: 3 }, { y: 0, yPercent: 0, rotate: 0, duration: 1.4, stagger: 0.14, ease: "expo.out" })
+        .fromTo("[data-hero-fade]", { autoAlpha: 0, y: 18 }, { autoAlpha: 1, y: 0, duration: 0.9, stagger: 0.12, ease: "power3.out" }, 0.55);
+    }, hero);
+    return () => ctx.revert();
+  }, []);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -182,16 +195,16 @@ export function WorkReel() {
 
   return (
     <main className={styles.work}>
-      <section className={styles.hero}>
-        <div className={styles.heroContent}>
-          <span className={styles.eyebrow}>{copy.eyebrow}</span>
-          <h1>{copy.title}</h1>
+      <section ref={heroRef} className={styles.hero}>
+        <span className={styles.eyebrow} data-hero-fade>{copy.eyebrow}</span>
+        <h1>{copy.titleLines.map((line) => <span key={line} className={styles.line}><span className={styles.lineInner} data-hero-line>{line}</span></span>)}</h1>
+        <div className={styles.heroFoot} data-hero-fade>
+          <a className={styles.scrollHint} href="#reel"><span aria-hidden="true" />{copy.scroll} ↓</a>
           <p>{copy.intro}</p>
         </div>
-        <div className={styles.scrollHint}><span />{copy.scroll} ↓</div>
       </section>
 
-      <div ref={trackRef} className={styles.track} style={{ ["--n" as string]: total }}>
+      <div id="reel" ref={trackRef} className={styles.track} style={{ ["--n" as string]: total }}>
         <div ref={stageRef} className={styles.stage}>
           {copy.projects.map((project, i) => {
             const theme = themes[i];
