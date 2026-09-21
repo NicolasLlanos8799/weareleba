@@ -197,7 +197,7 @@ export function WorkReel() {
     <main className={styles.work}>
       <section ref={heroRef} className={styles.hero}>
         <span className={styles.eyebrow} data-hero-fade>{copy.eyebrow}</span>
-        <h1>{copy.titleLines.map((line) => <span key={line} className={styles.line}><span className={styles.lineInner} data-hero-line>{line}</span></span>)}</h1>
+        <h1>{copy.titleLines.map((line, i) => <span key={i} className={styles.line}><span className={styles.lineInner} data-hero-line>{line}</span></span>)}</h1>
         <div className={styles.heroFoot} data-hero-fade>
           <a className={styles.scrollHint} href="#reel"><span aria-hidden="true" />{copy.scroll} ↓</a>
           <p>{copy.intro}</p>

@@ -38,6 +38,7 @@
 .line {
   display: block;
   overflow: hidden;
+  white-space: nowrap;
   padding: .14em 0 .12em;
   margin: -.14em 0 -.12em;
 }
@@ -441,7 +442,7 @@
   }
 
   .hero h1 {
-    font-size: clamp(60px, 23.6vw, 130px);
+    font-size: clamp(56px, 21vw, 130px);
   }
 
   .heroFoot {

@@ -1,8 +1,9 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useState } from "react";
+import { LANGUAGE_COOKIE, type Language } from "./language";
 
-export type Language = "en" | "es";
+export type { Language };
 
 type LanguageContextValue = {
   language: Language;
@@ -11,16 +12,25 @@ type LanguageContextValue = {
 
 const LanguageContext = createContext<LanguageContextValue | undefined>(undefined);
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguage] = useState<Language>("en");
+// The root layout resolves the first language on the server (saved choice, then the
+// browser's Accept-Language) and hands it down here so the HTML is already in the right language.
+const InitialLanguageContext = createContext<Language>("en");
 
-  useEffect(() => {
-    const savedLanguage = window.localStorage.getItem("leba-language");
-    if (savedLanguage === "en" || savedLanguage === "es") setLanguage(savedLanguage);
+export function InitialLanguage({ language, children }: { language: Language; children: React.ReactNode }) {
+  return <InitialLanguageContext.Provider value={language}>{children}</InitialLanguageContext.Provider>;
+}
+
+export function LanguageProvider({ children }: { children: React.ReactNode }) {
+  const initial = useContext(InitialLanguageContext);
+  const [language, setLanguageState] = useState<Language>(initial);
+
+  // Only an explicit choice is remembered; the automatic guess never is.
+  const setLanguage = useCallback((next: Language) => {
+    setLanguageState(next);
+    document.cookie = `${LANGUAGE_COOKIE}=${next}; path=/; max-age=31536000; samesite=lax`;
   }, []);
 
   useEffect(() => {
-    window.localStorage.setItem("leba-language", language);
     document.documentElement.lang = language;
     document.documentElement.dataset.language = language;
   }, [language]);

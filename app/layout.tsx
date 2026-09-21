@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { headers } from "next/headers";
+import { cookies, headers } from "next/headers";
 import Script from "next/script";
 import { Geist } from "next/font/google";
 import "./globals.css";
@@ -8,6 +8,8 @@ import "../styles/hero-reference-tuning.css";
 import "../styles/hero-redesign.css";
 import "../styles/hero-final-overrides.css";
 import "../styles/language-layout.css";
+import { InitialLanguage } from "@/components/i18n/LanguageProvider";
+import { LANGUAGE_COOKIE, type Language } from "@/components/i18n/language";
 
 const geist = Geist({
   variable: "--font-geist",
@@ -104,14 +106,34 @@ export const metadata: Metadata = {
   },
 };
 
+// Spanish only when it is the visitor's top language; anything else falls back to English.
+function preferredLanguage(header: string | null): Language {
+  const top = (header ?? "")
+    .split(",")
+    .map((part) => {
+      const [tag, q] = part.trim().split(";q=");
+      return { tag: tag.toLowerCase(), q: q ? parseFloat(q) : 1 };
+    })
+    .filter((entry) => entry.tag && entry.tag !== "*" && Number.isFinite(entry.q) && entry.q > 0)
+    .sort((a, b) => b.q - a.q)[0];
+  return top && (top.tag === "es" || top.tag.startsWith("es-")) ? "es" : "en";
+}
+
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  const pathname = (await headers()).get("x-pathname") ?? "";
-  const language = pathname === "/nosotros" || pathname.startsWith("/nosotros/") ? "es" : "en";
+  const requestHeaders = await headers();
+  const pathname = requestHeaders.get("x-pathname") ?? "";
+  const saved = (await cookies()).get(LANGUAGE_COOKIE)?.value;
+  const language: Language =
+    pathname === "/nosotros" || pathname.startsWith("/nosotros/")
+      ? "es"
+      : saved === "es" || saved === "en"
+        ? saved
+        : preferredLanguage(requestHeaders.get("accept-language"));
 
   return (
     <html lang={language}>
       <body className={geist.variable}>
-        {children}
+        <InitialLanguage language={language}>{children}</InitialLanguage>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
