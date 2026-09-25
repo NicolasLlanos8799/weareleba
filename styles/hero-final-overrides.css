@@ -76,3 +76,12 @@
   .hero-cinematic .hero-system-screen--growth { right: 5% !important; bottom: 8% !important; }
   .hero-cinematic .hero-title { font-size: clamp(58px, 16vw, 78px) !important; }
 }
+
+/* Keep the copy in flow and reserve room for the absolute scroll marker, so they never overlap on short screens. */
+@media (min-width: 701px) {
+  .hero-cinematic .hero-content { padding: clamp(150px, 22vh, 250px) clamp(28px, 6.2vw, 102px) 190px !important; }
+  .hero-cinematic .hero-copy-cinematic { position: relative !important; top: auto !important; left: auto !important; margin: 0 !important; transform: none !important; }
+}
+@media (max-width: 700px) {
+  .hero-cinematic .hero-content { padding-bottom: 140px !important; }
+}
