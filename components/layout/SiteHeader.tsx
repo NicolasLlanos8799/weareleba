@@ -59,9 +59,9 @@ export function SiteHeader({ tone = "light" }: SiteHeaderProps) {
   return (
     <header className={`site-header site-header-${tone}${open ? " site-header-menu-open" : ""}`} style={headerStyle}>
       <div className="site-header-inner">
-        <a className="site-brand focusable" style={textStyle} href="/" aria-label="LEBA">LEBA</a>
+        <a className="site-brand focusable" style={textStyle} href="/" aria-label="LEBA" title="LEBA — Home">LEBA</a>
         <nav aria-label={language === "en" ? "Main navigation" : "Navegación principal"} className="desktop-nav site-nav" style={mutedStyle}>
-          {links.map(([label, href]) => <a className="focusable" style={mutedStyle} key={label} href={href}>{label}</a>)}
+          {links.map(([label, href]) => <a className="focusable" style={mutedStyle} key={label} href={href} title={label}>{label}</a>)}
         </nav>
         <div className="site-header-actions">
           <div className="site-language-selector flex items-center gap-2 mr-5 text-[11px] tracking-[0.16em]" style={mutedStyle} aria-label="Language selector">
@@ -69,7 +69,7 @@ export function SiteHeader({ tone = "light" }: SiteHeaderProps) {
             <span style={{ opacity: .55 }}> / </span>
             <button className={`focusable border-0 bg-transparent p-0 cursor-pointer transition-opacity ${language === "es" ? "opacity-100" : "opacity-45 hover:opacity-100"}`} style={textStyle} type="button" onClick={() => setLanguage("es")} aria-pressed={language === "es"}>ES</button>
           </div>
-          <a className="focusable site-header-cta" style={ctaStyle} href="/#contact"><span>{labels.talk}</span><span aria-hidden="true">→</span></a>
+          <a className="focusable site-header-cta" style={ctaStyle} href="/#contact" title={labels.talk}><span>{labels.talk}</span><span aria-hidden="true">→</span></a>
           <button className="focusable menu-toggle" style={textStyle} type="button" aria-label={open ? labels.close : labels.menu} aria-expanded={open} onClick={() => setOpen(!open)}>
             <span className="sr-only">{open ? labels.close : labels.menu}</span>
             {open ? <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 5L19 19M19 5L5 19" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg> : <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7H20M4 12H20M4 17H20" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>}
@@ -78,7 +78,7 @@ export function SiteHeader({ tone = "light" }: SiteHeaderProps) {
       </div>
       {open && <nav aria-label={language === "en" ? "Mobile navigation" : "Navegación móvil"} className="mobile-nav">
         <div className="flex items-center gap-2 text-[11px] tracking-[0.16em]"><button className={language === "en" ? "font-medium" : "opacity-50"} type="button" onClick={() => setLanguage("en")}>EN</button><span>/</span><button className={language === "es" ? "font-medium" : "opacity-50"} type="button" onClick={() => setLanguage("es")}>ES</button></div>
-        {links.map(([label, href]) => <a key={label} href={href} onClick={() => setOpen(false)}>{label}</a>)}
+        {links.map(([label, href]) => <a key={label} href={href} title={label} onClick={() => setOpen(false)}>{label}</a>)}
       </nav>}
     </header>
   );

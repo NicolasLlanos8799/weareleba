@@ -20,6 +20,7 @@ const copy = {
     statement: "We bring clarity to complexity.",
     description: "We are a digital studio that brings clarity and structure to growing businesses. We take the time to understand how your business works, where the friction is and what is holding you back. Then we transform complexity into clear, purposeful digital solutions — creating structure, bringing order and building systems that give you more control and more time.",
     link: "Discover LEBA",
+    aboutHref: "/about",
     approach: "OUR APPROACH",
     steps: [
       { number: "01", title: "Understand", description: "We diagnose your current business operations.", actions: ["LISTEN", "ANALYZE", "FIND OPPORTUNITIES"] },
@@ -35,6 +36,7 @@ const copy = {
     statement: "Damos claridad a la complejidad.",
     description: "Somos un estudio digital que aporta claridad y estructura a negocios en crecimiento. Nos tomamos el tiempo para entender cómo funciona tu negocio, dónde está la fricción y qué te está frenando. Después transformamos esa complejidad en soluciones digitales claras y con propósito: creando estructura, poniendo orden y construyendo sistemas que te dan más control y más tiempo.",
     link: "Descubre LEBA",
+    aboutHref: "/nosotros",
     approach: "NUESTRO ENFOQUE",
     steps: [
       { number: "01", title: "Entender", description: "Diagnosticamos la operación actual del negocio.", actions: ["ESCUCHAR", "ANALIZAR", "ENCONTRAR OPORTUNIDADES"] },
@@ -100,7 +102,7 @@ export function WeAreLeba() {
           </div>
           <div className={styles.intro}>
             <p>{content.description}</p>
-            <Link className={styles.storyLink} href="/nosotros"><span>{content.link}</span><span aria-hidden="true">→</span></Link>
+            <Link className={styles.storyLink} href={content.aboutHref} title={content.link}><span>{content.link}</span><span aria-hidden="true">→</span></Link>
           </div>
         </header>
         <div className={styles.approachHeading}><span>{content.approach}</span><i /></div>

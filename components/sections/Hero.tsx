@@ -30,7 +30,7 @@ export function Hero() {
           <h1 id="hero-title" className="hero-title" data-reveal="left">{content.title}</h1>
           <p className="hero-body motion-stagger-1" data-reveal>{content.body}</p>
           <div className="hero-actions motion-stagger-2" data-reveal>
-            <a className="button-primary focusable" href="#contact"><span>{content.talk}</span><span aria-hidden="true">→</span></a>
+            <a className="button-primary focusable" href="#contact" title={content.talk}><span>{content.talk}</span><span aria-hidden="true">→</span></a>
           </div>
         </div>
         <div className="hero-scroll-cue" aria-hidden="true">
